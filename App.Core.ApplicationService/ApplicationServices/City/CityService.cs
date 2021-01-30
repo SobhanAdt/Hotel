@@ -37,10 +37,10 @@ namespace App.Core.ApplicationService.ApplicationServices.City
             return $"Update Ba Mofaghiyat Anjam Shod";
         }
 
-        //public List<CityOutputDto> GetAll()
-        //{
-        //    var list = repository.GetAll();
-            
-        //}
+        public List<CityOutputDto> GetAll()
+        {
+            var list = repository.GetAll();
+
+        }
     }
 }

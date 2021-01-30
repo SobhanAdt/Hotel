@@ -11,7 +11,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using App.Core.ApplicationService.IRepositories;
+using App.Core.Entities;
 using App.Infrastucture.EF.Database;
+using App.Infrastucture.EF.Repositories;
 using HotelWebApi.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
@@ -37,6 +40,7 @@ namespace HotelWebApi
                 o.UseSqlServer(Configuration.GetConnectionString("HotelConnectionStrings")));
 
             services.AddDependency();
+
             services.AddControllers();
         }
 

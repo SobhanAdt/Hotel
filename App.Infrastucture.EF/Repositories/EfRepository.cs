@@ -21,7 +21,14 @@ namespace App.Infrastucture.EF.Repositories
 
         public Task<List<T>> GetAll()
         {
-            return this.context.Set<T>().ToListAsync();
+            try
+            {
+                return this.context.Set<T>().ToListAsync();
+            }
+            catch
+            {
+                throw new Exception("Error Get All");
+            }
         }
 
         public IQueryable<T> GetQuery()
@@ -31,29 +38,64 @@ namespace App.Infrastucture.EF.Repositories
 
         public Task<T> GetSingel(int id)
         {
-            return this.context.Set<T>().FirstOrDefaultAsync(x => x.Id == id);
+            try
+            {
+                return this.context.Set<T>().FirstOrDefaultAsync(x => x.Id == id);
+            }
+            catch
+            {
+                throw new Exception("Error Get Singel");
+            }
         }
 
         public void Insert(T item)
         {
-            this.context.Add(item);
+            try
+            {
+                this.context.Add(item);
+            }
+            catch
+            {
+                throw new Exception("Error Insert");
+            }
         }
 
         public async Task Delete(int id)
         {
-            var model = await this.context.Set<T>().FirstOrDefaultAsync(x => x.Id == id);
-            this.context.Remove(model);
+            try
+            {
+                var model = await this.context.Set<T>().FirstOrDefaultAsync(x => x.Id == id);
+                this.context.Remove(model);
+            }
+            catch 
+            {
+                throw new  Exception("Error Delete");
+            }
         }
 
         public Task Save()
         {
-            return this.context.SaveChangesAsync();
+            try
+            {
+                return this.context.SaveChangesAsync();
+            }
+            catch
+            {
+                throw new Exception("Error Save");
+            }
         }
 
         public T Update(T item)
         {
-            this.context.Update(item);
-            return item;
+            try
+            {
+                this.context.Update(item);
+                return item;
+            }
+            catch
+            {
+                throw new Exception("Error Update");
+            }
         }
     }
 }

@@ -43,6 +43,6 @@ namespace App.Infrastucture.EF.Database
             builder.Entity<Review>(x => x.ToTable("Review"));
             builder.Entity<ReviewAnswer>(x => x.ToTable("ReviewAnswer"));
         }
-
+        
     }
 }

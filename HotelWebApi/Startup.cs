@@ -11,7 +11,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using App.Infrastucture.EF.Database;
 using HotelWebApi.Extensions;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
 namespace HotelWebApi
@@ -30,6 +32,9 @@ namespace HotelWebApi
         {
             services.AddSwaggerGen(c =>
                 c.SwaggerDoc("Hotel", new OpenApiInfo { Title = "HotelWebApi", Version = "Hotel" }));
+
+            services.AddDbContext<HotelDbContext>(o =>
+                o.UseSqlServer(Configuration.GetConnectionString("HotelConnectionStrings")));
 
             services.AddDependency();
             services.AddControllers();

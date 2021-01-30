@@ -19,6 +19,8 @@ namespace App.Core.ApplicationService.IRepositories
 
         T Update(T item);
 
+        Task Delete(int id);
+
         Task Save();
 
 

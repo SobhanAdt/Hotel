@@ -15,6 +15,7 @@ using App.Core.ApplicationService.IRepositories;
 using App.Core.Entities;
 using App.Infrastucture.EF.Database;
 using App.Infrastucture.EF.Repositories;
+using AutoMapper;
 using HotelWebApi.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
@@ -38,6 +39,8 @@ namespace HotelWebApi
 
             services.AddDbContext<HotelDbContext>(o =>
                 o.UseSqlServer(Configuration.GetConnectionString("HotelConnectionStrings")));
+
+            services.AddAutoMapper(Assembly.GetAssembly(typeof(MapperConfiguration)));
 
             services.AddDependency();
 

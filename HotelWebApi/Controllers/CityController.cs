@@ -36,7 +36,7 @@ namespace HotelWebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(CityInsertInputDto inputDto)
+        public async Task<IActionResult> Create([FromBody] CityInsertInputDto inputDto)
         {
             if (!ModelState.IsValid)
             {
@@ -44,6 +44,28 @@ namespace HotelWebApi.Controllers
             }
             service.Create(inputDto);
             return Ok("OK Insert");
+        }
+
+        //[HttpGet]
+        //public async Task<IActionResult> Get()
+        //{
+        //    return service.GetAll();
+        //}
+
+
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get(int id)
+        {
+            service.GetSingel(id);
+            return Ok();
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> Delete(int id)
+        {
+            service.Delete(id);
+            return Ok();
         }
 
     }

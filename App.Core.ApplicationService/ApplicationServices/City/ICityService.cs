@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using App.Core.ApplicationService.Dtos.CityDto;
 
 namespace App.Core.ApplicationService.ApplicationServices.City
@@ -9,7 +10,11 @@ namespace App.Core.ApplicationService.ApplicationServices.City
 
         string Update(CityUpdateDto updateDto);
 
-        List<CityOutputDto> GetAll();
+        Task<List<CityOutputDto>> GetAll();
+
+        Task<CityOutputDto> GetSingel(int id);
+
+        string Delete(int id);
 
     }
 }

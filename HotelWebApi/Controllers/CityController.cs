@@ -31,7 +31,7 @@ namespace HotelWebApi.Controllers
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            service.Update(updateDto);
+            service.UpdateCity(updateDto);
             return Ok("Ok Update");
         }
 
@@ -42,29 +42,40 @@ namespace HotelWebApi.Controllers
             {
                 return BadRequest();
             }
-            service.Create(inputDto);
+            service.CreateCity(inputDto);
             return Ok("OK Insert");
         }
 
-        //[HttpGet]
-        //public async Task<IActionResult> Get()
-        //{
-        //    return service.GetAll();
-        //}
+        [HttpGet]
+        public async Task<IActionResult> Get()
+        {
+             
+             if (ModelState.IsValid)
+             {
+                service.GetAllCity();
+                return Ok();
+            }
 
+             return BadRequest();
+
+        }
 
 
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            service.GetSingel(id);
-            return Ok();
+            if (ModelState.IsValid)
+            {
+                service.GetSingelCity(id);
+                return Ok();
+            }
+            return BadRequest();
         }
 
         [HttpDelete]
         public async Task<IActionResult> Delete(int id)
         {
-            service.Delete(id);
+            service.DeleteCity(id);
             return Ok();
         }
 

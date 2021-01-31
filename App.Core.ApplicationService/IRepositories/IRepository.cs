@@ -9,9 +9,9 @@ namespace App.Core.ApplicationService.IRepositories
 {
     public interface IRepository<T>
     {
-        Task<List<T>> GetAll();
+        List<T> GetAll();
 
-        Task<T> GetSingel(int id);
+        T GetSingel(int id);
 
         IQueryable<T> GetQuery();
 

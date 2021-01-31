@@ -20,7 +20,7 @@ namespace App.Core.ApplicationService.ApplicationServices.City
             this.mapper = mapper;
         }
 
-        public string Create(CityInsertInputDto inputDto)
+        public string CreateCity(CityInsertInputDto inputDto)
         {
             repository.Insert(new Entities.City()
             {
@@ -32,7 +32,7 @@ namespace App.Core.ApplicationService.ApplicationServices.City
             return $"Ba Mofaghiyat {inputDto.CityName} Afzode shod";
         }
 
-        public string Update(CityUpdateDto updateDto)
+        public string UpdateCity(CityUpdateDto updateDto)
         {
             var item = repository.GetSingel(updateDto.Id);
             if (item == null)
@@ -40,24 +40,25 @@ namespace App.Core.ApplicationService.ApplicationServices.City
                 return "Null";
             }
 
-            item.Result.CityName = updateDto.CityName;
+            item.CityName = updateDto.CityName;
             repository.Save();
             return $"Update Ba Mofaghiyat Anjam Shod";
         }
 
-        public async Task<List<CityOutputDto>> GetAll()
+        public async Task<List<CityOutputDto>> GetAllCity()
         {
-            var lst = await repository.GetAll();
+            var lst = repository.GetAll();
             return lst.Select(x => new CityOutputDto()
             {
                 CityName = x.CityName,
                 Id = x.Id
             }).ToList();
+
         }
 
-        public async Task<CityOutputDto> GetSingel(int id)
+        public async Task<CityOutputDto> GetSingelCity(int id)
         {
-            var item = await repository.GetSingel(id);
+            var item = repository.GetSingel(id);
             return new CityOutputDto()
             {
                 CityName = item.CityName,
@@ -66,9 +67,9 @@ namespace App.Core.ApplicationService.ApplicationServices.City
 
 
         }
-        public string Delete(int id)
+        public string DeleteCity(int id)
         {
-            var item =repository.Delete(id);
+            var item = repository.Delete(id);
             repository.Save();
             return "Delete Anjam shod";
 

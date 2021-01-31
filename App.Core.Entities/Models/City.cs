@@ -13,5 +13,11 @@ namespace App.Core.Entities
         [Display(Name = "نام شهر")]
         [Required(ErrorMessage = "نام شهر را باید وارد کنید")]
         public string CityName { get; set; }
+
+        #region Relation
+
+        public List<Hotel> Hotels { get; set; }
+
+        #endregion
     }
 }

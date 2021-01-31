@@ -12,12 +12,10 @@ namespace App.Core.ApplicationService.ApplicationServices.City
     public class CityService : ICityService
     {
         private IRepository<Entities.City> repository;
-        private IMapper mapper;
 
-        public CityService(IRepository<Entities.City> repository, IMapper mapper)
+        public CityService(IRepository<Entities.City> repository)
         {
             this.repository = repository;
-            this.mapper = mapper;
         }
 
         public string CreateCity(CityInsertInputDto inputDto)
@@ -26,8 +24,6 @@ namespace App.Core.ApplicationService.ApplicationServices.City
             {
                 CityName = inputDto.CityName
             });
-            //var item = mapper.Map<Entities.City>(inputDto);
-            //repository.Insert(item);
             repository.Save();
             return $"Ba Mofaghiyat {inputDto.CityName} Afzode shod";
         }

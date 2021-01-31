@@ -26,6 +26,13 @@ namespace HotelWebApi.Extensions
         public static void AddRepositories(IServiceCollection service)
         {
             service.AddTransient<IRepository<City>, EfRepository<City>>();
+            service.AddTransient<IRepository<Hotel>, EfRepository<Hotel>>();
+            service.AddTransient<IRepository<Rate>, EfRepository<Rate>>();
+            service.AddTransient<IRepository<Review>, EfRepository<Review>>();
+            service.AddTransient<IRepository<ReviewAnswer>, EfRepository<ReviewAnswer>>();
+            service.AddTransient<IRepository<Room>, EfRepository<Room>>();
+            service.AddTransient<IRepository<User>, EfRepository<User>>();
+            service.AddTransient<IRepository<UserLogin>, EfRepository<UserLogin>>();
         }
     }
 }

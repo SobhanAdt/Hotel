@@ -19,11 +19,11 @@ namespace App.Infrastucture.EF.Repositories
             this.context = context;
         }
 
-        public Task<List<T>> GetAll()
+        public async Task<List<T>> GetAll()
         {
             try
             {
-                return this.context.Set<T>().ToListAsync();
+                return await this.context.Set<T>().ToListAsync();
             }
             catch
             {
@@ -36,11 +36,11 @@ namespace App.Infrastucture.EF.Repositories
             return this.context.Set<T>().AsQueryable();
         }
 
-        public Task<T> GetSingel(int id)
+        public async Task<T> GetSingel(int id)
         {
             try
             {
-                return this.context.Set<T>().FirstOrDefaultAsync(x => x.Id == id);
+                return await this.context.Set<T>().FirstOrDefaultAsync(x => x.Id == id);
             }
             catch
             {

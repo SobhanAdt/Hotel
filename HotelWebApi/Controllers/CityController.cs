@@ -26,17 +26,17 @@ namespace HotelWebApi.Controllers
         }
 
         [HttpPut]
-        public IActionResult Update(CityUpdateDto updateDto)
+        public async Task<IActionResult> Update(CityUpdateDto updateDto)
         {
             if (!ModelState.IsValid)
                 return BadRequest();
 
             service.Update(updateDto);
-            return Ok();
+            return Ok("Ok Update");
         }
 
         [HttpPost]
-        public IActionResult Create(CityInsertInputDto inputDto)
+        public async Task<IActionResult> Create(CityInsertInputDto inputDto)
         {
             if (!ModelState.IsValid)
             {

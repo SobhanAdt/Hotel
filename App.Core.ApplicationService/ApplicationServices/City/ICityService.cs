@@ -1,15 +1,20 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using App.Core.ApplicationService.Dtos.CityDto;
 
 namespace App.Core.ApplicationService.ApplicationServices.City
 {
     public interface ICityService
     {
-        string Create(CityInsertInputDto inputDto);
+        string CreateCity(CityInsertInputDto inputDto);
 
-        string Update(CityUpdateDto updateDto);
+        string UpdateCity(CityUpdateDto updateDto);
 
-        List<CityOutputDto> GetAll();
+        Task<List<CityOutputDto>> GetAllCity();
+
+        Task<CityOutputDto> GetSingelCity(int id);
+
+        string DeleteCity(int id);
 
     }
 }

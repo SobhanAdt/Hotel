@@ -1,7 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http.Headers;
 using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 using App.Core.ApplicationService.Dtos.CityDto;
 using App.Core.ApplicationService.IRepositories;
+using AutoMapper;
 
 namespace App.Core.ApplicationService.ApplicationServices.City
 {
@@ -14,17 +18,17 @@ namespace App.Core.ApplicationService.ApplicationServices.City
             this.repository = repository;
         }
 
-        public string Create(CityInsertInputDto inputDto)
+        public string CreateCity(CityInsertInputDto inputDto)
         {
             repository.Insert(new Entities.City()
             {
-                CityName = inputDto.Name
+                CityName = inputDto.CityName
             });
             repository.Save();
-            return $"Ba Mofaghiyat {inputDto.Name} Afzode shod";
+            return $"Ba Mofaghiyat {inputDto.CityName} Afzode shod";
         }
 
-        public string Update(CityUpdateDto updateDto)
+        public string UpdateCity(CityUpdateDto updateDto)
         {
             var item = repository.GetSingel(updateDto.Id);
             if (item == null)
@@ -32,14 +36,39 @@ namespace App.Core.ApplicationService.ApplicationServices.City
                 return "Null";
             }
 
-            item.Result.CityName = updateDto.Name;
+            item.CityName = updateDto.CityName;
             repository.Save();
             return $"Update Ba Mofaghiyat Anjam Shod";
         }
 
-        public List<CityOutputDto> GetAll()
+        public async Task<List<CityOutputDto>> GetAllCity()
         {
-            var list = repository.GetAll();
+            var lst = repository.GetAll();
+            return lst.Select(x => new CityOutputDto()
+            {
+                CityName = x.CityName,
+                Id = x.Id
+            }).ToList();
+
+        }
+
+        public async Task<CityOutputDto> GetSingelCity(int id)
+        {
+            var item = repository.GetSingel(id);
+            return new CityOutputDto()
+            {
+                CityName = item.CityName,
+                Id = item.Id
+            };
+
+
+        }
+        public string DeleteCity(int id)
+        {
+            var item = repository.Delete(id);
+            repository.Save();
+            return "Delete Anjam shod";
+
 
         }
     }

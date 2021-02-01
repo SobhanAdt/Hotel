@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HotelWebApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class RoomController : ControllerBase
     {

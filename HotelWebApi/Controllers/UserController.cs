@@ -9,7 +9,7 @@ using App.Core.ApplicationService.Dtos.Userto;
 
 namespace HotelWebApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class UserController : ControllerBase
     {

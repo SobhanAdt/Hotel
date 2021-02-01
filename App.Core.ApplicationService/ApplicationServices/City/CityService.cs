@@ -66,9 +66,9 @@ namespace App.Core.ApplicationService.ApplicationServices.City
                 Hotels = ListItem
             };
         }
-        public string DeleteCity(int id)
+        public  string DeleteCity(int id)
         {
-            var item = repository.Delete(id);
+            repository.Delete(id);
             repository.Save();
             return "Delete Anjam shod";
         }

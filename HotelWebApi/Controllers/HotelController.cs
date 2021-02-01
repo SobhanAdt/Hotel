@@ -17,45 +17,70 @@ namespace HotelWebApi.Controllers
     public class HotelController : ControllerBase
     {
         private IHotelService service;
-        private IRepository<Hotel> repository;
 
-        public HotelController(IHotelService service, IRepository<Hotel> repository)
+        public HotelController(IHotelService service)
         {
             this.service = service;
-            this.repository = repository;
         }
+
         [HttpGet]
-        public Task<List<HotelGetOutPutDto>> GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            return service.GetAllHotels();
+            if (ModelState.IsValid)
+            {
+                var AllHotel = await service.GetAllHotels();
+                return Ok(AllHotel);
+            }
+
+            return BadRequest();
 
         }
-        [HttpGet]
-        public Task<HotelGetOutPutDto> Get(int id)
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get(int id)
         {
+            if (ModelState.IsValid)
+            {
+                var SingelHotel = await service.GetSingleHotel(id);
+                return Ok(SingelHotel);
+            }
 
-            return service.GetSingleHotel(id);
-
+            return BadRequest();
         }
         [HttpPut]
         public async Task<IActionResult> Update(HotelUpdateInputDto updateDto)
         {
-            if (!ModelState.IsValid)
-                return BadRequest();
+            if (ModelState.IsValid)
+            {
+                var updateHotel = service.Update(updateDto);
+                return Ok(updateHotel);
+            }
 
-            service.Update(updateDto);
-            return Ok("Ok Update");
+            return BadRequest();
         }
 
         [HttpPost]
         public async Task<IActionResult> Create(HotelInsertInputDto inputDto)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                return BadRequest();
+                var insertHotel = service.Create(inputDto);
+                return Ok(insertHotel);
             }
-            service.Create(inputDto);
-            return Ok("OK Insert");
+
+            return BadRequest();
         }
+
+        [HttpDelete]
+        public async Task<IActionResult> Delete(int id)
+        {
+            if (ModelState.IsValid)
+            {
+                var deleteHotel =  service.DeleteHotels(id);
+                return Ok(deleteHotel);
+            }
+
+            return BadRequest();
+        } 
     }
 }

@@ -14,5 +14,7 @@ namespace App.Core.ApplicationService.ApplicationServices.Room
 
         Task<List<RoomGetOutPutDto>> GetAllRooms();
         Task<RoomGetOutPutDto> GetSingleRooms(int id);
+
+        string DeleteRooms(int id);
     }
 }

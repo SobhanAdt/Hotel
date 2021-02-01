@@ -16,45 +16,70 @@ namespace HotelWebApi.Controllers
     public class RoomController : ControllerBase
     {
         private IRoomService service;
-        private IRepository<Room> repository;
-
-        public RoomController(IRoomService service, IRepository<Room> repository)
+        
+        public RoomController(IRoomService service)
         {
             this.service = service;
-            this.repository = repository;
         }
+
         [HttpGet]
-        public Task<List<RoomGetOutPutDto>> GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            return service.GetAllRooms();
+            if (ModelState.IsValid)
+            {
+                var AllRoom = await service.GetAllRooms();
+                return Ok(AllRoom);
+            }
+
+            return BadRequest();
 
         }
-        [HttpGet]
-        public Task<RoomGetOutPutDto> Get(int id)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get(int id)
         {
+            if (ModelState.IsValid)
+            {
+                var SingelRoom = await service.GetSingleRooms(id);
+                return Ok(SingelRoom);
+            }
 
-            return service.GetSingleRooms(id);
-
+            return BadRequest();
         }
+
         [HttpPut]
         public async Task<IActionResult> Update(RoomUpdateInputDto updateDto)
         {
-            if (!ModelState.IsValid)
-                return BadRequest();
+            if (ModelState.IsValid)
+            {
+              var updateRoom=  service.Update(updateDto);
+                return Ok(updateRoom);
+            }
 
-            service.Update(updateDto);
-            return Ok("Ok Update");
+            return BadRequest();
         }
 
         [HttpPost]
         public async Task<IActionResult> Create(RoomInsertInputDto inputDto)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                return BadRequest();
+               var insertRoom= service.Create(inputDto);
+                return Ok(insertRoom);
             }
-            service.Create(inputDto);
-            return Ok("OK Insert");
+
+            return BadRequest();
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> Delete(int id)
+        {
+            if (ModelState.IsValid)
+            {
+                var deleteRoom = service.DeleteRooms(id);
+                return Ok(deleteRoom);
+            }
+
+            return BadRequest();
         }
     }
 }

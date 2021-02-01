@@ -75,6 +75,13 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
             };
         }
 
+        public string DeleteHotels(int id)
+        {
+            repository.Delete(id);
+            repository.Save();
+            return "Delete Anjam shod";
+        }
+
         public string Update(HotelUpdateInputDto updateDto)
         {
 

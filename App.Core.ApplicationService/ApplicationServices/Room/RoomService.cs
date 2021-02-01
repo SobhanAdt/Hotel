@@ -8,7 +8,7 @@ using App.Core.ApplicationService.IRepositories;
 
 namespace App.Core.ApplicationService.ApplicationServices.Room
 {
-   public class RoomService:IRoomService
+    public class RoomService : IRoomService
     {
         private IRepository<Entities.Room> repository;
 
@@ -20,23 +20,31 @@ namespace App.Core.ApplicationService.ApplicationServices.Room
         public string Create(RoomInsertInputDto inputDto)
         {
             repository.Insert(new Entities.Room()
-            {RoomCode=inputDto.RoomCode,
-            RoomAera=inputDto.RoomAera,
-            RoomPrice=inputDto.RoomPrice,
-            Descripation=inputDto.Descripation,
-            HotelId=inputDto.HotelId
+            {
+                RoomCode = inputDto.RoomCode,
+                RoomAera = inputDto.RoomAera,
+                RoomPrice = inputDto.RoomPrice,
+                Descripation = inputDto.Descripation,
+                HotelId = inputDto.HotelId
             });
             repository.Save();
             return $" Room {inputDto.RoomCode} Created in DataBase";
         }
 
+        public string DeleteRooms(int id)
+        {
+            repository.Delete(id);
+            repository.Save();
+            return "Delete Anjam shod";
+        }
+
         public async Task<List<RoomGetOutPutDto>> GetAllRooms()
         {
-            var lst =  repository.GetAll();
+            var lst = repository.GetAll();
             return lst.Select(x => new RoomGetOutPutDto()
             {
                 Id = x.Id,
-                RoomCode = x.RoomCode,             
+                RoomCode = x.RoomCode,
                 RoomAera = x.RoomAera,
                 RoomPrice = x.RoomPrice,
                 Descripation = x.Descripation,
@@ -47,7 +55,7 @@ namespace App.Core.ApplicationService.ApplicationServices.Room
 
         public async Task<RoomGetOutPutDto> GetSingleRooms(int id)
         {
-            var item =  repository.GetSingel(id);
+            var item = repository.GetSingel(id);
             if (item == null)
             {
                 return null;
@@ -64,7 +72,7 @@ namespace App.Core.ApplicationService.ApplicationServices.Room
             };
         }
 
-     
+
 
         public string Update(RoomUpdateInputDto updateDto)
         {

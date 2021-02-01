@@ -6,6 +6,7 @@ using App.Core.ApplicationService.ApplicationServices.City;
 using App.Core.ApplicationService.ApplicationServices.Hotel;
 using App.Core.ApplicationService.ApplicationServices.Rate;
 using App.Core.ApplicationService.ApplicationServices.Room;
+using App.Core.ApplicationService.ApplicationServices.User;
 using App.Core.ApplicationService.IRepositories;
 using App.Core.Entities;
 using App.Infrastucture.EF.Repositories;
@@ -27,6 +28,7 @@ namespace HotelWebApi.Extensions
             service.AddTransient<IHotelService, HotelService>();
             service.AddTransient<IRoomService, RoomService>();
             service.AddTransient<IRateService, RateService>();
+            service.AddTransient<IUserService, UserService>();
 
         }
 

@@ -32,7 +32,7 @@ namespace App.Core.ApplicationService.ApplicationServices.Room
 
         public async Task<List<RoomGetOutPutDto>> GetAllRooms()
         {
-            var lst = await repository.GetAll();
+            var lst =  repository.GetAll();
             return lst.Select(x => new RoomGetOutPutDto()
             {
                 Id = x.Id,
@@ -47,7 +47,7 @@ namespace App.Core.ApplicationService.ApplicationServices.Room
 
         public async Task<RoomGetOutPutDto> GetSingleRooms(int id)
         {
-            var item = await repository.GetSingel(id);
+            var item =  repository.GetSingel(id);
             if (item == null)
             {
                 return null;
@@ -75,11 +75,11 @@ namespace App.Core.ApplicationService.ApplicationServices.Room
                 return "Null";
             }
 
-            item.Result.RoomCode = updateDto.RoomCode;
-            item.Result.RoomAera = updateDto.RoomAera;
-            item.Result.RoomPrice = updateDto.RoomPrice;
-            item.Result.Descripation = updateDto.Descripation;
-            item.Result.HotelId = updateDto.HotelId;
+            item.RoomCode = updateDto.RoomCode;
+            item.RoomAera = updateDto.RoomAera;
+            item.RoomPrice = updateDto.RoomPrice;
+            item.Descripation = updateDto.Descripation;
+            item.HotelId = updateDto.HotelId;
             repository.Save();
             return $"Updating this Room{updateDto.RoomCode} has Successfuled";
         }

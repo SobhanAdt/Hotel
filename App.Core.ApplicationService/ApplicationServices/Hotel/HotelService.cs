@@ -5,8 +5,7 @@ using System.Threading.Tasks;
 using App.Core.ApplicationService.Dtos.HotelDto;
 using App.Core.ApplicationService.IRepositories;
 using System.Linq;
-
-
+using Microsoft.EntityFrameworkCore;
 
 
 namespace App.Core.ApplicationService.ApplicationServices.Hotel
@@ -15,10 +14,12 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
 
     {
         private IRepository<Entities.Hotel> repository;
+        private IRepository<Entities.Room> roomRepository;
 
-        public HotelService(IRepository<Entities.Hotel> repository)
+        public HotelService(IRepository<Entities.Hotel> repository, IRepository<Entities.Room> roomRepository)
         {
             this.repository = repository;
+            this.roomRepository = roomRepository;
         }
 
         public string Create(HotelInsertInputDto inputDto)
@@ -37,7 +38,7 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
 
         public async Task<List<HotelGetOutPutDto>> GetAllHotels()
         {
-            var lst = await repository.GetAll();
+            var lst =  repository.GetQuery().Include(x=>x.Rooms);
             return lst.Select(x => new HotelGetOutPutDto()
             {
                 HotelName = x.HotelName,
@@ -46,14 +47,16 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
                 RoomCount = x.RoomCount,
                 Description = x.Description,
                 RateId = x.RateId,
-                CityId = x.CityId
+                CityId = x.CityId,
+                Rooms = x.Rooms
             }).ToList();
 
         }
 
         public async Task<HotelGetOutPutDto> GetSingleHotel(int id)
         {
-            var item = await repository.GetSingel(id);
+            var item =  repository.GetSingel(id);
+            var ListSingle = roomRepository.GetQuery().Where(x => x.HotelId == id).ToList();
             if (item == null)
             {
                 return null;
@@ -67,7 +70,8 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
                 RoomCount = item.RoomCount,
                 CityId = item.CityId,
                 RateId = item.RateId,
-                Description = item.Description
+                Description = item.Description,
+                Rooms = item.Rooms
             };
         }
 
@@ -80,10 +84,10 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
                 return "Null";
             }
 
-            item.Result.HotelName = updateDto.HotelName;
-            item.Result.CityId = updateDto.CityId;
-            item.Result.RateId = updateDto.RateId;
-            item.Result.RoomCount = updateDto.RoomCount;
+            item.HotelName = updateDto.HotelName;
+            item.CityId = updateDto.CityId;
+            item.RateId = updateDto.RateId;
+            item.RoomCount = updateDto.RoomCount;
             repository.Save();
             return $"Updating {updateDto.HotelName} has Successfuled";
         }

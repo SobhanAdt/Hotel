@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using App.Core.ApplicationService.ApplicationServices.City;
 using App.Core.ApplicationService.ApplicationServices.Hotel;
+using App.Core.ApplicationService.ApplicationServices.Rate;
 using App.Core.ApplicationService.ApplicationServices.Room;
 using App.Core.ApplicationService.IRepositories;
 using App.Core.Entities;
@@ -25,6 +26,8 @@ namespace HotelWebApi.Extensions
             service.AddTransient<ICityService, CityService>();
             service.AddTransient<IHotelService, HotelService>();
             service.AddTransient<IRoomService, RoomService>();
+            service.AddTransient<IRateService, RateService>();
+
         }
 
         public static void AddRepositories(IServiceCollection service)

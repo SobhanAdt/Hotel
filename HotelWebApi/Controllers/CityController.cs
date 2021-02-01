@@ -28,35 +28,39 @@ namespace HotelWebApi.Controllers
         [HttpPut]
         public async Task<IActionResult> Update(CityUpdateDto updateDto)
         {
-            if (!ModelState.IsValid)
-                return BadRequest();
+            if (ModelState.IsValid)
+            {
+                var UpdateCity = service.UpdateCity(updateDto);
+                return Ok(UpdateCity);
+            }
+            return BadRequest();
 
-            service.UpdateCity(updateDto);
-            return Ok("Ok Update");
+
         }
 
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CityInsertInputDto inputDto)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                return BadRequest();
+                var InsertCity = service.CreateCity(inputDto);
+                return Ok(InsertCity);
+
             }
-            service.CreateCity(inputDto);
-            return Ok("OK Insert");
+            return BadRequest();
         }
 
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-             
-             if (ModelState.IsValid)
-             {
-                service.GetAllCity();
-                return Ok();
+
+            if (ModelState.IsValid)
+            {
+                var lstCity = await service.GetAllCity();
+                return Ok(lstCity);
             }
 
-             return BadRequest();
+            return BadRequest();
 
         }
 
@@ -66,8 +70,8 @@ namespace HotelWebApi.Controllers
         {
             if (ModelState.IsValid)
             {
-                service.GetSingelCity(id);
-                return Ok();
+                var item = await service.GetSingelCity(id);
+                return Ok(item);
             }
             return BadRequest();
         }
@@ -75,8 +79,14 @@ namespace HotelWebApi.Controllers
         [HttpDelete]
         public async Task<IActionResult> Delete(int id)
         {
-            service.DeleteCity(id);
-            return Ok();
+            if (ModelState.IsValid)
+            {
+                var DeleteCity = service.DeleteCity(id);
+                return Ok(DeleteCity);
+            }
+
+            return BadRequest();
+
         }
 
     }

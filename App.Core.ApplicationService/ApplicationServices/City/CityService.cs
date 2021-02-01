@@ -6,16 +6,19 @@ using System.Threading.Tasks;
 using App.Core.ApplicationService.Dtos.CityDto;
 using App.Core.ApplicationService.IRepositories;
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 
 namespace App.Core.ApplicationService.ApplicationServices.City
 {
     public class CityService : ICityService
     {
         private IRepository<Entities.City> repository;
+        private IRepository<Entities.Hotel> hotelRepository;
 
-        public CityService(IRepository<Entities.City> repository)
+        public CityService(IRepository<Entities.City> repository,IRepository<Entities.Hotel> hotelRepository)
         {
             this.repository = repository;
+            this.hotelRepository = hotelRepository;
         }
 
         public string CreateCity(CityInsertInputDto inputDto)
@@ -43,33 +46,31 @@ namespace App.Core.ApplicationService.ApplicationServices.City
 
         public async Task<List<CityOutputDto>> GetAllCity()
         {
-            var lst = repository.GetAll();
+            var lst = repository.GetQuery().Include(x=>x.Hotels);
             return lst.Select(x => new CityOutputDto()
             {
                 CityName = x.CityName,
-                Id = x.Id
+                Id = x.Id,
+                Hotels = x.Hotels
             }).ToList();
-
         }
 
         public async Task<CityOutputDto> GetSingelCity(int id)
         {
             var item = repository.GetSingel(id);
+            var ListItem = hotelRepository.GetQuery().Where(x => x.CityId == id).ToList();
             return new CityOutputDto()
             {
                 CityName = item.CityName,
-                Id = item.Id
+                Id = item.Id,
+                Hotels = ListItem
             };
-
-
         }
         public string DeleteCity(int id)
         {
             var item = repository.Delete(id);
             repository.Save();
             return "Delete Anjam shod";
-
-
         }
     }
 }

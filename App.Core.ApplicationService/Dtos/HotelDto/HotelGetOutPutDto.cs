@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using App.Core.Entities;
 
 namespace App.Core.ApplicationService.Dtos.HotelDto
 {
@@ -13,6 +14,7 @@ namespace App.Core.ApplicationService.Dtos.HotelDto
         public int CityId { get; set; }
         public int RateId { get; set; }
         public string Description { get; set; }
+        public List<Room> Rooms { get; set; }
 
 
     }

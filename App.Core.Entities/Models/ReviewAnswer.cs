@@ -7,7 +7,7 @@ namespace App.Core.Entities
     {
         public int Id { get; set; }
 
-        public string CommnetAnswer { get; set; }
+        public string CommentAnswer { get; set; }
 
         public int UserId { get; set; }
 

@@ -31,9 +31,9 @@ namespace App.Core.ApplicationService.ApplicationServices.City
             return $"Ba Mofaghiyat {inputDto.CityName} Afzode shod";
         }
 
-        public string UpdateCity(int id,CityUpdateDto updateDto)
+        public string UpdateCity(CityUpdateDto updateDto)
         {
-            var item = repository.GetSingel(id);
+            var item = repository.GetSingel(updateDto.Id);
             if (item == null)
             {
                 return "Null";
@@ -51,19 +51,38 @@ namespace App.Core.ApplicationService.ApplicationServices.City
             {
                 CityName = x.CityName,
                 Id = x.Id,
-                Hotels = x.Hotels
+                Hotels = x.Hotels.Select(y => new HotelDTO()
+                {
+                    CityId =  y.CityId ,
+                    Description =  y.Description ,
+                    HotelCode = y.HotelCode ,
+                    HotelName =  y.HotelName,
+                    Id =  y.Id ,
+                    RateId = y.RateId ,
+                    RoomCount = y.RoomCount
+                }).ToList()
             }).ToList();
         }
 
         public async Task<CityOutputDto> GetSingelCity(int id)
         {
-            var item = repository.GetSingel(id);
-            var ListItem = hotelRepository.GetQuery().Where(x => x.CityId == id).ToList();
+            var item =await repository.GetQuery().
+                Include(x => x.Hotels).FirstOrDefaultAsync(x=>x.Id==id);
+
             return new CityOutputDto()
             {
-                CityName = item.CityName,
                 Id = item.Id,
-                Hotels = ListItem
+                CityName = item.CityName,
+                Hotels = item.Hotels.Select(x => new HotelDTO()
+                {
+                    CityId = x.CityId,
+                    Description = x.Description,
+                    HotelCode = x.HotelCode,
+                    HotelName = x.HotelName,
+                    Id = x.Id,
+                    RateId = x.RateId,
+                    RoomCount = x.RoomCount
+                }).ToList()
             };
         }
         public string DeleteCity(int id)

@@ -10,7 +10,7 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
     {
         string Create(HotelInsertInputDto inputDto);
 
-        string Update(int id,HotelUpdateInputDto updateDto);
+        string Update(HotelUpdateInputDto updateDto);
 
         Task<List<HotelGetOutPutDto>> GetAllHotels();
         Task<HotelGetOutPutDto> GetSingleHotel(int id);

@@ -7,6 +7,8 @@ namespace App.Core.ApplicationService.Dtos.RoomDto
 {
     public class RoomUpdateInputDto
     {
+        public int Id { get; set; }
+
         [Required(ErrorMessage = "Please Enter Id")]
         public int RoomCode { get; set; }
         public int RoomAera { get; set; }

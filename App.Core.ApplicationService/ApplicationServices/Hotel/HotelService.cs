@@ -81,10 +81,10 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
             return "Delete Anjam shod";
         }
 
-        public string Update(int id,HotelUpdateInputDto updateDto)
+        public string Update(HotelUpdateInputDto updateDto)
         {
 
-            var item = repository.GetSingel(id);
+            var item = repository.GetSingel(updateDto.Id);
             if (item == null)
             {
                 return "Null";

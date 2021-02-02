@@ -10,7 +10,7 @@ namespace App.Core.ApplicationService.ApplicationServices.User
     {
         string InsertUser(UserInsertInputDto insertInputDto);
 
-        string UpdateUser(int id,UserUpdateDto updateDto);
+        string UpdateUser(UserUpdateDto updateDto);
 
         string DeleteUser(int id);
 

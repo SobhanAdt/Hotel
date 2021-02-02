@@ -10,7 +10,7 @@ namespace App.Core.ApplicationService.ApplicationServices.Review
     {
         string Create(ReviewInsertInputDto inputDto);
 
-        string Update(int id, ReviewUpdateInputDto updateDto);
+        string Update( ReviewUpdateInputDto updateDto);
 
         Task<List<ReviewGetOutPutDto>> GetAllReviews();
         Task<ReviewGetOutPutDto> GetSingleReview(int id);

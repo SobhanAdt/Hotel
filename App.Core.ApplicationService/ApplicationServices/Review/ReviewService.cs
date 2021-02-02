@@ -60,9 +60,9 @@ namespace App.Core.ApplicationService.ApplicationServices.Review
             };
         }
 
-        public string Update(int id, ReviewUpdateInputDto updateDto)
+        public string Update( ReviewUpdateInputDto updateDto)
         {
-            var item = repository.GetSingel(id);
+            var item = repository.GetSingel(updateDto.Id);
             if (item == null)
             {
                 return "Null";

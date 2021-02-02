@@ -26,11 +26,11 @@ namespace HotelWebApi.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> Update([FromQuery]int id,[FromBody]CityUpdateDto updateDto)
+        public async Task<IActionResult> Update([FromBody]CityUpdateDto updateDto)
         {
             if (ModelState.IsValid)
             {
-                var UpdateCity = service.UpdateCity(id,updateDto);
+                var UpdateCity = service.UpdateCity(updateDto);
                 return Ok(UpdateCity);
             }
             return BadRequest();

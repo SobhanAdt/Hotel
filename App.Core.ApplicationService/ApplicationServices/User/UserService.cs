@@ -14,12 +14,12 @@ namespace App.Core.ApplicationService.ApplicationServices.User
     public class UserService : IUserService
     {
         private IRepository<Entities.User> userRepository;
-        private IRepository<Review> reviewRepository;
+        private IRepository<Entities.Review> reviewRepository;
         private IRepository<ReviewAnswer> reviewAnsweRepository;
         private IRepository<UserLogin> userLoginRepository;
 
         public UserService(IRepository<Entities.User> userRepository
-            , IRepository<Review> reviewRepository
+            , IRepository<Entities.Review> reviewRepository
             , IRepository<ReviewAnswer> reviewAnsweRepository
             , IRepository<UserLogin> userLoginRepository)
         {
@@ -82,9 +82,9 @@ namespace App.Core.ApplicationService.ApplicationServices.User
             return $"Useri be Name : {insertInputDto.FullName} Ezafe Shod";
         }
 
-        public string UpdateUser(int id,UserUpdateDto updateDto)
+        public string UpdateUser(UserUpdateDto updateDto)
         {
-            var item = userRepository.GetSingel(id);
+            var item = userRepository.GetSingel(updateDto.Id);
             if (item == null)
             {
                 return null;

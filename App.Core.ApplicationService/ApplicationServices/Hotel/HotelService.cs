@@ -15,13 +15,11 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
 
     {
         private IRepository<Entities.Hotel> repository;
-        private IRepository<Entities.Room> roomRepository;
-        private static int CurrentCode = 1000;
+        
 
-        public HotelService(IRepository<Entities.Hotel> repository, IRepository<Entities.Room> roomRepository)
+        public HotelService(IRepository<Entities.Hotel> repository)
         {
             this.repository = repository;
-            this.roomRepository = roomRepository;
         }
 
         public string Create(HotelInsertInputDto inputDto)
@@ -51,15 +49,29 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
                 Description = x.Description,
                 RateId = x.RateId,
                 CityId = x.CityId,
-                Rooms = x.Rooms
+                Rooms = x.Rooms.Select(x=>new RoomDTO()
+                {
+                    Descripation = x.Descripation,
+                    RoomAera =x.RoomAera,
+                    RoomCode = x.RoomCode,
+                    Id = x.Id,
+                    RoomPrice = x.RoomPrice
+                }).ToList(),
+                Reviews = x.Reviews.Select(x=>new ReviewDTO()
+                {
+                    UserId = x.UserId,
+                    Id = x.Id,
+                    Comment = x.Comment
+                }).ToList()
             }).ToList();
 
         }
 
         public async Task<HotelGetOutPutDto> GetSingleHotel(int id)
         {
-            var item = repository.GetSingel(id);
-            var ListSingle = roomRepository.GetQuery().Where(x => x.HotelId == id).ToList();
+            var item =await repository.GetQuery()
+                .Include(x=>x.Rooms).Where(x=>x.Id==id)
+                .Include(x=>x.Reviews).Where(x=>x.Id==id).FirstOrDefaultAsync();
 
             return new HotelGetOutPutDto()
             {
@@ -70,7 +82,20 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
                 CityId = item.CityId,
                 RateId = item.RateId,
                 Description = item.Description,
-                Rooms = item.Rooms
+                Rooms = item.Rooms.Select(x => new RoomDTO()
+                {
+                    Descripation = x.Descripation,
+                    RoomAera = x.RoomAera,
+                    RoomCode = x.RoomCode,
+                    Id = x.Id,
+                    RoomPrice = x.RoomPrice
+                }).ToList(),
+                Reviews = item.Reviews.Select(x => new ReviewDTO()
+                {
+                    UserId = x.UserId,
+                    Id = x.Id,
+                    Comment = x.Comment
+                }).ToList()
             };
         }
 

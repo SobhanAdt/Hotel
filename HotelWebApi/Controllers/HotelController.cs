@@ -9,6 +9,7 @@ using App.Core.ApplicationService.IRepositories;
 using App.Core.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Internal;
 
 namespace HotelWebApi.Controllers
 {
@@ -17,6 +18,7 @@ namespace HotelWebApi.Controllers
     public class HotelController : ControllerBase
     {
         private IHotelService service;
+        
 
         public HotelController(IHotelService service)
         {

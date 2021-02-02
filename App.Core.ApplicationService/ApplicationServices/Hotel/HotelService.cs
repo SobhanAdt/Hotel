@@ -16,6 +16,7 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
     {
         private IRepository<Entities.Hotel> repository;
         private IRepository<Entities.Room> roomRepository;
+        private static int CurrentCode = 1000;
 
         public HotelService(IRepository<Entities.Hotel> repository, IRepository<Entities.Room> roomRepository)
         {

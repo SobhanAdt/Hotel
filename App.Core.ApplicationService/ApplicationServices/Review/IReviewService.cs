@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace App.Core.ApplicationService.ApplicationServices.Review
 {
-    interface IReviewService
+    public interface IReviewService
     {
         string Create(ReviewInsertInputDto inputDto);
 

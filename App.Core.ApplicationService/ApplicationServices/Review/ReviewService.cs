@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace App.Core.ApplicationService.ApplicationServices.Review
 {
-    class ReviewService : IReviewService
+   public class ReviewService : IReviewService
     {
         private IRepository<Entities.Review> repository;
         public ReviewService(IRepository<Entities.Review> repository)

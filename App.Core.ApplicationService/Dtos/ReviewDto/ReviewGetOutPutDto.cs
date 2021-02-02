@@ -4,7 +4,7 @@ using System.Text;
 
 namespace App.Core.ApplicationService.Dtos.ReviewDto
 {
-    class ReviewGetOutPutDto
+   public class ReviewGetOutPutDto
     {
         public int Id { get; set; }
         public string Comment { get; set; }

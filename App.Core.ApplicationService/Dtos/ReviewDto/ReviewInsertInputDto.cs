@@ -5,7 +5,7 @@ using System.Text;
 
 namespace App.Core.ApplicationService.Dtos.ReviewDto
 {
-    class ReviewInsertInputDto
+   public class ReviewInsertInputDto
     {
         [Display(Name = "نظر خود را وارد کنید")]
         [Required(ErrorMessage = "نام کاربری را وادر کنید")]

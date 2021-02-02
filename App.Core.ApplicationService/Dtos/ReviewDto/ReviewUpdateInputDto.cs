@@ -5,7 +5,7 @@ using System.Text;
 
 namespace App.Core.ApplicationService.Dtos.ReviewDto
 {
-    class ReviewUpdateInputDto
+    public class ReviewUpdateInputDto
     {
         [Required(ErrorMessage = "Please Enter Review Id")]
         public int Id { get; set; }

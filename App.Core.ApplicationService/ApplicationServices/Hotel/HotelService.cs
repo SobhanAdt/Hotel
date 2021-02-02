@@ -58,7 +58,7 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
 
         public async Task<HotelGetOutPutDto> GetSingleHotel(int id)
         {
-            var item =  repository.GetSingel(id);
+            var item = repository.GetSingel(id);
             var ListSingle = roomRepository.GetQuery().Where(x => x.HotelId == id).ToList();
 
             return new HotelGetOutPutDto()
@@ -70,7 +70,7 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
                 CityId = item.CityId,
                 RateId = item.RateId,
                 Description = item.Description,
-                Rooms = ListSingle
+                Rooms = item.Rooms
             };
         }
 

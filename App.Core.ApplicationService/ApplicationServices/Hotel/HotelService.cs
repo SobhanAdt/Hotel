@@ -32,7 +32,8 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
                 HotelCode = inputDto.HotelCode,
                 CityId = inputDto.CityId,
                 RoomCount = inputDto.RoomCount,
-                RateId = inputDto.RateId
+                RateId = inputDto.RateId,
+                Description = inputDto.Description
             });
             repository.Save();
             return $" {inputDto.HotelName} Created in DataBase";

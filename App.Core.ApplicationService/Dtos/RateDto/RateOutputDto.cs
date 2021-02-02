@@ -6,7 +6,6 @@ namespace App.Core.ApplicationService.Dtos.RateDto
 {
     public class RateOutputDto
     {
-        public int Id { get; set; }
 
         [Display(Name = "ستاره هتل")]
         [Required(ErrorMessage = "باید {0} را وارد کنید")]

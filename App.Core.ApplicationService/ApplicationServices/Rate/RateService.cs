@@ -21,13 +21,11 @@ namespace App.Core.ApplicationService.ApplicationServices.Rate
 
         public async Task<List<RateOutputDto>> GetAllRate()
         {
-            var lst = repository.GetAll();
             var lstItem = repository.GetQuery()
                 .Include(x=>x.Hotels).
                 Select(x => new RateOutputDto()
             {
                 RateNumber = x.RateNumber,
-                Id = x.Id,
                 Hotels =x.Hotels
             }).ToList();
             return lstItem;
@@ -39,7 +37,6 @@ namespace App.Core.ApplicationService.ApplicationServices.Rate
             var SingelItem = hotelRepository.GetQuery().Where(x => x.RateId == id).ToList();
             var SingelRate = new RateOutputDto()
             {
-                Id = item.Id,
                 RateNumber = item.RateNumber,
                 Hotels = SingelItem
             };

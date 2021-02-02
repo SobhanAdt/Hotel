@@ -26,11 +26,11 @@ namespace HotelWebApi.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> Update(CityUpdateDto updateDto)
+        public async Task<IActionResult> Update([FromQuery]int id,[FromBody]CityUpdateDto updateDto)
         {
             if (ModelState.IsValid)
             {
-                var UpdateCity = service.UpdateCity(updateDto);
+                var UpdateCity = service.UpdateCity(id,updateDto);
                 return Ok(UpdateCity);
             }
             return BadRequest();
@@ -77,7 +77,7 @@ namespace HotelWebApi.Controllers
         }
 
         [HttpDelete]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete([FromQuery]int id)
         {
             if (ModelState.IsValid)
             {

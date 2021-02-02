@@ -10,7 +10,7 @@ namespace App.Core.ApplicationService.ApplicationServices.Room
     {
         string Create(RoomInsertInputDto inputDto);
 
-        string Update(RoomUpdateInputDto updateDto);
+        string Update(int id,RoomUpdateInputDto updateDto);
 
         Task<List<RoomGetOutPutDto>> GetAllRooms();
         Task<RoomGetOutPutDto> GetSingleRooms(int id);

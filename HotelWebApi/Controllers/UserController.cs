@@ -58,11 +58,11 @@ namespace HotelWebApi.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> Update(UserUpdateDto updateDto)
+        public async Task<IActionResult> Update([FromQuery]int id,[FromBody]UserUpdateDto updateDto)
         {
             if (ModelState.IsValid)
             {
-                var UpdateUser = service.UpdateUser(updateDto);
+                var UpdateUser = service.UpdateUser(id,updateDto);
                 return Ok(UpdateUser);
             }
 
@@ -70,7 +70,7 @@ namespace HotelWebApi.Controllers
         }
 
         [HttpDelete]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete([FromQuery]int id)
         {
             if (ModelState.IsValid)
             {

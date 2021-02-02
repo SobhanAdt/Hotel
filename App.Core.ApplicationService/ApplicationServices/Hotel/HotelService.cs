@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using App.Core.ApplicationService.Dtos.HotelDto;
 using App.Core.ApplicationService.IRepositories;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -82,10 +83,10 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
             return "Delete Anjam shod";
         }
 
-        public string Update(HotelUpdateInputDto updateDto)
+        public string Update(int id,HotelUpdateInputDto updateDto)
         {
 
-            var item = repository.GetSingel(updateDto.Id);
+            var item = repository.GetSingel(id);
             if (item == null)
             {
                 return "Null";

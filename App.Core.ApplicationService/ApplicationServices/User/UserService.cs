@@ -82,9 +82,9 @@ namespace App.Core.ApplicationService.ApplicationServices.User
             return $"Useri be Name : {insertInputDto.FullName} Ezafe Shod";
         }
 
-        public string UpdateUser(UserUpdateDto updateDto)
+        public string UpdateUser(int id,UserUpdateDto updateDto)
         {
-            var item = userRepository.GetSingel(updateDto.Id);
+            var item = userRepository.GetSingel(id);
             if (item == null)
             {
                 return null;

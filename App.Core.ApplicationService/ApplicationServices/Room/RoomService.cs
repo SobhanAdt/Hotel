@@ -74,10 +74,10 @@ namespace App.Core.ApplicationService.ApplicationServices.Room
 
 
 
-        public string Update(RoomUpdateInputDto updateDto)
+        public string Update(int id,RoomUpdateInputDto updateDto)
         {
 
-            var item = repository.GetSingel(updateDto.Id);
+            var item = repository.GetSingel(id);
             if (item == null)
             {
                 return "Null";

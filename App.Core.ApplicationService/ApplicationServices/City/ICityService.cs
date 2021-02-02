@@ -8,7 +8,7 @@ namespace App.Core.ApplicationService.ApplicationServices.City
     {
         string CreateCity(CityInsertInputDto inputDto);
 
-        string UpdateCity(CityUpdateDto updateDto);
+        string UpdateCity(int id,CityUpdateDto updateDto);
 
         Task<List<CityOutputDto>> GetAllCity();
 

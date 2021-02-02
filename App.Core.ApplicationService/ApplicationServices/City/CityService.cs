@@ -15,7 +15,7 @@ namespace App.Core.ApplicationService.ApplicationServices.City
         private IRepository<Entities.City> repository;
         private IRepository<Entities.Hotel> hotelRepository;
 
-        public CityService(IRepository<Entities.City> repository,IRepository<Entities.Hotel> hotelRepository)
+        public CityService(IRepository<Entities.City> repository, IRepository<Entities.Hotel> hotelRepository)
         {
             this.repository = repository;
             this.hotelRepository = hotelRepository;
@@ -31,9 +31,9 @@ namespace App.Core.ApplicationService.ApplicationServices.City
             return $"Ba Mofaghiyat {inputDto.CityName} Afzode shod";
         }
 
-        public string UpdateCity(CityUpdateDto updateDto)
+        public string UpdateCity(int id,CityUpdateDto updateDto)
         {
-            var item = repository.GetSingel(updateDto.Id);
+            var item = repository.GetSingel(id);
             if (item == null)
             {
                 return "Null";
@@ -46,7 +46,7 @@ namespace App.Core.ApplicationService.ApplicationServices.City
 
         public async Task<List<CityOutputDto>> GetAllCity()
         {
-            var lst = repository.GetQuery().Include(x=>x.Hotels);
+            var lst = repository.GetQuery().Include(x => x.Hotels);
             return lst.Select(x => new CityOutputDto()
             {
                 CityName = x.CityName,
@@ -66,7 +66,7 @@ namespace App.Core.ApplicationService.ApplicationServices.City
                 Hotels = ListItem
             };
         }
-        public  string DeleteCity(int id)
+        public string DeleteCity(int id)
         {
             repository.Delete(id);
             repository.Save();

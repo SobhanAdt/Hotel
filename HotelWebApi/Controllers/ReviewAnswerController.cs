@@ -1,5 +1,6 @@
 ﻿using App.Core.ApplicationService.ApplicationServices.Review;
-using App.Core.ApplicationService.Dtos.ReviewDto;
+using App.Core.ApplicationService.ApplicationServices.ReviewAnswer;
+using App.Core.ApplicationService.Dtos.ReviewAnswerDto;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -11,12 +12,12 @@ namespace HotelWebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ReviewController : ControllerBase
+    public class ReviewAnswerController : ControllerBase
     {
-        private IReviewService service;
+        private IReviewAnswerService service;
 
 
-        public ReviewController(IReviewService service)
+        public ReviewAnswerController(IReviewAnswerService service)
         {
             this.service = service;
         }
@@ -26,8 +27,8 @@ namespace HotelWebApi.Controllers
         {
             if (ModelState.IsValid)
             {
-                var AllReview = await service.GetAllReviews();
-                return Ok(AllReview);
+                var AllReviewAnswer = await service.GetAllReviews();
+                return Ok(AllReviewAnswer);
             }
 
             return BadRequest();
@@ -39,31 +40,31 @@ namespace HotelWebApi.Controllers
         {
             if (ModelState.IsValid)
             {
-                var SingelReview = await service.GetSingleReview(id);
-                return Ok(SingelReview);
+                var SingelReviewAnswer = await service.GetSingleReview(id);
+                return Ok(SingelReviewAnswer);
             }
 
             return BadRequest();
         }
         [HttpPut]
-        public async Task<IActionResult> Update([FromBody] ReviewUpdateInputDto updateDto)
+        public async Task<IActionResult> Update([FromBody] ReviewAnswerUpdateInputDto updateDto)
         {
             if (ModelState.IsValid)
             {
-                var updateReview = service.Update(updateDto);
-                return Ok(updateReview);
+                var updateReviewAnswer = service.Update(updateDto);
+                return Ok(updateReviewAnswer);
             }
 
             return BadRequest();
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(ReviewInsertInputDto inputDto)
+        public async Task<IActionResult> Create(ReviewAnswerInsertInputDto inputDto)
         {
             if (ModelState.IsValid)
             {
-                var insertReview = service.Create(inputDto);
-                return Ok(insertReview);
+                var insertReviewAnswer = service.Create(inputDto);
+                return Ok(insertReviewAnswer);
             }
 
             return BadRequest();
@@ -74,11 +75,12 @@ namespace HotelWebApi.Controllers
         {
             if (ModelState.IsValid)
             {
-                var deleteReview = service.DeleteReview(id);
-                return Ok(deleteReview);
+                var deleteReviewAnswer = service.DeleteReview(id);
+                return Ok(deleteReviewAnswer);
             }
 
             return BadRequest();
         }
     }
+}
 }

@@ -35,12 +35,11 @@ namespace App.Core.ApplicationService.ApplicationServices.Rate
         {
             var item = repository.GetSingel(id);
             var SingelItem = hotelRepository.GetQuery().Where(x => x.RateId == id).ToList();
-            var SingelRate = new RateOutputDto()
+            return new RateOutputDto()
             {
                 RateNumber = item.RateNumber,
                 Hotels = SingelItem
             };
-            return SingelRate;
         }
     }
 }

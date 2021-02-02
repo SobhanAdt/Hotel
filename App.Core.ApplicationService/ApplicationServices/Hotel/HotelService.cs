@@ -60,10 +60,6 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
         {
             var item =  repository.GetSingel(id);
             var ListSingle = roomRepository.GetQuery().Where(x => x.HotelId == id).ToList();
-            if (item == null)
-            {
-                return null;
-            }
 
             return new HotelGetOutPutDto()
             {
@@ -74,7 +70,7 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
                 CityId = item.CityId,
                 RateId = item.RateId,
                 Description = item.Description,
-                Rooms = item.Rooms
+                Rooms = ListSingle
             };
         }
 

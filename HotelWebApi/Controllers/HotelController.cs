@@ -22,7 +22,7 @@ namespace HotelWebApi.Controllers
         {
             this.service = service;
         }
-
+        
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {

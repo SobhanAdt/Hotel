@@ -9,7 +9,6 @@ namespace App.Core.ApplicationService.Dtos.HotelDto
     {
      
         [Required(ErrorMessage = "Please Enter Hotel Id")]
-        public int Id { get; set; }
         public string HotelName { get; set; }
         public int HotelCode { get; set; }
         public int RoomCount { get; set; }

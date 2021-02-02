@@ -4,8 +4,6 @@ namespace App.Core.ApplicationService.Dtos.Userto
 {
     public class UserUpdateDto
     {
-        public int Id { get; set; }
-
 
         [Display(Name = "نام و نام خانوادگی")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]

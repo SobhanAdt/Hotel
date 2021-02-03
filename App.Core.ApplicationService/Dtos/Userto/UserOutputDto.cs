@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using App.Core.ApplicationService.Dtos.HotelDto;
+using App.Core.ApplicationService.Dtos.ReviewDto;
 using App.Core.Entities;
 
 namespace App.Core.ApplicationService.Dtos.Userto
@@ -24,16 +26,12 @@ namespace App.Core.ApplicationService.Dtos.Userto
 
         [Display(Name = "لیست نطرات")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
-        public List<Review> Reviews { get; set; }
+        public List<ReviewDTO> Reviews { get; set; }
 
 
         [Display(Name = "لیست جواب نظرات")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
-        public List<ReviewAnswer> ReviewAnswers { get; set; }
+        public List<ReviewAnswerDTO> ReviewAnswers { get; set; }
 
-
-        [Display(Name = "لیست ورود شخص")]
-        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
-        public List<UserLogin> UserLogins { get; set; }
     }
 }

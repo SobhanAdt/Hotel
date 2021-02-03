@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using App.Core.ApplicationService.Dtos.HotelDto;
+using App.Core.ApplicationService.Dtos.ReviewDto;
 using App.Core.ApplicationService.IRepositories;
 using App.Core.Entities;
 using AutoMapper;
@@ -13,78 +15,86 @@ namespace App.Core.ApplicationService.ApplicationServices.User
 {
     public class UserService : IUserService
     {
-        private IRepository<Entities.User> userRepository;
-        private IRepository<Entities.Review> reviewRepository;
-        private IRepository<ReviewAnswer> reviewAnsweRepository;
-        private IRepository<UserLogin> userLoginRepository;
+        private IRepository<Entities.User> repository;
 
-        public UserService(IRepository<Entities.User> userRepository
-            , IRepository<Entities.Review> reviewRepository
-            , IRepository<ReviewAnswer> reviewAnsweRepository
-            , IRepository<UserLogin> userLoginRepository)
+        public UserService(IRepository<Entities.User> repository)
         {
-            this.userRepository = userRepository;
-            this.reviewRepository = reviewRepository;
-            this.reviewAnsweRepository = reviewAnsweRepository;
-            this.userLoginRepository = userLoginRepository;
+            this.repository = repository;
+
         }
 
         public string DeleteUser(int id)
         {
-            userRepository.Delete(id);
-            userRepository.Save();
+            repository.Delete(id);
+            repository.Save();
             return "Delete Anjam Shod";
         }
 
         public async Task<List<UserOutputDto>> GetAllUser()
         {
-            var lst = userRepository.GetQuery().Include(x => x.Reviews).Include(x => x.ReviewAnswers)
+            var lst = repository.GetQuery().
+                Include(x => x.Reviews)
+                .Include(x => x.ReviewAnswers)
                 .Include(x => x.UserLogins);
 
             return lst.Select(x => new UserOutputDto()
             {
-                Reviews = x.Reviews,
                 Email = x.Email,
                 FullName = x.FullName,
-                ReviewAnswers = x.ReviewAnswers,
                 Password = x.Password,
-                UserLogins = x.UserLogins
+                Reviews = x.Reviews.Select(x => new ReviewDTO()
+                {
+                    Comment = x.Comment,
+                    Id = x.Id
+                }).ToList(),
+                ReviewAnswers = x.ReviewAnswers.Select(x => new ReviewAnswerDTO()
+                {
+                    ReviewId = x.ReviewId,
+                    Id = x.Id,
+                    CommentAnswer = x.CommentAnswer
+                }).ToList()
             }).ToList();
         }
 
         public async Task<UserOutputDto> GetSingelUser(int id)
         {
-            var singleUser = userRepository.GetSingel(id);
-            var lstReview = reviewRepository.GetQuery().Where(x => x.UserId == id).ToList();
-            var lstReviewAnswer = reviewAnsweRepository.GetQuery().Where(x => x.UserId == id).ToList();
-            var lstUserLogin = userLoginRepository.GetQuery().Where(x => x.UserId == id).ToList();
+            var singleUser =await repository.GetQuery().Include(x=>x.Reviews)
+                    .Include(y=>y.ReviewAnswers).Where(z=>z.Id==id).FirstOrDefaultAsync();
 
             return new UserOutputDto()
             {
                 FullName = singleUser.FullName,
                 Email = singleUser.Email,
                 Password = singleUser.Password,
-                Reviews = lstReview,
-                ReviewAnswers = lstReviewAnswer,
-                UserLogins = lstUserLogin
+                Reviews = singleUser.Reviews.Select(x => new ReviewDTO()
+                {
+                    Comment = x.Comment,
+                    Id = x.Id
+                }).ToList(),
+                ReviewAnswers = singleUser.ReviewAnswers.Select(x => new ReviewAnswerDTO()
+                {
+                    ReviewId = x.ReviewId,
+                    Id = x.Id,
+                    CommentAnswer = x.CommentAnswer
+                }).ToList()
             };
         }
 
         public string InsertUser(UserInsertInputDto insertInputDto)
         {
-            userRepository.Insert(new Entities.User()
+            repository.Insert(new Entities.User()
             {
                 Email = insertInputDto.Email,
                 FullName = insertInputDto.FullName,
                 Password = insertInputDto.Password
             });
-            userRepository.Save();
+            repository.Save();
             return $"Useri be Name : {insertInputDto.FullName} Ezafe Shod";
         }
 
         public string UpdateUser(UserUpdateDto updateDto)
         {
-            var item = userRepository.GetSingel(updateDto.Id);
+            var item = repository.GetSingel(updateDto.Id);
             if (item == null)
             {
                 return null;
@@ -93,7 +103,7 @@ namespace App.Core.ApplicationService.ApplicationServices.User
             item.Email = updateDto.Email;
             item.FullName = updateDto.FullName;
             item.Password = updateDto.Password;
-            userRepository.Save();
+            repository.Save();
             return $"Update Ba Mofaghiyat Anjam Shod";
 
         }

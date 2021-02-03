@@ -7,10 +7,16 @@ namespace App.Core.ApplicationService.Dtos.ReviewDto
 {
    public class ReviewInsertInputDto
     {
-        [Display(Name = "نظر خود را وارد کنید")]
+        [Display(Name = "نظر")]
         [Required(ErrorMessage = "نام کاربری را وادر کنید")]
         public string Comment { get; set; }
+
+        [Display(Name = "ای دی کاربر")]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         public int UserId { get; set; }
+
+        [Display(Name = "ای دی هتل")]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         public int HotelId { get; set; }
 
     }

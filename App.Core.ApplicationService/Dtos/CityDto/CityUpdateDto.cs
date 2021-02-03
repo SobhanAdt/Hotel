@@ -8,9 +8,12 @@ namespace App.Core.ApplicationService.Dtos.CityDto
 {
     public class CityUpdateDto
     {
+        [Display(Name = "ای دی")]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         public int Id { get; set; }
 
-        [Required(ErrorMessage="نام شهر را وراد کنید")]
+        [Display(Name = "نام شهر")]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         public string CityName { get; set; }
 
     }

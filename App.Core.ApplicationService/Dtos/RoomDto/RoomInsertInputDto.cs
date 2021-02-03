@@ -7,15 +7,24 @@ namespace App.Core.ApplicationService.Dtos.RoomDto
 {
     public class RoomInsertInputDto
     {
-        [Required]
+        [Display(Name = "کد اتاق")]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         public int RoomCode { get; set; }
-        [Required]
+
+        [Display(Name = "متراژ اتاق")]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         public int RoomAera { get; set; }
-        [Required]
-        public int RoomPrice { get; set; }      
+
+
+        [Display(Name = "قیمت اتاق")]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
+        public int RoomPrice { get; set; }
+
+        [Display(Name = "توضیحات")]
         public string Descripation { get; set; }
-      
-        [Required(ErrorMessage = "Please Enter Hotel Id")]
+
+        [Display(Name = "ای دی هتل")]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         public int HotelId { get; set; }
     }
 }

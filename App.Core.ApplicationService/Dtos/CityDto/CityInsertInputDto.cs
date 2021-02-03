@@ -4,7 +4,8 @@ namespace App.Core.ApplicationService.Dtos.CityDto
 {
     public class CityInsertInputDto
     {
-        [Required(ErrorMessage = "نام شهر باید وارد شود")]
+        [Display(Name = "نام شهر")]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         public string CityName { get; set; }
     }
 }

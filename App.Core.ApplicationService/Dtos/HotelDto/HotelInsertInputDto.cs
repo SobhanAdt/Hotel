@@ -8,17 +8,28 @@ namespace App.Core.ApplicationService.Dtos.HotelDto
   public class HotelInsertInputDto
     {
         [Display(Name = "نام هتل")]
-        [Required(ErrorMessage = "نام هتل حتما باید وارد شود")]
-        public string HotelName { get; set; }    
-        
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
+        public string HotelName { get; set; }
+
+        [Display(Name = "کد هتل")]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         public int HotelCode { get; set; }
 
+        [Display(Name = "تعداد اتاق")]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         public int RoomCount { get; set; }
 
-        public int CityId { get; set; }
-        public int RateId { get; set; }
-
+        [Display(Name = "توضیحات هتل")]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         public string Description { get; set; }
+
+        [Display(Name = "ای دی شهر")]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
+        public int CityId { get; set; }
+
+        [Display(Name = "ای دی ستاره")]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
+        public int RateId { get; set; }
 
     }
 }

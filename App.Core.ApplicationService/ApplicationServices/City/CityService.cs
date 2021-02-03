@@ -53,12 +53,10 @@ namespace App.Core.ApplicationService.ApplicationServices.City
                 Id = x.Id,
                 Hotels = x.Hotels.Select(y => new HotelDTO()
                 {
-                    CityId =  y.CityId ,
                     Description =  y.Description ,
                     HotelCode = y.HotelCode ,
                     HotelName =  y.HotelName,
                     Id =  y.Id ,
-                    RateId = y.RateId ,
                     RoomCount = y.RoomCount
                 }).ToList()
             }).ToList();
@@ -75,7 +73,6 @@ namespace App.Core.ApplicationService.ApplicationServices.City
                 CityName = item.CityName,
                 Hotels = item.Hotels.Select(x => new HotelDTO()
                 {
-                    CityId = x.CityId,
                     Description = x.Description,
                     HotelCode = x.HotelCode,
                     HotelName = x.HotelName,

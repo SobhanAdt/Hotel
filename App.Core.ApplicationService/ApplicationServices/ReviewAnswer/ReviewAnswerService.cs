@@ -62,13 +62,14 @@ namespace App.Core.ApplicationService.ApplicationServices.ReviewAnswer
 
         public string Update(ReviewAnswerUpdateInputDto updateDto)
         {
-            var item = repository.GetSingel(updateDto.ReviewId);
+            var item = repository.GetSingel(updateDto.Id);
             if (item == null)
             {
                 return "Null";
             }
 
             item.CommentAnswer = updateDto.CommentAnswer;
+            item.UserId = updateDto.UserId;
             item.ReviewId = updateDto.ReviewId;
             repository.Save();
             return $"Updating {updateDto.ReviewId} has Successfuled";

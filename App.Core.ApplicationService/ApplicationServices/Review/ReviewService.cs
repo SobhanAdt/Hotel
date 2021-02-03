@@ -37,26 +37,39 @@ namespace App.Core.ApplicationService.ApplicationServices.Review
 
         public async Task<List<ReviewGetOutPutDto>> GetAllReviews()
         {
-            var lst = repository.GetQuery().Include(x => x.Comment);
+            var lst = repository.GetQuery().Include(x => x.ReviewAnswers);
             return lst.Select(x => new ReviewGetOutPutDto()
             {
                 Comment = x.Comment,
                 HotelId = x.HotelId,
                 UserId = x.UserId,
-                Id = x.Id
+                Id = x.Id,
+                ReviewAnswers = x.ReviewAnswers.Select(x=>new ReviewAnswerDTO()
+                {
+                    CommentAnswer = x.CommentAnswer,
+                    Id = x.Id,
+                    UserId = x.UserId
+                }).ToList()
+                
             }).ToList();
         }
 
         public async Task<ReviewGetOutPutDto> GetSingleReview(int id)
         {
-            var item = repository.GetSingel(id);
+            var item =await repository.GetQuery().Include(x => x.ReviewAnswers).Where(x => x.Id == id).FirstOrDefaultAsync();
 
             return new ReviewGetOutPutDto()
             {
                 Id = item.Id,
                 Comment = item.Comment,
                 UserId = item.UserId,
-                HotelId = item.HotelId
+                HotelId = item.HotelId,
+                ReviewAnswers = item.ReviewAnswers.Select(x=>new ReviewAnswerDTO()
+                {
+                    CommentAnswer = x.CommentAnswer,
+                    Id = x.Id,
+                    UserId = x.UserId
+                }).ToList()
             };
         }
 

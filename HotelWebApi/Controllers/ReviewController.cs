@@ -45,6 +45,7 @@ namespace HotelWebApi.Controllers
 
             return BadRequest();
         }
+
         [HttpPut]
         public async Task<IActionResult> Update([FromBody] ReviewUpdateInputDto updateDto)
         {
@@ -58,7 +59,7 @@ namespace HotelWebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(ReviewInsertInputDto inputDto)
+        public async Task<IActionResult> Create([FromBody]ReviewInsertInputDto inputDto)
         {
             if (ModelState.IsValid)
             {

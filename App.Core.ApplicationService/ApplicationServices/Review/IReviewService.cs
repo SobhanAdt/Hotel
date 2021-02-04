@@ -8,13 +8,13 @@ namespace App.Core.ApplicationService.ApplicationServices.Review
 {
     public interface IReviewService
     {
-        string Create(ReviewInsertInputDto inputDto);
+        Task<string> Create(ReviewInsertInputDto inputDto);
 
-        string Update( ReviewUpdateInputDto updateDto);
+        Task<string> Update( ReviewUpdateInputDto updateDto);
 
         Task<List<ReviewGetOutPutDto>> GetAllReviews();
         Task<ReviewGetOutPutDto> GetSingleReview(int id);
 
-        string DeleteReview(int id);
+        Task<string> DeleteReview(int id);
     }
 }

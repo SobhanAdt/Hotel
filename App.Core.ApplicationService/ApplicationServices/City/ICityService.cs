@@ -6,15 +6,15 @@ namespace App.Core.ApplicationService.ApplicationServices.City
 {
     public interface ICityService
     {
-        string CreateCity(CityInsertInputDto inputDto);
+        Task<string> CreateCity(CityInsertInputDto inputDto);
 
-        string UpdateCity(CityUpdateDto updateDto);
+        Task<string> UpdateCity(CityUpdateDto updateDto);
 
         Task<List<CityOutputDto>> GetAllCity();
 
         Task<CityOutputDto> GetSingelCity(int id);
 
-        string DeleteCity(int id);
+        Task<string> DeleteCity(int id);
 
     }
 }

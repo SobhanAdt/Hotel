@@ -22,7 +22,7 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
             this.repository = repository;
         }
 
-        public string Create(HotelInsertInputDto inputDto)
+        public async Task<string> Create(HotelInsertInputDto inputDto)
         {
             repository.Insert(new Entities.Hotel()
             {
@@ -99,17 +99,17 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
             };
         }
 
-        public string DeleteHotels(int id)
+        public async Task<string> DeleteHotels(int id)
         {
             repository.Delete(id);
             repository.Save();
             return "Delete Anjam shod";
         }
 
-        public string Update(HotelUpdateInputDto updateDto)
+        public async Task<string> Update(HotelUpdateInputDto updateDto)
         {
 
-            var item = repository.GetSingel(updateDto.Id);
+            var item =repository.GetSingel(updateDto.Id);
             if (item == null)
             {
                 return "Null";

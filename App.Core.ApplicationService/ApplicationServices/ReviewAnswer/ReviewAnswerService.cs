@@ -17,19 +17,18 @@ namespace App.Core.ApplicationService.ApplicationServices.ReviewAnswer
             this.repository = repository;
         }
 
-        public string Create(ReviewAnswerInsertInputDto inputDto)
+        public async Task<string> Create(ReviewAnswerInsertInputDto inputDto)
         {
             repository.Insert(new Entities.ReviewAnswer()
             {
                 CommentAnswer = inputDto.CommentAnswer,
-                ReviewId = inputDto.ReviewId,
-                UserId = inputDto.UserId
+                ReviewId = inputDto.ReviewId
             });
             repository.Save();
             return $" {inputDto.CommentAnswer} Created in DataBase";
         }
 
-        public string DeleteReview(int id)
+        public async Task<string> DeleteReview(int id)
         {
             repository.Delete(id);
             repository.Save();
@@ -60,7 +59,7 @@ namespace App.Core.ApplicationService.ApplicationServices.ReviewAnswer
             };
         }
 
-        public string Update(ReviewAnswerUpdateInputDto updateDto)
+        public async Task<string> Update(ReviewAnswerUpdateInputDto updateDto)
         {
             var item = repository.GetSingel(updateDto.Id);
             if (item == null)

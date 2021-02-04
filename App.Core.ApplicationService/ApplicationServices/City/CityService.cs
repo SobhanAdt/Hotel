@@ -21,7 +21,7 @@ namespace App.Core.ApplicationService.ApplicationServices.City
             this.hotelRepository = hotelRepository;
         }
 
-        public string CreateCity(CityInsertInputDto inputDto)
+        public async Task<string> CreateCity(CityInsertInputDto inputDto)
         {
             repository.Insert(new Entities.City()
             {
@@ -31,7 +31,7 @@ namespace App.Core.ApplicationService.ApplicationServices.City
             return $"Ba Mofaghiyat {inputDto.CityName} Afzode shod";
         }
 
-        public string UpdateCity(CityUpdateDto updateDto)
+        public async Task<string> UpdateCity(CityUpdateDto updateDto)
         {
             var item = repository.GetSingel(updateDto.Id);
             if (item == null)
@@ -82,7 +82,7 @@ namespace App.Core.ApplicationService.ApplicationServices.City
                 }).ToList()
             };
         }
-        public string DeleteCity(int id)
+        public async Task<string> DeleteCity(int id)
         {
             repository.Delete(id);
             repository.Save();

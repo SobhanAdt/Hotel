@@ -17,7 +17,7 @@ namespace App.Core.ApplicationService.ApplicationServices.Room
             this.repository = repository;
         }
 
-        public string Create(RoomInsertInputDto inputDto)
+        public async Task<string> Create(RoomInsertInputDto inputDto)
         {
             repository.Insert(new Entities.Room()
             {
@@ -31,7 +31,7 @@ namespace App.Core.ApplicationService.ApplicationServices.Room
             return $" Room {inputDto.RoomCode} Created in DataBase";
         }
 
-        public string DeleteRooms(int id)
+        public async Task<string> DeleteRooms(int id)
         {
             repository.Delete(id);
             repository.Save();
@@ -74,7 +74,7 @@ namespace App.Core.ApplicationService.ApplicationServices.Room
 
 
 
-        public string Update(RoomUpdateInputDto updateDto)
+        public async Task<string> Update(RoomUpdateInputDto updateDto)
         {
 
             var item = repository.GetSingel(updateDto.Id);

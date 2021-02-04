@@ -8,11 +8,11 @@ namespace App.Core.ApplicationService.ApplicationServices.User
 {
     public interface IUserService
     {
-        string InsertUser(UserInsertInputDto insertInputDto);
+        Task<string> InsertUser(UserInsertInputDto insertInputDto);
 
-        string UpdateUser(UserUpdateDto updateDto);
+        Task<string> UpdateUser(UserUpdateDto updateDto);
 
-        string DeleteUser(int id);
+        Task<string> DeleteUser(int id);
 
         Task<List<UserOutputDto>> GetAllUser();
 

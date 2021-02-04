@@ -8,13 +8,13 @@ namespace App.Core.ApplicationService.ApplicationServices.Room
 {
    public interface IRoomService
     {
-        string Create(RoomInsertInputDto inputDto);
+        Task<string> Create(RoomInsertInputDto inputDto);
 
-        string Update(RoomUpdateInputDto updateDto);
+        Task<string> Update(RoomUpdateInputDto updateDto);
 
         Task<List<RoomGetOutPutDto>> GetAllRooms();
         Task<RoomGetOutPutDto> GetSingleRooms(int id);
 
-        string DeleteRooms(int id);
+        Task<string> DeleteRooms(int id);
     }
 }

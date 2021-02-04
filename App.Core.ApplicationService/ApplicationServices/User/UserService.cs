@@ -23,7 +23,7 @@ namespace App.Core.ApplicationService.ApplicationServices.User
 
         }
 
-        public string DeleteUser(int id)
+        public async Task<string> DeleteUser(int id)
         {
             repository.Delete(id);
             repository.Save();
@@ -80,7 +80,7 @@ namespace App.Core.ApplicationService.ApplicationServices.User
             };
         }
 
-        public string InsertUser(UserInsertInputDto insertInputDto)
+        public async Task<string> InsertUser(UserInsertInputDto insertInputDto)
         {
             repository.Insert(new Entities.User()
             {
@@ -92,7 +92,7 @@ namespace App.Core.ApplicationService.ApplicationServices.User
             return $"Useri be Name : {insertInputDto.FullName} Ezafe Shod";
         }
 
-        public string UpdateUser(UserUpdateDto updateDto)
+        public async Task<string> UpdateUser(UserUpdateDto updateDto)
         {
             var item = repository.GetSingel(updateDto.Id);
             if (item == null)

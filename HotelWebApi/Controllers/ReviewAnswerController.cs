@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace HotelWebApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class ReviewAnswerController : ControllerBase
     {

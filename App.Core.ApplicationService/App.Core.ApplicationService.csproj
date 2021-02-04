@@ -10,7 +10,6 @@
 
   <ItemGroup>
     <Folder Include="ApplicationServices\City\" />
-    <Folder Include="Dtos\UserLoginDto\" />
     <Folder Include="Dtos\Userto\" />
   </ItemGroup>
 

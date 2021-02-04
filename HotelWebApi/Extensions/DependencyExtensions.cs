@@ -9,6 +9,7 @@ using App.Core.ApplicationService.ApplicationServices.Review;
 using App.Core.ApplicationService.ApplicationServices.ReviewAnswer;
 using App.Core.ApplicationService.ApplicationServices.Room;
 using App.Core.ApplicationService.ApplicationServices.User;
+using App.Core.ApplicationService.ApplicationServices.UserLogin;
 using App.Core.ApplicationService.IRepositories;
 using App.Core.Entities;
 using App.Infrastucture.EF.Repositories;
@@ -33,6 +34,7 @@ namespace HotelWebApi.Extensions
             service.AddTransient<IUserService, UserService>();
             service.AddTransient<IReviewService, ReviewService>();
             service.AddTransient<IReviewAnswerService, ReviewAnswerService>();
+            service.AddTransient<IUserLoginService, UserLoginService>();
 
         }
 

@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using App.Core.ApplicationService.ApplicationServices.UserLogin;
 
 namespace HotelWebApi.Controllers
 {
@@ -15,11 +16,13 @@ namespace HotelWebApi.Controllers
     public class ReviewAnswerController : ControllerBase
     {
         private IReviewAnswerService service;
+        private IUserLoginService userLoginService;
 
 
-        public ReviewAnswerController(IReviewAnswerService service)
+        public ReviewAnswerController(IReviewAnswerService service, IUserLoginService userLoginService)
         {
             this.service = service;
+            this.userLoginService = userLoginService;
         }
 
         [HttpGet]
@@ -59,8 +62,9 @@ namespace HotelWebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(ReviewAnswerInsertInputDto inputDto)
+        public async Task<IActionResult> Create(ReviewAnswerInsertInputDto inputDto,[FromHeader] string token)
         {
+            userLoginService.ValidateUser(token);
             if (ModelState.IsValid)
             {
                 var insertReviewAnswer = service.Create(inputDto);

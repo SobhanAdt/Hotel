@@ -12,11 +12,6 @@ namespace App.Core.ApplicationService.Dtos.ReviewAnswerDto
         public string CommentAnswer { get; set; }
 
 
-        [Display(Name = "ای دی کاربر")]
-        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
-        public int UserId { get; set; }
-
-
         [Display(Name = "ای دی نظر")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         public int ReviewId { get; set; }

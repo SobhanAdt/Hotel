@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 using App.Core.ApplicationService.ApplicationServices.Hotel;
+using App.Core.ApplicationService.ApplicationServices.UserLogin;
 using App.Core.ApplicationService.Dtos.HotelDto;
 using App.Core.ApplicationService.IRepositories;
 using App.Core.Entities;
@@ -18,7 +19,6 @@ namespace HotelWebApi.Controllers
     public class HotelController : ControllerBase
     {
         private IHotelService service;
-        
 
         public HotelController(IHotelService service)
         {

@@ -38,7 +38,7 @@ namespace App.Core.ApplicationService.ApplicationServices.ReviewAnswer
 
         public async Task<List<ReviewAnswerGetOutPutDto>> GetAllReviews()
         {
-            var lst = repository.GetQuery().Include(x => x.CommentAnswer);
+            var lst = repository.GetQuery().ToList();
             return lst.Select(x => new ReviewAnswerGetOutPutDto()
             {
                 CommentAnswer = x.CommentAnswer,

@@ -14,6 +14,7 @@ namespace HotelWebApi.Controllers
     public class UserController : ControllerBase
     {
         private IUserService service;
+        
 
         public UserController(IUserService service)
         {

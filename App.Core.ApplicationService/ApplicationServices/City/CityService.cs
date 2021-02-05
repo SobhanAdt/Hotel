@@ -13,12 +13,11 @@ namespace App.Core.ApplicationService.ApplicationServices.City
     public class CityService : ICityService
     {
         private IRepository<Entities.City> repository;
-        private IRepository<Entities.Hotel> hotelRepository;
 
-        public CityService(IRepository<Entities.City> repository, IRepository<Entities.Hotel> hotelRepository)
+        public CityService(IRepository<Entities.City> repository)
         {
             this.repository = repository;
-            this.hotelRepository = hotelRepository;
+
         }
 
         public async Task<string> CreateCity(CityInsertInputDto inputDto)
@@ -44,7 +43,7 @@ namespace App.Core.ApplicationService.ApplicationServices.City
             return $"Update Ba Mofaghiyat Anjam Shod";
         }
 
-        public async Task<List<CityOutputDto>> GetAllCity()
+        public Task<List<CityOutputDto>> GetAllCity()
         {
             var lst = repository.GetQuery().Include(x => x.Hotels);
             return lst.Select(x => new CityOutputDto()
@@ -59,7 +58,7 @@ namespace App.Core.ApplicationService.ApplicationServices.City
                     Id = y.Id,
                     RoomCount = y.RoomCount
                 }).ToList()
-            }).ToList();
+            }).ToListAsync();
         }
 
         public async Task<CityOutputDto> GetSingelCity(int id)

@@ -12,29 +12,32 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace HotelWebApi.Controllers
 {
+    /// <summary>
+    /// City Crud Operation
+    /// </summary>
     [Route("[controller]")]
     [ApiController]
     public class CityController : ControllerBase
     {
         private ICityService service;
-        private IRepository<City> repository;
 
-        public CityController(ICityService service, IRepository<City> repository)
+        public CityController(ICityService service)
         {
             this.service = service;
-            this.repository = repository;
+         
         }
 
         [HttpPut]
-        public async Task<IActionResult> Update([FromBody]CityUpdateDto updateDto)
+        public async Task<IActionResult> Update([FromBody] CityUpdateDto updateDto)
         {
             if (ModelState.IsValid)
             {
-                var UpdateCity = service.UpdateCity(updateDto);
+                var UpdateCity = await service.UpdateCity(updateDto);
+
                 return Ok(UpdateCity);
             }
-            return BadRequest();
 
+            return BadRequest();
 
         }
 
@@ -43,10 +46,11 @@ namespace HotelWebApi.Controllers
         {
             if (ModelState.IsValid)
             {
-                var InsertCity = service.CreateCity(inputDto);
+                var InsertCity = await service.CreateCity(inputDto);
                 return Ok(InsertCity);
 
             }
+
             return BadRequest();
         }
 
@@ -73,15 +77,17 @@ namespace HotelWebApi.Controllers
                 var item = await service.GetSingelCity(id);
                 return Ok(item);
             }
+
             return BadRequest();
         }
 
+
         [HttpDelete]
-        public async Task<IActionResult> Delete([FromQuery]int id)
+        public async Task<IActionResult> Delete([FromQuery] int id)
         {
             if (ModelState.IsValid)
             {
-                var DeleteCity = service.DeleteCity(id);
+                var DeleteCity = await service.DeleteCity(id);
                 return Ok(DeleteCity);
             }
 

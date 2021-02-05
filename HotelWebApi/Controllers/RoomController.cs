@@ -11,12 +11,15 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HotelWebApi.Controllers
 {
+    /// <summary>
+    /// Room Crud Operation
+    /// </summary>
     [Route("[controller]")]
     [ApiController]
     public class RoomController : ControllerBase
     {
         private IRoomService service;
-        
+
         public RoomController(IRoomService service)
         {
             this.service = service;
@@ -47,11 +50,11 @@ namespace HotelWebApi.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> Update([FromBody]RoomUpdateInputDto updateDto)
+        public async Task<IActionResult> Update([FromBody] RoomUpdateInputDto updateDto)
         {
             if (ModelState.IsValid)
             {
-              var updateRoom=  service.Update(updateDto);
+                var updateRoom = await service.Update(updateDto);
                 return Ok(updateRoom);
             }
 
@@ -63,7 +66,7 @@ namespace HotelWebApi.Controllers
         {
             if (ModelState.IsValid)
             {
-               var insertRoom= service.Create(inputDto);
+                var insertRoom = await service.Create(inputDto);
                 return Ok(insertRoom);
             }
 
@@ -71,11 +74,11 @@ namespace HotelWebApi.Controllers
         }
 
         [HttpDelete]
-        public async Task<IActionResult> Delete([FromQuery]int id)
+        public async Task<IActionResult> Delete([FromQuery] int id)
         {
             if (ModelState.IsValid)
             {
-                var deleteRoom = service.DeleteRooms(id);
+                var deleteRoom = await service.DeleteRooms(id);
                 return Ok(deleteRoom);
             }
 

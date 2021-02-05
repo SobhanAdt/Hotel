@@ -19,7 +19,7 @@ namespace App.Infrastucture.EF.Repositories
             this.context = context;
         }
 
-        public  List<T> GetAll()
+        public List<T> GetAll()
         {
             try
             {
@@ -40,7 +40,7 @@ namespace App.Infrastucture.EF.Repositories
         {
             try
             {
-                return  this.context.Set<T>().FirstOrDefault(x => x.Id == id);
+                return this.context.Set<T>().FirstOrDefault(x => x.Id == id);
             }
             catch
             {
@@ -67,9 +67,9 @@ namespace App.Infrastucture.EF.Repositories
                 var model = await this.context.Set<T>().FirstOrDefaultAsync(x => x.Id == id);
                 this.context.Remove(model);
             }
-            catch 
+            catch
             {
-                throw new  Exception("Error Delete");
+                throw new Exception("Error Delete");
             }
         }
 

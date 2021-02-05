@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using App.Core.ApplicationService.Dtos.RoomDto;
 using App.Core.ApplicationService.IRepositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace App.Core.ApplicationService.ApplicationServices.Room
 {
@@ -38,9 +39,9 @@ namespace App.Core.ApplicationService.ApplicationServices.Room
             return "Delete Anjam shod";
         }
 
-        public async Task<List<RoomGetOutPutDto>> GetAllRooms()
+        public  Task<List<RoomGetOutPutDto>> GetAllRooms()
         {
-            var lst = repository.GetAll();
+            var lst = repository.GetQuery();
             return lst.Select(x => new RoomGetOutPutDto()
             {
                 Id = x.Id,
@@ -49,7 +50,7 @@ namespace App.Core.ApplicationService.ApplicationServices.Room
                 RoomPrice = x.RoomPrice,
                 Descripation = x.Descripation,
                 HotelId = x.HotelId
-            }).ToList();
+            }).ToListAsync();
 
         }
 

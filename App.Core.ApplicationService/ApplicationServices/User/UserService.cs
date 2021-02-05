@@ -30,7 +30,7 @@ namespace App.Core.ApplicationService.ApplicationServices.User
             return "Delete Anjam Shod";
         }
 
-        public async Task<List<UserOutputDto>> GetAllUser()
+        public  Task<List<UserOutputDto>> GetAllUser()
         {
             var lst = repository.GetQuery().
                 Include(x => x.Reviews)
@@ -53,7 +53,7 @@ namespace App.Core.ApplicationService.ApplicationServices.User
                     Id = x.Id,
                     CommentAnswer = x.CommentAnswer
                 }).ToList()
-            }).ToList();
+            }).ToListAsync();
         }
 
         public async Task<UserOutputDto> GetSingelUser(int id)

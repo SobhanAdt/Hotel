@@ -17,6 +17,9 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace HotelWebApi.Extensions
 {
+    /// <summary>
+    /// Dependency Injection Service And Repositories
+    /// </summary>
     public static class DependencyExtensions
     {
         public static void AddDependency(this IServiceCollection service)

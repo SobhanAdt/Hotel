@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace App.Core.ApplicationService.ApplicationServices.Review
 {
-   public class ReviewService : IReviewService
+    public class ReviewService : IReviewService
     {
         private IRepository<Entities.Review> repository;
         public ReviewService(IRepository<Entities.Review> repository)
@@ -22,7 +22,7 @@ namespace App.Core.ApplicationService.ApplicationServices.Review
             {
                 Comment = inputDto.Comment,
                 HotelId = inputDto.HotelId
-            }) ;
+            });
             await repository.Save();
             return $" {inputDto.Comment} Created in DataBase";
         }
@@ -34,7 +34,7 @@ namespace App.Core.ApplicationService.ApplicationServices.Review
             return "Delete Anjam shod";
         }
 
-        public async Task<List<ReviewGetOutPutDto>> GetAllReviews()
+        public Task<List<ReviewGetOutPutDto>> GetAllReviews()
         {
             var lst = repository.GetQuery().Include(x => x.ReviewAnswers);
             return lst.Select(x => new ReviewGetOutPutDto()
@@ -43,19 +43,19 @@ namespace App.Core.ApplicationService.ApplicationServices.Review
                 HotelId = x.HotelId,
                 UserId = x.UserId,
                 Id = x.Id,
-                ReviewAnswers = x.ReviewAnswers.Select(x=>new ReviewAnswerDTO()
+                ReviewAnswers = x.ReviewAnswers.Select(x => new ReviewAnswerDTO()
                 {
                     CommentAnswer = x.CommentAnswer,
                     Id = x.Id,
                     UserId = x.UserId
                 }).ToList()
-                
-            }).ToList();
+
+            }).ToListAsync();
         }
 
         public async Task<ReviewGetOutPutDto> GetSingleReview(int id)
         {
-            var item =await repository.GetQuery().Include(x => x.ReviewAnswers).Where(x => x.Id == id).FirstOrDefaultAsync();
+            var item = await repository.GetQuery().Include(x => x.ReviewAnswers).Where(x => x.Id == id).FirstOrDefaultAsync();
 
             return new ReviewGetOutPutDto()
             {
@@ -63,7 +63,7 @@ namespace App.Core.ApplicationService.ApplicationServices.Review
                 Comment = item.Comment,
                 UserId = item.UserId,
                 HotelId = item.HotelId,
-                ReviewAnswers = item.ReviewAnswers.Select(x=>new ReviewAnswerDTO()
+                ReviewAnswers = item.ReviewAnswers.Select(x => new ReviewAnswerDTO()
                 {
                     CommentAnswer = x.CommentAnswer,
                     Id = x.Id,
@@ -72,7 +72,7 @@ namespace App.Core.ApplicationService.ApplicationServices.Review
             };
         }
 
-        public async Task<string> Update( ReviewUpdateInputDto updateDto)
+        public async Task<string> Update(ReviewUpdateInputDto updateDto)
         {
             var item = repository.GetSingel(updateDto.Id);
             if (item == null)

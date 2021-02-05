@@ -8,13 +8,16 @@ using App.Core.ApplicationService.ApplicationServices.Rate;
 
 namespace HotelWebApi.Controllers
 {
+    /// <summary>
+    ///  Just Get Info About Hotel's Star
+    /// </summary>
     [Route("[controller]")]
     [ApiController]
-    public class RateController : ControllerBase
+    public class StarController : ControllerBase
     {
-        private IStarService service;
+        private readonly IStarService service;
 
-        public RateController(IStarService service)
+        public StarController(IStarService service)
         {
             this.service = service;
         }

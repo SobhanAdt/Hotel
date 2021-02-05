@@ -6,19 +6,26 @@ using System.Linq;
 using System.Threading.Tasks;
 using App.Core.ApplicationService.ApplicationServices.User;
 using App.Core.ApplicationService.Dtos.Userto;
+using App.Core.ApplicationService.ApplicationServices.UserLogin;
+using App.Core.ApplicationService.Dtos.UserLoginDto;
 
 namespace HotelWebApi.Controllers
 {
-    [Route("[controller]")]
+    /// <summary>
+    /// User Crud Operation
+    /// </summary>
+    [Route("[controller]/[action]")]
     [ApiController]
     public class UserController : ControllerBase
     {
         private IUserService service;
-        
+        private IUserLoginService userLoginService;
 
-        public UserController(IUserService service)
+
+        public UserController(IUserService service, IUserLoginService userLoginService)
         {
             this.service = service;
+            this.userLoginService = userLoginService;
         }
 
         [HttpGet]
@@ -51,19 +58,31 @@ namespace HotelWebApi.Controllers
         {
             if (ModelState.IsValid)
             {
-                var InsertUser = service.InsertUser(insertInputDto);
+                var InsertUser = await service.InsertUser(insertInputDto);
                 return Ok(InsertUser);
             }
 
             return BadRequest();
         }
 
-        [HttpPut]
-        public async Task<IActionResult> Update([FromBody]UserUpdateDto updateDto)
+        [HttpPost]
+        public async Task<IActionResult> Login([FromBody] LoginDto login)
         {
             if (ModelState.IsValid)
             {
-                var UpdateUser = service.UpdateUser(updateDto);
+                var loginUser = await userLoginService.Login(login);
+                return Ok(loginUser);
+            }
+
+            return BadRequest();
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> Update([FromBody] UserUpdateDto updateDto)
+        {
+            if (ModelState.IsValid)
+            {
+                var UpdateUser = await service.UpdateUser(updateDto);
                 return Ok(UpdateUser);
             }
 
@@ -71,11 +90,11 @@ namespace HotelWebApi.Controllers
         }
 
         [HttpDelete]
-        public async Task<IActionResult> Delete([FromQuery]int id)
+        public async Task<IActionResult> Delete([FromQuery] int id)
         {
             if (ModelState.IsValid)
             {
-                var DeleteUser = service.DeleteUser(id);
+                var DeleteUser = await service.DeleteUser(id);
                 return Ok(DeleteUser);
             }
 

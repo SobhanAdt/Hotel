@@ -4,7 +4,7 @@ using System.Text;
 
 namespace App.Core.ApplicationService.Dtos.UserLoginDto
 {
-    public class Login
+    public class LoginDto
     {
         public string Email { get; set; }
 

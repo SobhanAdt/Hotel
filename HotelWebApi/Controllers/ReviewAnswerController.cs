@@ -11,6 +11,9 @@ using App.Core.ApplicationService.ApplicationServices.UserLogin;
 
 namespace HotelWebApi.Controllers
 {
+    /// <summary>
+    /// ReviewAnswer Crud Operation
+    /// </summary>
     [Route("[controller]")]
     [ApiController]
     public class ReviewAnswerController : ControllerBase
@@ -19,7 +22,8 @@ namespace HotelWebApi.Controllers
         private IUserLoginService userLoginService;
 
 
-        public ReviewAnswerController(IReviewAnswerService service, IUserLoginService userLoginService)
+        public ReviewAnswerController(IReviewAnswerService service,
+                                      IUserLoginService userLoginService)
         {
             this.service = service;
             this.userLoginService = userLoginService;
@@ -49,12 +53,13 @@ namespace HotelWebApi.Controllers
 
             return BadRequest();
         }
+
         [HttpPut]
         public async Task<IActionResult> Update([FromBody] ReviewAnswerUpdateInputDto updateDto)
         {
             if (ModelState.IsValid)
             {
-                var updateReviewAnswer = service.Update(updateDto);
+                var updateReviewAnswer = await service.Update(updateDto);
                 return Ok(updateReviewAnswer);
             }
 
@@ -62,12 +67,13 @@ namespace HotelWebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(ReviewAnswerInsertInputDto inputDto,[FromHeader] string token)
+        public async Task<IActionResult> Create(ReviewAnswerInsertInputDto inputDto, [FromHeader] string token)
         {
-            userLoginService.ValidateUser(token);
+            await userLoginService.ValidateUser(token);
+
             if (ModelState.IsValid)
             {
-                var insertReviewAnswer = service.Create(inputDto);
+                var insertReviewAnswer = await service.Create(inputDto);
                 return Ok(insertReviewAnswer);
             }
 
@@ -79,7 +85,7 @@ namespace HotelWebApi.Controllers
         {
             if (ModelState.IsValid)
             {
-                var deleteReviewAnswer = service.DeleteReview(id);
+                var deleteReviewAnswer = await service.DeleteReview(id);
                 return Ok(deleteReviewAnswer);
             }
 

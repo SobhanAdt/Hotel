@@ -37,7 +37,7 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
             return $" {inputDto.HotelName} Created in DataBase";
         }
 
-        public async Task<List<HotelGetOutPutDto>> GetAllHotels()
+        public  Task<List<HotelGetOutPutDto>> GetAllHotels()
         {
             var lst =  repository.GetQuery().Include(x=>x.Rooms);
             return lst.Select(x => new HotelGetOutPutDto()
@@ -63,7 +63,7 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
                     Id = x.Id,
                     Comment = x.Comment
                 }).ToList()
-            }).ToList();
+            }).ToListAsync();
 
         }
 

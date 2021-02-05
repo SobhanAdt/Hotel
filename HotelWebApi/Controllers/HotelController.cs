@@ -14,6 +14,9 @@ using Microsoft.EntityFrameworkCore.Internal;
 
 namespace HotelWebApi.Controllers
 {
+    /// <summary>
+    /// Hotel Crud Operation
+    /// </summary>
     [Route("[controller]")]
     [ApiController]
     public class HotelController : ControllerBase
@@ -24,7 +27,7 @@ namespace HotelWebApi.Controllers
         {
             this.service = service;
         }
-        
+
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
@@ -49,12 +52,13 @@ namespace HotelWebApi.Controllers
 
             return BadRequest();
         }
+
         [HttpPut]
-        public async Task<IActionResult> Update([FromBody]HotelUpdateInputDto updateDto)
+        public async Task<IActionResult> Update([FromBody] HotelUpdateInputDto updateDto)
         {
             if (ModelState.IsValid)
             {
-                var updateHotel = service.Update(updateDto);
+                var updateHotel = await service.Update(updateDto);
                 return Ok(updateHotel);
             }
 
@@ -66,7 +70,7 @@ namespace HotelWebApi.Controllers
         {
             if (ModelState.IsValid)
             {
-                var insertHotel = service.Create(inputDto);
+                var insertHotel = await service.Create(inputDto);
                 return Ok(insertHotel);
             }
 
@@ -78,7 +82,7 @@ namespace HotelWebApi.Controllers
         {
             if (ModelState.IsValid)
             {
-                var deleteHotel = service.DeleteHotels(id);
+                var deleteHotel = await service.DeleteHotels(id);
                 return Ok(deleteHotel);
             }
 

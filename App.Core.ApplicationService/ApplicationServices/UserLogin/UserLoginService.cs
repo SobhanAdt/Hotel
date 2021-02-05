@@ -19,18 +19,20 @@ namespace App.Core.ApplicationService.ApplicationServices.UserLogin
             this.userloginRepository = userloginRepository;
         }
 
-        public async Task<string> Login(Login login)
+
+        public async Task<string> Login(LoginDto login)
         {
-            var UserLogin =await userRepository.GetQuery().
+            var UserLogin = await userRepository.GetQuery().
                 Where(x => x.Email == login.Email && x.Password == login.Password).FirstOrDefaultAsync();
+
             if (UserLogin != null)
             {
                 var token = Guid.NewGuid().ToString();
                 userloginRepository.Insert(new Entities.UserLogin()
                 {
-                    UserId=UserLogin.Id,
+                    UserId = UserLogin.Id,
                     Token = token,
-                    ExpDate=DateTime.Now.AddHours(24)
+                    ExpDate = DateTime.Now.AddHours(24)
                 });
 
                 return token;
@@ -39,27 +41,28 @@ namespace App.Core.ApplicationService.ApplicationServices.UserLogin
             return "Error";
         }
 
-        public async Task<int>  ValidateUser(string Token)
+        public async Task<int> ValidateUser(string Token)
         {
             try
             {
-                var UserToken = await userloginRepository.GetQuery()
+                var userToken = await userloginRepository.GetQuery()
                     .Where(x => x.Token == Token).FirstOrDefaultAsync();
-                if (UserToken != null)
+
+                if (userToken != null)
                 {
-                    if (UserToken.ExpDate < DateTime.Now)
+                    if (userToken.ExpDate < DateTime.Now)
                     {
                         return 0;
                     }
                 }
 
-                return UserToken.UserId;
+                return userToken.UserId;
             }
             catch
             {
                 throw new Exception("Token Na Motabar Ast");
             }
-        
+
         }
     }
 }

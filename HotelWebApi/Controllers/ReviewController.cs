@@ -10,6 +10,9 @@ using App.Core.ApplicationService.ApplicationServices.UserLogin;
 
 namespace HotelWebApi.Controllers
 {
+    /// <summary>
+    /// Review Crud Operation
+    /// </summary>
     [Route("[controller]")]
     [ApiController]
     public class ReviewController : ControllerBase
@@ -54,7 +57,7 @@ namespace HotelWebApi.Controllers
         {
             if (ModelState.IsValid)
             {
-                var updateReview = service.Update(updateDto);
+                var updateReview = await service.Update(updateDto);
                 return Ok(updateReview);
             }
 
@@ -62,12 +65,13 @@ namespace HotelWebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody]ReviewInsertInputDto inputDto,[FromHeader] string token)
+        public async Task<IActionResult> Create([FromBody] ReviewInsertInputDto inputDto, [FromHeader] string token)
         {
-            userLoginService.ValidateUser(token);
+            await userLoginService.ValidateUser(token);
+
             if (ModelState.IsValid)
             {
-                var insertReview = service.Create(inputDto);
+                var insertReview = await service.Create(inputDto);
                 return Ok(insertReview);
             }
 
@@ -79,7 +83,7 @@ namespace HotelWebApi.Controllers
         {
             if (ModelState.IsValid)
             {
-                var deleteReview = service.DeleteReview(id);
+                var deleteReview = await service.DeleteReview(id);
                 return Ok(deleteReview);
             }
 

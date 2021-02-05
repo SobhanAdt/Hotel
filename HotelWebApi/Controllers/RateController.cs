@@ -12,9 +12,9 @@ namespace HotelWebApi.Controllers
     [ApiController]
     public class RateController : ControllerBase
     {
-        private IRateService service;
+        private IStarService service;
 
-        public RateController(IRateService service)
+        public RateController(IStarService service)
         {
             this.service = service;
         }

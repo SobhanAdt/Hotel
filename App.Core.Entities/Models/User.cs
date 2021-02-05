@@ -22,6 +22,8 @@ namespace App.Core.Entities
 
         public List<ReviewAnswer> ReviewAnswers { get; set; }
 
+        public List<UserRate> UserRates { get; set; }
+
         #endregion
     }
 }

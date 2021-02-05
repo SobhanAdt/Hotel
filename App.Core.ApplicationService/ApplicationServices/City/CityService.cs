@@ -27,7 +27,7 @@ namespace App.Core.ApplicationService.ApplicationServices.City
             {
                 CityName = inputDto.CityName
             });
-            repository.Save();
+            await repository.Save();
             return $"Ba Mofaghiyat {inputDto.CityName} Afzode shod";
         }
 
@@ -40,7 +40,7 @@ namespace App.Core.ApplicationService.ApplicationServices.City
             }
 
             item.CityName = updateDto.CityName;
-            repository.Save();
+            await repository.Save();
             return $"Update Ba Mofaghiyat Anjam Shod";
         }
 
@@ -53,10 +53,10 @@ namespace App.Core.ApplicationService.ApplicationServices.City
                 Id = x.Id,
                 Hotels = x.Hotels.Select(y => new HotelDTO()
                 {
-                    Description =  y.Description ,
-                    HotelCode = y.HotelCode ,
-                    HotelName =  y.HotelName,
-                    Id =  y.Id ,
+                    Description = y.Description,
+                    HotelCode = y.HotelCode,
+                    HotelName = y.HotelName,
+                    Id = y.Id,
                     RoomCount = y.RoomCount
                 }).ToList()
             }).ToList();
@@ -64,8 +64,8 @@ namespace App.Core.ApplicationService.ApplicationServices.City
 
         public async Task<CityOutputDto> GetSingelCity(int id)
         {
-            var item =await repository.GetQuery().
-                Include(x => x.Hotels).FirstOrDefaultAsync(x=>x.Id==id);
+            var item = await repository.GetQuery().
+                Include(x => x.Hotels).FirstOrDefaultAsync(x => x.Id == id);
 
             return new CityOutputDto()
             {
@@ -77,15 +77,15 @@ namespace App.Core.ApplicationService.ApplicationServices.City
                     HotelCode = x.HotelCode,
                     HotelName = x.HotelName,
                     Id = x.Id,
-                    RateId = x.RateId,
+                    StarId = x.StarId,
                     RoomCount = x.RoomCount
                 }).ToList()
             };
         }
         public async Task<string> DeleteCity(int id)
         {
-            repository.Delete(id);
-            repository.Save();
+            await repository.Delete(id);
+            await repository.Save();
             return "Delete Anjam shod";
         }
     }

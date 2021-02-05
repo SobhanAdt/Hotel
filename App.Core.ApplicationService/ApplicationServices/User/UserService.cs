@@ -25,8 +25,8 @@ namespace App.Core.ApplicationService.ApplicationServices.User
 
         public async Task<string> DeleteUser(int id)
         {
-            repository.Delete(id);
-            repository.Save();
+            await repository.Delete(id);
+            await repository.Save();
             return "Delete Anjam Shod";
         }
 
@@ -58,8 +58,8 @@ namespace App.Core.ApplicationService.ApplicationServices.User
 
         public async Task<UserOutputDto> GetSingelUser(int id)
         {
-            var singleUser =await repository.GetQuery().Include(x=>x.Reviews)
-                    .Include(y=>y.ReviewAnswers).Where(z=>z.Id==id).FirstOrDefaultAsync();
+            var singleUser = await repository.GetQuery().Include(x => x.Reviews)
+                    .Include(y => y.ReviewAnswers).Where(z => z.Id == id).FirstOrDefaultAsync();
 
             return new UserOutputDto()
             {
@@ -88,7 +88,7 @@ namespace App.Core.ApplicationService.ApplicationServices.User
                 FullName = insertInputDto.FullName,
                 Password = insertInputDto.Password
             });
-            repository.Save();
+            await repository.Save();
             return $"Useri be Name : {insertInputDto.FullName} Ezafe Shod";
         }
 
@@ -103,7 +103,7 @@ namespace App.Core.ApplicationService.ApplicationServices.User
             item.Email = updateDto.Email;
             item.FullName = updateDto.FullName;
             item.Password = updateDto.Password;
-            repository.Save();
+            await repository.Save();
             return $"Update Ba Mofaghiyat Anjam Shod";
 
         }

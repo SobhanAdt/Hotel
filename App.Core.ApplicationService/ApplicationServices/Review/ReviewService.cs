@@ -23,14 +23,14 @@ namespace App.Core.ApplicationService.ApplicationServices.Review
                 Comment = inputDto.Comment,
                 HotelId = inputDto.HotelId
             }) ;
-            repository.Save();
+            await repository.Save();
             return $" {inputDto.Comment} Created in DataBase";
         }
 
         public async Task<string> DeleteReview(int id)
         {
-            repository.Delete(id);
-            repository.Save();
+            await repository.Delete(id);
+            await repository.Save();
             return "Delete Anjam shod";
         }
 
@@ -82,7 +82,7 @@ namespace App.Core.ApplicationService.ApplicationServices.Review
 
             item.Comment = updateDto.Comment;
             item.HotelId = updateDto.HotelId;
-            repository.Save();
+            await repository.Save();
             return $"Updating {updateDto.Id} has Successfuled";
         }
     }

@@ -30,7 +30,7 @@ namespace HotelWebApi.Extensions
             service.AddTransient<ICityService, CityService>();
             service.AddTransient<IHotelService, HotelService>();
             service.AddTransient<IRoomService, RoomService>();
-            service.AddTransient<IRateService, RateService>();
+            service.AddTransient<IStarService, StarService>();
             service.AddTransient<IUserService, UserService>();
             service.AddTransient<IReviewService, ReviewService>();
             service.AddTransient<IReviewAnswerService, ReviewAnswerService>();
@@ -42,7 +42,7 @@ namespace HotelWebApi.Extensions
         {
             service.AddTransient<IRepository<City>, EfRepository<City>>();
             service.AddTransient<IRepository<Hotel>, EfRepository<Hotel>>();
-            service.AddTransient<IRepository<Rate>, EfRepository<Rate>>();
+            service.AddTransient<IRepository<Star>, EfRepository<Star>>();
             service.AddTransient<IRepository<Review>, EfRepository<Review>>();
             service.AddTransient<IRepository<ReviewAnswer>, EfRepository<ReviewAnswer>>();
             service.AddTransient<IRepository<Room>, EfRepository<Room>>();

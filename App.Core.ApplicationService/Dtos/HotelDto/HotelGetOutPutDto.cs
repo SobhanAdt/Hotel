@@ -12,7 +12,7 @@ namespace App.Core.ApplicationService.Dtos.HotelDto
         public int HotelCode { get; set; }
         public int RoomCount { get; set; }
         public int CityId { get; set; }
-        public int RateId { get; set; }
+        public int StarId { get; set; }
         public string Description { get; set; }
 
         public List<RoomDTO> Rooms { get; set; }

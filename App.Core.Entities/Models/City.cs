@@ -10,8 +10,6 @@ namespace App.Core.Entities
     {
         public int Id { get; set; }
 
-        [Display(Name = "نام شهر")]
-        [Required(ErrorMessage = "نام شهر را باید وارد کنید")]
         public string CityName { get; set; }
 
         #region Relation

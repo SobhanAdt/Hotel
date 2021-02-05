@@ -33,7 +33,7 @@ namespace App.Core.ApplicationService.Dtos.HotelDto
 
         [Display(Name = "ای دی ستاره")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
-        public int RateId { get; set; }
+        public int StarId { get; set; }
 
 
     }

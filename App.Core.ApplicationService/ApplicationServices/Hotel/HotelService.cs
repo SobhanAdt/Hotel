@@ -30,10 +30,10 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
                 HotelCode = inputDto.HotelCode,
                 CityId = inputDto.CityId,
                 RoomCount = inputDto.RoomCount,
-                RateId = inputDto.RateId,
+                StarId = inputDto.StarId,
                 Description = inputDto.Description
             });
-            repository.Save();
+            await repository.Save();
             return $" {inputDto.HotelName} Created in DataBase";
         }
 
@@ -47,7 +47,7 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
                 HotelCode = x.HotelCode,
                 RoomCount = x.RoomCount,
                 Description = x.Description,
-                RateId = x.RateId,
+                StarId = x.StarId,
                 CityId = x.CityId,
                 Rooms = x.Rooms.Select(x=>new RoomDTO()
                 {
@@ -80,7 +80,7 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
                 HotelCode = item.HotelCode,
                 RoomCount = item.RoomCount,
                 CityId = item.CityId,
-                RateId = item.RateId,
+                StarId = item.StarId,
                 Description = item.Description,
                 Rooms = item.Rooms.Select(x => new RoomDTO()
                 {
@@ -101,8 +101,8 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
 
         public async Task<string> DeleteHotels(int id)
         {
-            repository.Delete(id);
-            repository.Save();
+            await repository.Delete(id);
+            await repository.Save();
             return "Delete Anjam shod";
         }
 
@@ -117,9 +117,9 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
 
             item.HotelName = updateDto.HotelName;
             item.CityId = updateDto.CityId;
-            item.RateId = updateDto.RateId;
+            item.StarId = updateDto.StarId;
             item.RoomCount = updateDto.RoomCount;
-            repository.Save();
+            await repository.Save();
             return $"Updating {updateDto.HotelName} has Successfuled";
         }
 

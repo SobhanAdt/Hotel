@@ -27,14 +27,14 @@ namespace App.Core.ApplicationService.ApplicationServices.Room
                 Descripation = inputDto.Descripation,
                 HotelId = inputDto.HotelId
             });
-            repository.Save();
+            await repository.Save();
             return $" Room {inputDto.RoomCode} Created in DataBase";
         }
 
         public async Task<string> DeleteRooms(int id)
         {
-            repository.Delete(id);
-            repository.Save();
+            await repository.Delete(id);
+            await repository.Save();
             return "Delete Anjam shod";
         }
 
@@ -88,7 +88,7 @@ namespace App.Core.ApplicationService.ApplicationServices.Room
             item.RoomPrice = updateDto.RoomPrice;
             item.Descripation = updateDto.Descripation;
             item.HotelId = updateDto.HotelId;
-            repository.Save();
+            await repository.Save();
             return $"Updating this Room{updateDto.RoomCode} has Successfuled";
         }
 

@@ -3,11 +3,11 @@ using App.Core.ApplicationService.IRepositories;
 
 namespace App.Core.Entities
 {
-    public class Rate:IHasIdentity
+    public class Star:IHasIdentity
     {
         public int Id { get; set; }
 
-        public int RateNumber { get; set; }
+        public int StarNumber { get; set; }
 
         #region MyRegion
 

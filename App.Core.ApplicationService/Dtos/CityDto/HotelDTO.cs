@@ -14,7 +14,7 @@
 
         public int CityId { get; set; }
 
-        public int RateId { get; set; }
+        public int StarId { get; set; }
 
     }
 }

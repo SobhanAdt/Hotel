@@ -32,7 +32,7 @@ namespace App.Infrastucture.EF.Database
 
         public DbSet<ReviewAnswer> ReviewAnswers { get; set; }
 
-        public DbSet<Rate> Rates { get; set; }
+        public DbSet<Star> Rates { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -44,7 +44,7 @@ namespace App.Infrastucture.EF.Database
             builder.Entity<Room>(x => x.ToTable("Room"));
             builder.Entity<Review>(x => x.ToTable("Review"));
             builder.Entity<ReviewAnswer>(x => x.ToTable("ReviewAnswer"));
-            builder.Entity<Rate>(x => x.ToTable("Rate"));
+            builder.Entity<Star>(x => x.ToTable("Rate"));
         }
         
     }

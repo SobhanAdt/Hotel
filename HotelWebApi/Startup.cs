@@ -17,6 +17,7 @@ using App.Infrastucture.EF.Database;
 using App.Infrastucture.EF.Repositories;
 using AutoMapper;
 using HotelWebApi.Extensions;
+using HotelWebApi.Middleware;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
@@ -54,7 +55,7 @@ namespace HotelWebApi
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            
             app.UseSwagger();
 
             app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/Hotel/swagger.json", "Hotel"));
@@ -64,6 +65,8 @@ namespace HotelWebApi
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseMiddleware<CustomExceptionHanddlingMiddleware>();
 
             app.UseEndpoints(endpoints =>
             {

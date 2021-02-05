@@ -21,14 +21,7 @@ namespace App.Infrastucture.EF.Repositories
 
         public List<T> GetAll()
         {
-            try
-            {
-                return this.context.Set<T>().ToList();
-            }
-            catch
-            {
-                throw new Exception("Error Get All");
-            }
+            return this.context.Set<T>().ToList();
         }
 
         public IQueryable<T> GetQuery()
@@ -38,64 +31,31 @@ namespace App.Infrastucture.EF.Repositories
 
         public T GetSingel(int id)
         {
-            try
-            {
-                return this.context.Set<T>().FirstOrDefault(x => x.Id == id);
-            }
-            catch
-            {
-                throw new Exception("Error Get Singel");
-            }
+            return this.context.Set<T>().FirstOrDefault(x => x.Id == id);
         }
 
         public void Insert(T item)
         {
-            try
-            {
-                this.context.Add(item);
-            }
-            catch
-            {
-                throw new Exception("Error Insert");
-            }
+            this.context.Add(item);
         }
 
         public async Task Delete(int id)
         {
-            try
-            {
-                var model = await this.context.Set<T>().FirstOrDefaultAsync(x => x.Id == id);
-                this.context.Remove(model);
-            }
-            catch
-            {
-                throw new Exception("Error Delete");
-            }
+            var model = await this.context.Set<T>().FirstOrDefaultAsync(x => x.Id == id);
+            this.context.Remove(model);
+
         }
 
         public Task Save()
         {
-            try
-            {
-                return this.context.SaveChangesAsync();
-            }
-            catch
-            {
-                throw new Exception("Error Save");
-            }
+            return this.context.SaveChangesAsync();
         }
 
         public T Update(T item)
         {
-            try
-            {
-                this.context.Update(item);
-                return item;
-            }
-            catch
-            {
-                throw new Exception("Error Update");
-            }
+            this.context.Update(item);
+            return item;
+
         }
     }
 }

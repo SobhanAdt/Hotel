@@ -16,12 +16,13 @@ namespace App.Core.ApplicationService.ApplicationServices.Review
         {
             this.repository = repository;
         }
-        public async Task<string> Create(ReviewInsertInputDto inputDto)
+        public async Task<string> Create(ReviewInsertInputDto inputDto,int userId)
         {
             repository.Insert(new Entities.Review()
             {
                 Comment = inputDto.Comment,
-                HotelId = inputDto.HotelId
+                HotelId = inputDto.HotelId,
+                UserId = userId
             });
             await repository.Save();
             return $" {inputDto.Comment} Created in DataBase";

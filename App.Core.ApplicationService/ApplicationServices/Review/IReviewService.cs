@@ -8,7 +8,7 @@ namespace App.Core.ApplicationService.ApplicationServices.Review
 {
     public interface IReviewService
     {
-        Task<string> Create(ReviewInsertInputDto inputDto);
+        Task<string> Create(ReviewInsertInputDto inputDto,int userId);
 
         Task<string> Update( ReviewUpdateInputDto updateDto);
 

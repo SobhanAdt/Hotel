@@ -34,8 +34,9 @@ namespace App.Core.ApplicationService.ApplicationServices.UserLogin
                     Token = token,
                     ExpDate = DateTime.Now.AddHours(24)
                 });
-
+               await userloginRepository.Save();
                 return token;
+                
             }
 
             return "Error";
@@ -43,26 +44,18 @@ namespace App.Core.ApplicationService.ApplicationServices.UserLogin
 
         public async Task<int> ValidateUser(string Token)
         {
-            try
-            {
-                var userToken = await userloginRepository.GetQuery()
+            var userToken = await userloginRepository.GetQuery()
                     .Where(x => x.Token == Token).FirstOrDefaultAsync();
 
-                if (userToken != null)
-                {
-                    if (userToken.ExpDate < DateTime.Now)
-                    {
-                        return 0;
-                    }
-                }
-
-                return userToken.UserId;
-            }
-            catch
+            if (userToken != null)
             {
-                throw new Exception("Token Na Motabar Ast");
+                if (userToken.ExpDate < DateTime.Now)
+                {
+                    return 0;
+                }
             }
 
+            return userToken.UserId;
         }
     }
 }

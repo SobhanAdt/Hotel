@@ -69,11 +69,11 @@ namespace HotelWebApi.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(ReviewAnswerInsertInputDto inputDto, [FromHeader] string token)
         {
-            await userLoginService.ValidateUser(token);
+            var userId = await userLoginService.ValidateUser(token);
 
             if (ModelState.IsValid)
             {
-                var insertReviewAnswer = await service.Create(inputDto);
+                var insertReviewAnswer = await service.Create(inputDto, userId);
                 return Ok(insertReviewAnswer);
             }
 

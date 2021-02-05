@@ -8,7 +8,7 @@ namespace App.Core.ApplicationService.ApplicationServices.ReviewAnswer
 {
     public interface IReviewAnswerService
     {
-        Task<string> Create(ReviewAnswerInsertInputDto inputDto);
+        Task<string> Create(ReviewAnswerInsertInputDto inputDto,int userId);
 
         Task<string> Update(ReviewAnswerUpdateInputDto updateDto);
 

@@ -82,6 +82,13 @@ namespace App.Core.ApplicationService.ApplicationServices.User
 
         public async Task<string> InsertUser(UserInsertInputDto insertInputDto)
         {
+            var userRegister =await repository.GetQuery().
+                Where(x => x.Email == insertInputDto.Email).FirstOrDefaultAsync();
+
+            if (insertInputDto.Email==userRegister.Email)
+            {
+                return null;
+            }
             repository.Insert(new Entities.User()
             {
                 Email = insertInputDto.Email,

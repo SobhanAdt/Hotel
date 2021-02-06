@@ -11,11 +11,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace App.Core.ApplicationService.ApplicationServices.Hotel
 {
-   public class HotelService : IHotelService
+    public class HotelService : IHotelService
 
     {
         private IRepository<Entities.Hotel> repository;
-        
+
 
         public HotelService(IRepository<Entities.Hotel> repository)
         {
@@ -24,6 +24,15 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
 
         public async Task<string> Create(HotelInsertInputDto inputDto)
         {
+            var hotelValidation =await repository.GetQuery().
+                Where(x => x.HotelName == inputDto.HotelName&&x.CityId==inputDto.CityId)
+                .FirstOrDefaultAsync();
+
+            if (inputDto.HotelCode==hotelValidation.HotelCode)
+            {
+                return null;
+            }
+
             repository.Insert(new Entities.Hotel()
             {
                 HotelName = inputDto.HotelName,
@@ -37,9 +46,9 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
             return $" {inputDto.HotelName} Created in DataBase";
         }
 
-        public  Task<List<HotelGetOutPutDto>> GetAllHotels()
+        public Task<List<HotelGetOutPutDto>> GetAllHotels()
         {
-            var lst =  repository.GetQuery().Include(x=>x.Rooms);
+            var lst = repository.GetQuery().Include(x => x.Rooms);
             return lst.Select(x => new HotelGetOutPutDto()
             {
                 HotelName = x.HotelName,
@@ -49,15 +58,15 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
                 Description = x.Description,
                 StarId = x.StarId,
                 CityId = x.CityId,
-                Rooms = x.Rooms.Select(x=>new RoomDTO()
+                Rooms = x.Rooms.Select(x => new RoomDTO()
                 {
                     Descripation = x.Descripation,
-                    RoomAera =x.RoomAera,
+                    RoomAera = x.RoomAera,
                     RoomCode = x.RoomCode,
                     Id = x.Id,
                     RoomPrice = x.RoomPrice
                 }).ToList(),
-                Reviews = x.Reviews.Select(x=>new ReviewDTO()
+                Reviews = x.Reviews.Select(x => new ReviewDTO()
                 {
                     UserId = x.UserId,
                     Id = x.Id,
@@ -69,9 +78,9 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
 
         public async Task<HotelGetOutPutDto> GetSingleHotel(int id)
         {
-            var item =await repository.GetQuery()
-                .Include(x=>x.Rooms).Where(x=>x.Id==id)
-                .Include(x=>x.Reviews).Where(x=>x.Id==id).FirstOrDefaultAsync();
+            var item = await repository.GetQuery()
+                .Include(x => x.Rooms).Where(x => x.Id == id)
+                .Include(x => x.Reviews).Where(x => x.Id == id).FirstOrDefaultAsync();
 
             return new HotelGetOutPutDto()
             {
@@ -109,7 +118,7 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
         public async Task<string> Update(HotelUpdateInputDto updateDto)
         {
 
-            var item =repository.GetSingel(updateDto.Id);
+            var item = repository.GetSingel(updateDto.Id);
             if (item == null)
             {
                 return "Null";

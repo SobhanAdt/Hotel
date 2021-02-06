@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Runtime.InteropServices;
@@ -22,6 +23,14 @@ namespace App.Core.ApplicationService.ApplicationServices.City
 
         public async Task<string> CreateCity(CityInsertInputDto inputDto)
         {
+            var cityValidate =await repository.GetQuery()
+                .Where(x => x.CityName == inputDto.CityName).FirstOrDefaultAsync();
+
+            if (inputDto.CityName==cityValidate.CityName)
+            {
+                throw new Exception("in City Vojod darad");
+            }
+
             repository.Insert(new Entities.City()
             {
                 CityName = inputDto.CityName

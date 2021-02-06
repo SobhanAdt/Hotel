@@ -20,7 +20,6 @@ namespace App.Core.ApplicationService.Dtos.HotelDto
         public int HotelCode { get; set; }
 
         [Display(Name = "تعداد اتاق")]
-        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         public int RoomCount { get; set; }
 
         [Display(Name = "توضیحات هتل")]

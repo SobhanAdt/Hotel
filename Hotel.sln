@@ -11,11 +11,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HotelWebApi", "HotelWebApi\HotelWebApi.csproj", "{89DB14CA-B37E-4070-90DF-DA8F07FCEE4E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Core.ApplicationService", "App.Core.ApplicationService\App.Core.ApplicationService.csproj", "{3C18552E-3E1D-41E7-B69A-813D90410DB0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hotel.Core.ApplicationService", "App.Core.ApplicationService\Hotel.Core.ApplicationService.csproj", "{3C18552E-3E1D-41E7-B69A-813D90410DB0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Core.Entities", "App.Core.Entities\App.Core.Entities.csproj", "{8591B5FC-A629-4A4F-8AB9-1E9E7637DDD4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hotel.Core.Entities", "App.Core.Entities\Hotel.Core.Entities.csproj", "{8591B5FC-A629-4A4F-8AB9-1E9E7637DDD4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Infrastucture.EF", "App.Infrastucture.EF\App.Infrastucture.EF.csproj", "{4D66A19E-2BF1-4757-8193-A4463429FE54}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hotel.Infrastucture.EF", "App.Infrastucture.EF\Hotel.Infrastucture.EF.csproj", "{4D66A19E-2BF1-4757-8193-A4463429FE54}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

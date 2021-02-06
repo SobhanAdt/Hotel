@@ -21,8 +21,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\App.Core.ApplicationService\App.Core.ApplicationService.csproj" />
-    <ProjectReference Include="..\App.Infrastucture.EF\App.Infrastucture.EF.csproj" />
+    <ProjectReference Include="..\App.Core.ApplicationService\Hotel.Core.ApplicationService.csproj" />
+    <ProjectReference Include="..\App.Infrastucture.EF\Hotel.Infrastucture.EF.csproj" />
   </ItemGroup>
 
 

@@ -11,10 +11,6 @@ namespace App.Core.ApplicationService.Dtos.USerRateDto
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         public float RateNumber { get; set; }
 
-        [Display(Name = "ای دی کاربر")]
-        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
-        public int  UserId { get; set; }
-
 
         [Display(Name = "ای دی هتل")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]

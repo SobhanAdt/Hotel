@@ -8,6 +8,7 @@ using App.Core.ApplicationService.ApplicationServices.User;
 using App.Core.ApplicationService.Dtos.Userto;
 using App.Core.ApplicationService.ApplicationServices.UserLogin;
 using App.Core.ApplicationService.Dtos.UserLoginDto;
+using App.Core.ApplicationService.Dtos.USerRateDto;
 
 namespace HotelWebApi.Controllers
 {
@@ -76,6 +77,21 @@ namespace HotelWebApi.Controllers
 
             return BadRequest();
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Rate([FromBody] UserRateInsertDto insertDto, [FromHeader] string token)
+        {
+            var userRate = await userLoginService.ValidateUser(token);
+
+            if (ModelState.IsValid)
+            {
+                await service.InsertUserRate(insertDto, userRate);
+                return Ok(insertDto);
+            }
+
+            return BadRequest();
+        }
+
 
         [HttpPut]
         public async Task<IActionResult> Update([FromBody] UserUpdateDto updateDto)

@@ -6,7 +6,7 @@ using App.Core.ApplicationService.Dtos.HotelDto;
 
 namespace App.Core.ApplicationService.ApplicationServices.Hotel
 {
-   public interface IHotelService
+    public interface IHotelService
     {
         Task<string> Create(HotelInsertInputDto inputDto);
 
@@ -16,6 +16,8 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
         Task<HotelGetOutPutDto> GetSingleHotel(int id);
 
         Task<string> DeleteHotels(int id);
+
+
 
     }
 }

@@ -24,7 +24,7 @@ namespace App.Infrastucture.EF.Database
 
         public DbSet<UserLogin> UserLogins { get; set; }
 
-        public DbSet<Hotel> Hotels { get; set; }
+        public DbSet<Core.Entities.Hotel> Hotels { get; set; }
 
         public DbSet<Room> Rooms { get; set; }
 
@@ -34,18 +34,21 @@ namespace App.Infrastucture.EF.Database
 
         public DbSet<Star> Rates { get; set; }
 
+        public DbSet<UserRate> UserRates { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<City>(x => x.ToTable("City"));
             builder.Entity<User>(x => x.ToTable("User"));
             builder.Entity<UserLogin>(x => x.ToTable("UserLogin"));
-            builder.Entity<Hotel>(x => x.ToTable("Hotel"));
+            builder.Entity<Core.Entities.Hotel>(x => x.ToTable("Hotel"));
             builder.Entity<Room>(x => x.ToTable("Room"));
             builder.Entity<Review>(x => x.ToTable("Review"));
             builder.Entity<ReviewAnswer>(x => x.ToTable("ReviewAnswer"));
             builder.Entity<Star>(x => x.ToTable("Rate"));
+            builder.Entity<UserRate>(x => x.ToTable("UserRate"));
         }
-        
+
     }
 }

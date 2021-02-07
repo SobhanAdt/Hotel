@@ -10,17 +10,20 @@ using App.Core.ApplicationService.IRepositories;
 using App.Core.Entities;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using App.Core.ApplicationService.Dtos.USerRateDto;
 
 namespace App.Core.ApplicationService.ApplicationServices.User
 {
     public class UserService : IUserService
     {
         private IRepository<Entities.User> repository;
+        private IRepository<UserRate> userRateRepository;
 
-        public UserService(IRepository<Entities.User> repository)
+        public UserService(IRepository<Entities.User> repository,
+                           IRepository<UserRate> userRateRepository)
         {
             this.repository = repository;
-
+            this.userRateRepository = userRateRepository;
         }
 
         public async Task<string> DeleteUser(int id)
@@ -30,7 +33,7 @@ namespace App.Core.ApplicationService.ApplicationServices.User
             return "Delete Anjam Shod";
         }
 
-        public  Task<List<UserOutputDto>> GetAllUser()
+        public Task<List<UserOutputDto>> GetAllUser()
         {
             var lst = repository.GetQuery().
                 Include(x => x.Reviews)
@@ -82,10 +85,10 @@ namespace App.Core.ApplicationService.ApplicationServices.User
 
         public async Task<string> InsertUser(UserInsertInputDto insertInputDto)
         {
-            var userRegister =await repository.GetQuery().
+            var userRegister = await repository.GetQuery().
                 Where(x => x.Email == insertInputDto.Email).FirstOrDefaultAsync();
 
-            if (insertInputDto.Email==userRegister.Email)
+            if (insertInputDto.Email == userRegister.Email)
             {
                 return null;
             }
@@ -98,6 +101,7 @@ namespace App.Core.ApplicationService.ApplicationServices.User
             await repository.Save();
             return $"Useri be Name : {insertInputDto.FullName} Ezafe Shod";
         }
+
 
         public async Task<string> UpdateUser(UserUpdateDto updateDto)
         {
@@ -113,6 +117,20 @@ namespace App.Core.ApplicationService.ApplicationServices.User
             await repository.Save();
             return $"Update Ba Mofaghiyat Anjam Shod";
 
+        }
+
+
+        public async Task<string> InsertUserRate(UserRateInsertDto insertDto, int userId)
+        {
+            userRateRepository.Insert(new App.Core.Entities.UserRate()
+            {
+                UserId = userId,
+                HotelId = insertDto.HotelId,
+                RateNumber = insertDto.RateNumber
+            });
+
+            await userRateRepository.Save();
+            return $"Rate Shoma Sabt shod";
         }
     }
 }

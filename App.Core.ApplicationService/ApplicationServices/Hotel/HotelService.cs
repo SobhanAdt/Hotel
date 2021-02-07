@@ -7,6 +7,9 @@ using App.Core.ApplicationService.Dtos.HotelDto;
 using App.Core.ApplicationService.IRepositories;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+using System.Security.Cryptography.X509Certificates;
+using App.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -16,11 +19,12 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
 
     {
         private IRepository<Entities.Hotel> repository;
+        private IRepository<UserRate> userRateRepository;
 
-
-        public HotelService(IRepository<Entities.Hotel> repository)
+        public HotelService(IRepository<Entities.Hotel> repository, IRepository<UserRate> userRateRepository)
         {
             this.repository = repository;
+            this.userRateRepository = userRateRepository;
         }
 
         public async Task<string> Create(HotelInsertInputDto inputDto)
@@ -47,13 +51,15 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
             return $" {inputDto.HotelName} Created in DataBase";
         }
 
+        
         public Task<List<HotelGetOutPutDto>> GetAllHotels()
         {
             var lst = repository.GetQuery()
                 .Include(x => x.Rooms);
 
-            var userRate = repository.GetQuery()
-                .Include(x => x.UserRates.Where(z => z.HotelId == x.Id));
+            //var userRate = userRateRepository.GetQuery()
+            //    .GroupBy(x => x.HotelId).Sum(x=>x.)
+           // var x1 = userRate.Sum(x=>)
 
             return lst.Select(x => new HotelGetOutPutDto()
             {
@@ -64,7 +70,7 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
                 Description = x.Description,
                 StarId = x.StarId,
                 CityId = x.CityId,
-               
+
                 Reviews = x.Reviews.Select(x => new ReviewDTO()
                 {
                     UserId = x.UserId,
@@ -109,7 +115,7 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
 
         public Task<List<HotelGetOutPutDto>> SixNewInsertHotel()
         {
-            var SixNewHotel = repository.GetQuery().OrderByDescending(x=>x.Id).Take(6);
+            var SixNewHotel = repository.GetQuery().OrderByDescending(x => x.Id).Take(6);
 
             return SixNewHotel.Select(x => new HotelGetOutPutDto()
             {
@@ -120,14 +126,6 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
                 Description = x.Description,
                 StarId = x.StarId,
                 CityId = x.CityId,
-                Rooms = x.Rooms.Select(x => new RoomDTO()
-                {
-                    Descripation = x.Descripation,
-                    RoomAera = x.RoomAera,
-                    RoomCode = x.RoomCode,
-                    Id = x.Id,
-                    RoomPrice = x.RoomPrice
-                }).ToList(),
                 Reviews = x.Reviews.Select(x => new ReviewDTO()
                 {
                     UserId = x.UserId,

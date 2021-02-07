@@ -15,8 +15,6 @@ namespace App.Core.ApplicationService.Dtos.HotelDto
         public int StarId { get; set; }
         public string Description { get; set; }
 
-        public List<RoomDTO> Rooms { get; set; }
-
         public List<ReviewDTO> Reviews { get; set; }
 
 

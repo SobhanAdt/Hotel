@@ -17,6 +17,8 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
 
         Task<string> DeleteHotels(int id);
 
+        Task<List<HotelGetOutPutDto>> SixNewInsertHotel();
+
 
 
     }

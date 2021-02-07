@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Text;
 using System.Threading.Tasks;
 using App.Core.ApplicationService.Dtos.HotelDto;
@@ -51,10 +52,66 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
             var lst = repository.GetQuery()
                 .Include(x => x.Rooms);
 
-            var RateHotel = repository.GetQuery().
-                Include(x => x.UserRates).Count();
+            var userRate = repository.GetQuery()
+                .Include(x => x.UserRates.Where(z => z.HotelId == x.Id));
 
             return lst.Select(x => new HotelGetOutPutDto()
+            {
+                HotelName = x.HotelName,
+                Id = x.Id,
+                HotelCode = x.HotelCode,
+                RoomCount = x.RoomCount,
+                Description = x.Description,
+                StarId = x.StarId,
+                CityId = x.CityId,
+               
+                Reviews = x.Reviews.Select(x => new ReviewDTO()
+                {
+                    UserId = x.UserId,
+                    Id = x.Id,
+                    Comment = x.Comment
+                }).ToList()
+            }).ToListAsync();
+
+        }
+
+        public async Task<HotelGetOutPutDto> GetSingleHotel(int id)
+        {
+            var item = await repository.GetQuery()
+                .Include(x => x.Rooms).Where(x => x.Id == id)
+                .Include(x => x.Reviews).Where(x => x.Id == id).FirstOrDefaultAsync();
+
+
+            return new HotelGetOutPutDto()
+            {
+                Id = item.Id,
+                HotelName = item.HotelName,
+                HotelCode = item.HotelCode,
+                RoomCount = item.RoomCount,
+                CityId = item.CityId,
+                StarId = item.StarId,
+                Description = item.Description,
+                Reviews = item.Reviews.Select(x => new ReviewDTO()
+                {
+                    UserId = x.UserId,
+                    Id = x.Id,
+                    Comment = x.Comment
+                }).ToList()
+            };
+        }
+
+        public async Task<string> DeleteHotels(int id)
+        {
+            await repository.Delete(id);
+            await repository.Save();
+            return "Delete Anjam shod";
+        }
+
+        public Task<List<HotelGetOutPutDto>> SixNewInsertHotel()
+        {
+            var SixNewHotel = repository.GetQuery().OrderByDescending(x=>x.Id).Take(6);
+
+            return SixNewHotel.Select(x => new HotelGetOutPutDto()
             {
                 HotelName = x.HotelName,
                 Id = x.Id,
@@ -78,46 +135,6 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
                     Comment = x.Comment
                 }).ToList()
             }).ToListAsync();
-
-        }
-
-        public async Task<HotelGetOutPutDto> GetSingleHotel(int id)
-        {
-            var item = await repository.GetQuery()
-                .Include(x => x.Rooms).Where(x => x.Id == id)
-                .Include(x => x.Reviews).Where(x => x.Id == id).FirstOrDefaultAsync();
-
-            return new HotelGetOutPutDto()
-            {
-                Id = item.Id,
-                HotelName = item.HotelName,
-                HotelCode = item.HotelCode,
-                RoomCount = item.RoomCount,
-                CityId = item.CityId,
-                StarId = item.StarId,
-                Description = item.Description,
-                Rooms = item.Rooms.Select(x => new RoomDTO()
-                {
-                    Descripation = x.Descripation,
-                    RoomAera = x.RoomAera,
-                    RoomCode = x.RoomCode,
-                    Id = x.Id,
-                    RoomPrice = x.RoomPrice
-                }).ToList(),
-                Reviews = item.Reviews.Select(x => new ReviewDTO()
-                {
-                    UserId = x.UserId,
-                    Id = x.Id,
-                    Comment = x.Comment
-                }).ToList()
-            };
-        }
-
-        public async Task<string> DeleteHotels(int id)
-        {
-            await repository.Delete(id);
-            await repository.Save();
-            return "Delete Anjam shod";
         }
 
         public async Task<string> Update(HotelUpdateInputDto updateDto)

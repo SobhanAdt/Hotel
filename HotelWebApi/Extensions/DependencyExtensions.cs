@@ -51,6 +51,7 @@ namespace HotelWebApi.Extensions
             service.AddTransient<IRepository<Room>, EfRepository<Room>>();
             service.AddTransient<IRepository<User>, EfRepository<User>>();
             service.AddTransient<IRepository<UserLogin>, EfRepository<UserLogin>>();
+            service.AddTransient<IRepository<UserRate>, EfRepository<UserRate>>();
         }
     }
 }

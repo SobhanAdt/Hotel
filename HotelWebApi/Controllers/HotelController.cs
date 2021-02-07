@@ -17,7 +17,7 @@ namespace HotelWebApi.Controllers
     /// <summary>
     /// Hotel Crud Operation
     /// </summary>
-    [Route("[controller]")]
+    [Route("[controller]/[action]")]
     [ApiController]
     public class HotelController : ControllerBase
     {
@@ -48,6 +48,18 @@ namespace HotelWebApi.Controllers
             {
                 var SingelHotel = await service.GetSingleHotel(id);
                 return Ok(SingelHotel);
+            }
+
+            return BadRequest();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetSixNewHotel()
+        {
+            if (ModelState.IsValid)
+            {
+              var SixNewHotel= await service.SixNewInsertHotel();
+              return Ok(SixNewHotel);
             }
 
             return BadRequest();

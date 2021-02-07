@@ -24,11 +24,11 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
 
         public async Task<string> Create(HotelInsertInputDto inputDto)
         {
-            var hotelValidation =await repository.GetQuery().
-                Where(x => x.HotelName == inputDto.HotelName&&x.CityId==inputDto.CityId)
+            var hotelValidation = await repository.GetQuery().
+                Where(x => x.HotelName == inputDto.HotelName && x.CityId == inputDto.CityId)
                 .FirstOrDefaultAsync();
 
-            if (inputDto.HotelCode==hotelValidation.HotelCode)
+            if (inputDto.HotelCode == hotelValidation.HotelCode)
             {
                 return null;
             }
@@ -48,7 +48,12 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
 
         public Task<List<HotelGetOutPutDto>> GetAllHotels()
         {
-            var lst = repository.GetQuery().Include(x => x.Rooms);
+            var lst = repository.GetQuery()
+                .Include(x => x.Rooms);
+
+            var RateHotel = repository.GetQuery().
+                Include(x => x.UserRates).Count();
+
             return lst.Select(x => new HotelGetOutPutDto()
             {
                 HotelName = x.HotelName,

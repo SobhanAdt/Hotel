@@ -9,6 +9,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography.X509Certificates;
+using App.Core.ApplicationService.Dtos.Userto;
 using App.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -21,7 +22,8 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
         private IRepository<Entities.Hotel> repository;
         private IRepository<UserRate> userRateRepository;
 
-        public HotelService(IRepository<Entities.Hotel> repository, IRepository<UserRate> userRateRepository)
+        public HotelService(IRepository<Entities.Hotel> repository,
+                            IRepository<UserRate> userRateRepository)
         {
             this.repository = repository;
             this.userRateRepository = userRateRepository;
@@ -51,15 +53,18 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
             return $" {inputDto.HotelName} Created in DataBase";
         }
 
-        
+
         public Task<List<HotelGetOutPutDto>> GetAllHotels()
         {
             var lst = repository.GetQuery()
                 .Include(x => x.Rooms);
 
-            //var userRate = userRateRepository.GetQuery()
-            //    .GroupBy(x => x.HotelId).Sum(x=>x.)
-           // var x1 = userRate.Sum(x=>)
+            var userRate = userRateRepository.GetQuery().
+                Where(w=>w.HotelId==w.Hotel.Id)
+                .GroupBy(x => x.HotelId).Select(x => new RateDTO()
+                {
+                    Rate = x.Average(x => x.RateNumber)
+                }).ToList();
 
             return lst.Select(x => new HotelGetOutPutDto()
             {
@@ -70,7 +75,7 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
                 Description = x.Description,
                 StarId = x.StarId,
                 CityId = x.CityId,
-
+                Rate = userRate[0],
                 Reviews = x.Reviews.Select(x => new ReviewDTO()
                 {
                     UserId = x.UserId,
@@ -87,6 +92,12 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
                 .Include(x => x.Rooms).Where(x => x.Id == id)
                 .Include(x => x.Reviews).Where(x => x.Id == id).FirstOrDefaultAsync();
 
+            var userRate = userRateRepository.GetQuery()
+                .Where(w => w.HotelId == id)
+                .GroupBy(x => x.HotelId).Select(x => new RateDTO()
+                {
+                    Rate = x.Average(x => x.RateNumber)
+                }).FirstOrDefault();
 
             return new HotelGetOutPutDto()
             {
@@ -97,6 +108,7 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
                 CityId = item.CityId,
                 StarId = item.StarId,
                 Description = item.Description,
+                Rate = userRate,
                 Reviews = item.Reviews.Select(x => new ReviewDTO()
                 {
                     UserId = x.UserId,

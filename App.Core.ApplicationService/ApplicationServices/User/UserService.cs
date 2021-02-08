@@ -122,15 +122,23 @@ namespace App.Core.ApplicationService.ApplicationServices.User
 
         public async Task<string> InsertUserRate(UserRateInsertDto insertDto, int userId)
         {
-            userRateRepository.Insert(new App.Core.Entities.UserRate()
+            if (insertDto.RateNumber > 0 && insertDto.RateNumber <= 10)
             {
-                UserId = userId,
-                HotelId = insertDto.HotelId,
-                RateNumber = insertDto.RateNumber
-            });
+                userRateRepository.Insert(new App.Core.Entities.UserRate()
+                {
+                    UserId = userId,
+                    HotelId = insertDto.HotelId,
+                    RateNumber = insertDto.RateNumber
+                });
+                await userRateRepository.Save();
+                return $"Rate Shoma Sabt shod";
+            }
+            else
+            {
+                return "Rate Vared Shode Sahih Nist";
+            }
 
-            await userRateRepository.Save();
-            return $"Rate Shoma Sabt shod";
+
         }
     }
 }

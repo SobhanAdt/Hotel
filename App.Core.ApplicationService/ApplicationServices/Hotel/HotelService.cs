@@ -12,7 +12,8 @@ using System.Security.Cryptography.X509Certificates;
 using App.Core.ApplicationService.Dtos.Userto;
 using App.Core.Entities;
 using Microsoft.EntityFrameworkCore;
-
+using Hotel.Core.ApplicationService.Dtos.HotelDto;
+using AutoMapper;
 
 namespace App.Core.ApplicationService.ApplicationServices.Hotel
 {
@@ -21,12 +22,14 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
     {
         private IRepository<Entities.Hotel> repository;
         private IRepository<UserRate> userRateRepository;
+        private readonly IMapper mapper;
 
         public HotelService(IRepository<Entities.Hotel> repository,
-                            IRepository<UserRate> userRateRepository)
+                            IRepository<UserRate> userRateRepository, IMapper mapper)
         {
             this.repository = repository;
             this.userRateRepository = userRateRepository;
+            this.mapper = mapper;
         }
 
         public async Task<string> Create(HotelInsertInputDto inputDto)
@@ -165,8 +168,25 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
             return $"Updating {updateDto.HotelName} has Successfuled";
         }
 
+        public  List<HotelCompareOutPutDto> HotelCompare(HotelCompareInputDto input)
+        {
+            if (input.Hotels.Count<2)
+            {
+                return null;
+            }
+            var Hotel1 = repository.GetQuery().FirstOrDefault(x => x.HotelName == input.Hotels[0]);
 
+            var Hotel2 = repository.GetQuery().FirstOrDefault(x => x.HotelName == input.Hotels[1]);
 
+            var Hotel11 =  mapper.Map<HotelCompareOutPutDto>(Hotel1);
+            var Hotel22 = mapper.Map<HotelCompareOutPutDto>(Hotel2);
+            var HotelCompareLst = new List<HotelCompareOutPutDto>();
+            HotelCompareLst.Add(Hotel11);
+            HotelCompareLst.Add(Hotel22);
+            return  HotelCompareLst;
 
+        }
+
+      
     }
 }

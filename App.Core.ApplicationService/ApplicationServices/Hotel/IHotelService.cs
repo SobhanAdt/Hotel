@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using App.Core.ApplicationService.Dtos.HotelDto;
+using Hotel.Core.ApplicationService.Dtos.HotelDto;
 
 namespace App.Core.ApplicationService.ApplicationServices.Hotel
 {
@@ -19,7 +20,7 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
 
         Task<List<HotelGetOutPutDto>> SixNewInsertHotel();
 
-
-
+      List<HotelCompareOutPutDto> HotelCompare(HotelCompareInputDto input);
+ 
     }
 }

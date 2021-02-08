@@ -54,16 +54,16 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
         }
 
 
-        public Task<List<HotelGetOutPutDto>> GetAllHotels()
+        public  Task<List<HotelGetOutPutDto>> GetAllHotels()
         {
-            var lst = repository.GetQuery()
+            var lst =repository.GetQuery()
                 .Include(x => x.Rooms);
 
-            var userRate = userRateRepository.GetQuery().
+            var userRate =userRateRepository.GetQuery().
                 Where(w=>w.HotelId==w.Hotel.Id)
                 .GroupBy(x => x.HotelId).Select(x => new RateDTO()
                 {
-                    HotelId = x.Select(s=>s.Hotel.Id).FirstOrDefault(),
+                    HotelId = x.Key,
                     Rate = x.Average(x => x.RateNumber)
                 }).ToList();
 
@@ -76,7 +76,7 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
                 Description = x.Description,
                 StarId = x.StarId,
                 CityId = x.CityId,
-               // Rate = userRate.Where(w=>w.HotelId==x.Id).FirstOrDefault().Rate,
+                Rate =userRate.Where(w=>w.HotelId==x.Id).FirstOrDefault(),
                 Reviews = x.Reviews.Select(x => new ReviewDTO()
                 {
                     UserId = x.UserId,

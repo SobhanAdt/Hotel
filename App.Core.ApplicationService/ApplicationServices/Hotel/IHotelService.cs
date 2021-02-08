@@ -20,7 +20,7 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
 
         Task<List<HotelGetOutPutDto>> SixNewInsertHotel();
 
-      List<HotelCompareOutPutDto> HotelCompare(HotelCompareInputDto input);
+      List<HotelGetOutPutDto> HotelCompare(HotelCompareInputDto input);
  
     }
 }

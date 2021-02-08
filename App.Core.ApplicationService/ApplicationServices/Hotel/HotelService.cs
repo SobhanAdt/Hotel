@@ -57,13 +57,13 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
         }
 
 
-        public  Task<List<HotelGetOutPutDto>> GetAllHotels()
+        public Task<List<HotelGetOutPutDto>> GetAllHotels()
         {
-            var lst =repository.GetQuery()
+            var lst = repository.GetQuery()
                 .Include(x => x.Rooms);
 
-            var userRate =userRateRepository.GetQuery().
-                Where(w=>w.HotelId==w.Hotel.Id)
+            var userRate = userRateRepository.GetQuery().
+                Where(w => w.HotelId == w.Hotel.Id)
                 .GroupBy(x => x.HotelId).Select(x => new RateDTO()
                 {
                     HotelId = x.Key,
@@ -79,7 +79,7 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
                 Description = x.Description,
                 StarId = x.StarId,
                 CityId = x.CityId,
-                Rate =userRate.Where(w=>w.HotelId==x.Id).FirstOrDefault(),
+                Rate = userRate.Where(w => w.HotelId == x.Id).FirstOrDefault(),
                 Reviews = x.Reviews.Select(x => new ReviewDTO()
                 {
                     UserId = x.UserId,
@@ -168,9 +168,9 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
             return $"Updating {updateDto.HotelName} has Successfuled";
         }
 
-        public  List<HotelCompareOutPutDto> HotelCompare(HotelCompareInputDto input)
+        public List<HotelGetOutPutDto> HotelCompare(HotelCompareInputDto input)
         {
-            if (input.Hotels.Count<2)
+            if (input.Hotels.Count < 2)
             {
                 return null;
             }
@@ -178,15 +178,49 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
 
             var Hotel2 = repository.GetQuery().FirstOrDefault(x => x.HotelName == input.Hotels[1]);
 
-            var Hotel11 =  mapper.Map<HotelCompareOutPutDto>(Hotel1);
-            var Hotel22 = mapper.Map<HotelCompareOutPutDto>(Hotel2);
-            var HotelCompareLst = new List<HotelCompareOutPutDto>();
+            var userRate1 = userRateRepository.GetQuery()
+                .Where(w => w.HotelId == Hotel1.Id)
+                .GroupBy(x => x.HotelId).Select(x => new RateDTO()
+                {
+                    Rate = x.Average(x => x.RateNumber)
+                }).FirstOrDefault();
+
+            var userRate2 = userRateRepository.GetQuery()
+                .Where(w => w.HotelId == Hotel2.Id)
+                .GroupBy(x => x.HotelId).Select(x => new RateDTO()
+                {
+                    Rate = x.Average(x => x.RateNumber)
+                }).FirstOrDefault();
+
+            var Hotel11 = new HotelGetOutPutDto()
+            {
+                HotelName = Hotel1.HotelName,
+                CityId = Hotel1.CityId,
+                Description = Hotel1.Description,
+                HotelCode = Hotel1.HotelCode,
+                RoomCount = Hotel1.RoomCount,
+                StarId = Hotel1.StarId,
+                Id = Hotel1.Id,
+                Rate =userRate1
+            };
+            var Hotel22 = new HotelGetOutPutDto()
+            {
+                HotelName = Hotel2.HotelName,
+                CityId = Hotel2.CityId,
+                Description = Hotel2.Description,
+                HotelCode = Hotel2.HotelCode,
+                RoomCount = Hotel2.RoomCount,
+                StarId = Hotel2.StarId,
+                Id = Hotel1.Id,
+                Rate = userRate2
+            };
+            var HotelCompareLst = new List<HotelGetOutPutDto>();
             HotelCompareLst.Add(Hotel11);
             HotelCompareLst.Add(Hotel22);
-            return  HotelCompareLst;
+            return HotelCompareLst;
 
         }
 
-      
+
     }
 }

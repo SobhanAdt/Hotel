@@ -44,7 +44,7 @@ namespace HotelWebApi.Extensions
         public static void AddRepositories(IServiceCollection service)
         {
             service.AddTransient<IRepository<City>, EfRepository<City>>();
-            service.AddTransient<IRepository<Hotel>, EfRepository<Hotel>>();
+            service.AddTransient<IRepository<App.Core.Entities.Hotel>, EfRepository<App.Core.Entities.Hotel>>();
             service.AddTransient<IRepository<Star>, EfRepository<Star>>();
             service.AddTransient<IRepository<Review>, EfRepository<Review>>();
             service.AddTransient<IRepository<ReviewAnswer>, EfRepository<ReviewAnswer>>();

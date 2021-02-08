@@ -174,6 +174,7 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
             {
                 return null;
             }
+
             var Hotel1 = repository.GetQuery().FirstOrDefault(x => x.HotelName == input.Hotels[0]);
 
             var Hotel2 = repository.GetQuery().FirstOrDefault(x => x.HotelName == input.Hotels[1]);
@@ -211,7 +212,7 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
                 HotelCode = Hotel2.HotelCode,
                 RoomCount = Hotel2.RoomCount,
                 StarId = Hotel2.StarId,
-                Id = Hotel1.Id,
+                Id = Hotel2.Id,
                 Rate = userRate2
             };
             var HotelCompareLst = new List<HotelGetOutPutDto>();

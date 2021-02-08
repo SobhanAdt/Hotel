@@ -3,5 +3,7 @@
     public class RateDTO
     {
         public float Rate { get; set; }
+
+        public int HotelId { get; set; }
     }
 }

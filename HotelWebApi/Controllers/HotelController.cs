@@ -8,6 +8,7 @@ using App.Core.ApplicationService.ApplicationServices.UserLogin;
 using App.Core.ApplicationService.Dtos.HotelDto;
 using App.Core.ApplicationService.IRepositories;
 using App.Core.Entities;
+using Hotel.Core.ApplicationService.Dtos.HotelDto;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Internal;
@@ -96,6 +97,17 @@ namespace HotelWebApi.Controllers
             {
                 var deleteHotel = await service.DeleteHotels(id);
                 return Ok(deleteHotel);
+            }
+
+            return BadRequest();
+        }
+        [HttpPost]
+        public async Task<IActionResult> Compare([FromBody] HotelCompareInputDto input)
+        {
+            if (ModelState.IsValid)
+            {
+                var HotelsCompare =  service.HotelCompare(input);
+                return Ok(HotelsCompare);
             }
 
             return BadRequest();

@@ -76,7 +76,7 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
                 Description = x.Description,
                 StarId = x.StarId,
                 CityId = x.CityId,
-                Rate = userRate.Where(w=>w.HotelId==x.Id).FirstOrDefault().Rate,
+               // Rate = userRate.Where(w=>w.HotelId==x.Id).FirstOrDefault().Rate,
                 Reviews = x.Reviews.Select(x => new ReviewDTO()
                 {
                     UserId = x.UserId,

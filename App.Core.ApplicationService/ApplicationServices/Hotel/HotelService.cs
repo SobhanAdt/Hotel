@@ -63,6 +63,7 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
                 Where(w=>w.HotelId==w.Hotel.Id)
                 .GroupBy(x => x.HotelId).Select(x => new RateDTO()
                 {
+                    HotelId = x.Select(s=>s.Hotel.Id).FirstOrDefault(),
                     Rate = x.Average(x => x.RateNumber)
                 }).ToList();
 
@@ -75,7 +76,7 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
                 Description = x.Description,
                 StarId = x.StarId,
                 CityId = x.CityId,
-                Rate = userRate[0],
+                Rate = userRate.Where(w=>w.HotelId==x.Id).FirstOrDefault().Rate,
                 Reviews = x.Reviews.Select(x => new ReviewDTO()
                 {
                     UserId = x.UserId,

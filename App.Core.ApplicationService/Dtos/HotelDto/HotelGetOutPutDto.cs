@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace App.Core.ApplicationService.Dtos.HotelDto
 {
-  public class HotelGetOutPutDto
+    public class HotelGetOutPutDto
     {
         public int Id { get; set; }
         public string HotelName { get; set; }
@@ -15,7 +15,6 @@ namespace App.Core.ApplicationService.Dtos.HotelDto
         public int CityId { get; set; }
         public int StarId { get; set; }
 
-        // public RateDTO? Rate { get; set; }
         public float Rate { get; set; }
         public string Description { get; set; }
 

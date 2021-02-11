@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using App.Core.Entities;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace App.Core.ApplicationService.Dtos.HotelDto
 {
@@ -14,8 +15,8 @@ namespace App.Core.ApplicationService.Dtos.HotelDto
         public int CityId { get; set; }
         public int StarId { get; set; }
 
-        public RateDTO Rate { get; set; }
-
+        // public RateDTO? Rate { get; set; }
+        public float Rate { get; set; }
         public string Description { get; set; }
 
         public List<ReviewDTO> Reviews { get; set; }

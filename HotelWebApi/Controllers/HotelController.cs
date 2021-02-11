@@ -30,11 +30,11 @@ namespace HotelWebApi.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public IActionResult GetAll()
         {
             if (ModelState.IsValid)
             {
-                var AllHotel = await service.GetAllHotels();
+                var AllHotel = service.GetAllHotels();
                 return Ok(AllHotel);
             }
 
@@ -59,8 +59,8 @@ namespace HotelWebApi.Controllers
         {
             if (ModelState.IsValid)
             {
-              var SixNewHotel= await service.SixNewInsertHotel();
-              return Ok(SixNewHotel);
+                var SixNewHotel = await service.SixNewInsertHotel();
+                return Ok(SixNewHotel);
             }
 
             return BadRequest();
@@ -102,12 +102,24 @@ namespace HotelWebApi.Controllers
             return BadRequest();
         }
         [HttpPost]
-        public async Task<IActionResult> Compare([FromBody] HotelCompareInputDto input)
+        public IActionResult Compare([FromBody] HotelCompareInputDto input)
         {
             if (ModelState.IsValid)
             {
-                var HotelsCompare =  service.HotelCompare(input);
+                var HotelsCompare = service.HotelCompare(input);
                 return Ok(HotelsCompare);
+            }
+
+            return BadRequest();
+        }
+
+        [HttpGet]
+        public IActionResult TopHotel()
+        {
+            if (ModelState.IsValid)
+            {
+                var top = service.GetTopHotelRate();
+                return Ok(top);
             }
 
             return BadRequest();

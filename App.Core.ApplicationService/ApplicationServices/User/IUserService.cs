@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using App.Core.ApplicationService.Dtos.HotelDto;
 using App.Core.ApplicationService.Dtos.USerRateDto;
 using App.Core.ApplicationService.Dtos.Userto;
 
@@ -20,6 +21,8 @@ namespace App.Core.ApplicationService.ApplicationServices.User
         Task<UserOutputDto> GetSingelUser(int id);
 
         Task<string> InsertUserRate(UserRateInsertDto insertDto, int userId);
+
+      
 
     }
 }

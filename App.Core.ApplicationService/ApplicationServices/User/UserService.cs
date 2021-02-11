@@ -88,18 +88,19 @@ namespace App.Core.ApplicationService.ApplicationServices.User
             var userRegister = await repository.GetQuery().
                 Where(x => x.Email == insertInputDto.Email).FirstOrDefaultAsync();
 
-            if (insertInputDto.Email == userRegister.Email)
+            if (userRegister == null)
             {
-                return null;
+                repository.Insert(new Entities.User()
+                {
+                    Email = insertInputDto.Email,
+                    FullName = insertInputDto.FullName,
+                    Password = insertInputDto.Password
+                });
+                await repository.Save();
+                return $"Useri be Name : {insertInputDto.FullName} Ezafe Shod";
+
             }
-            repository.Insert(new Entities.User()
-            {
-                Email = insertInputDto.Email,
-                FullName = insertInputDto.FullName,
-                Password = insertInputDto.Password
-            });
-            await repository.Save();
-            return $"Useri be Name : {insertInputDto.FullName} Ezafe Shod";
+            return "Hamchin Emaili Vojod Darad";
         }
 
 
@@ -140,5 +141,6 @@ namespace App.Core.ApplicationService.ApplicationServices.User
 
 
         }
+
     }
 }

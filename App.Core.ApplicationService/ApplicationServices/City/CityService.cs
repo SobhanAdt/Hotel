@@ -23,20 +23,20 @@ namespace App.Core.ApplicationService.ApplicationServices.City
 
         public async Task<string> CreateCity(CityInsertInputDto inputDto)
         {
-            var cityValidate =await repository.GetQuery()
-                .Where(x => x.CityName == inputDto.CityName).FirstOrDefaultAsync();
+            var cityValidate =await repository.GetQuery().
+                Where(w => w.CityName == inputDto.CityName).FirstOrDefaultAsync();
 
-            if (inputDto.CityName==cityValidate.CityName)
+            if (cityValidate == null)
             {
-                throw new Exception("in City Vojod darad");
+                repository.Insert(new Entities.City()
+                {
+                    CityName = inputDto.CityName
+                });
+                await repository.Save();
+                return $"Ba Mofaghiyat {inputDto.CityName} Afzode shod";
             }
 
-            repository.Insert(new Entities.City()
-            {
-                CityName = inputDto.CityName
-            });
-            await repository.Save();
-            return $"Ba Mofaghiyat {inputDto.CityName} Afzode shod";
+            throw new Exception("in City Vojod darad");
         }
 
         public async Task<string> UpdateCity(CityUpdateDto updateDto)

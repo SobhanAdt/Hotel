@@ -57,7 +57,7 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
         }
 
 
-        public Task<List<HotelGetOutPutDto>> GetAllHotels()
+        public List<HotelGetOutPutDto> GetAllHotels()
         {
             var lst = repository.GetQuery()
                 .Include(x => x.Rooms);
@@ -70,7 +70,10 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
                     Rate = x.Average(x => x.RateNumber)
                 }).ToList();
 
-            return lst.Select(x => new HotelGetOutPutDto()
+
+            var ListHotelId = userRate.Select(x => x.HotelId).ToList();
+
+            var ListHotel = lst.Select(x => new HotelGetOutPutDto()
             {
                 HotelName = x.HotelName,
                 Id = x.Id,
@@ -79,14 +82,25 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
                 Description = x.Description,
                 StarId = x.StarId,
                 CityId = x.CityId,
-                Rate = userRate.Where(w => w.HotelId == x.Id).FirstOrDefault(),
-                Reviews = x.Reviews.Select(x => new ReviewDTO()
+                Reviews = x.Reviews.Select(y => new ReviewDTO()
                 {
-                    UserId = x.UserId,
-                    Id = x.Id,
-                    Comment = x.Comment
+                    UserId = y.UserId,
+                    Id = y.Id,
+                    Comment = y.Comment
                 }).ToList()
-            }).ToListAsync();
+            }).ToList();
+
+            foreach (var item in ListHotel)
+            {
+
+                if (ListHotelId.Contains(item.Id))
+                {
+                    item.Rate = userRate.Where(x => x.HotelId == item.Id).FirstOrDefault().Rate;
+                }
+            }
+
+
+            return ListHotel;
 
         }
 
@@ -112,7 +126,7 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
                 CityId = item.CityId,
                 StarId = item.StarId,
                 Description = item.Description,
-                Rate = userRate,
+                Rate = userRate.Rate,
                 Reviews = item.Reviews.Select(x => new ReviewDTO()
                 {
                     UserId = x.UserId,
@@ -168,7 +182,7 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
             return $"Updating {updateDto.HotelName} has Successfuled";
         }
 
-        public List<HotelGetOutPutDto> HotelCompare(HotelCompareInputDto input)
+        public async Task<List<HotelGetOutPutDto>> HotelCompare(HotelCompareInputDto input)
         {
             if (input.Hotels.Count < 2)
             {
@@ -202,7 +216,7 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
                 RoomCount = Hotel1.RoomCount,
                 StarId = Hotel1.StarId,
                 Id = Hotel1.Id,
-                Rate =userRate1
+                Rate = userRate1.Rate   
             };
             var Hotel22 = new HotelGetOutPutDto()
             {
@@ -213,7 +227,7 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
                 RoomCount = Hotel2.RoomCount,
                 StarId = Hotel2.StarId,
                 Id = Hotel2.Id,
-                Rate = userRate2
+                Rate = userRate2.Rate
             };
             var HotelCompareLst = new List<HotelGetOutPutDto>();
             HotelCompareLst.Add(Hotel11);
@@ -222,6 +236,55 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
 
         }
 
+        public List<HotelGetOutPutDto> GetTopHotelRate()
+        {
+            var lst = repository.GetQuery()
+                .Include(x => x.Rooms);
 
+            var userRate = userRateRepository.GetQuery().
+                Where(w => w.HotelId == w.Hotel.Id)
+                .GroupBy(x => x.HotelId).Select(x => new RateDTO()
+                {
+                    HotelId = x.Key,
+                    Rate = x.Average(x => x.RateNumber)
+                }).OrderByDescending(o => o.Rate).ToList().Take(6);
+
+
+            var ListHotelId = userRate.Select(x => x.HotelId).ToList();
+
+            var ListHotel = lst.Select(x => new HotelGetOutPutDto()
+            {
+                HotelName = x.HotelName,
+                Id = x.Id,
+                HotelCode = x.HotelCode,
+                RoomCount = x.RoomCount,
+                Description = x.Description,
+                StarId = x.StarId,
+                CityId = x.CityId,
+                Reviews = x.Reviews.Select(y => new ReviewDTO()
+                {
+                    UserId = y.UserId,
+                    Id = y.Id,
+                    Comment = y.Comment
+                }).ToList()
+            }).ToList();
+
+            foreach (var item in ListHotel)
+            {
+
+                if (ListHotelId.Contains(item.Id))
+                {
+                    item.Rate = userRate.Where(x => x.HotelId == item.Id).FirstOrDefault().Rate;
+                }
+            }
+
+
+            return ListHotel.OrderByDescending(x => x.Rate).Take(6).ToList();
+        }
+
+        public Task<FaivoriteHotel> FavoriteUser(HotelGetOutPutDto getOutPutDto)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

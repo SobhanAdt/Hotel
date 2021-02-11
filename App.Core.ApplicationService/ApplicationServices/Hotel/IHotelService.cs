@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using App.Core.ApplicationService.Dtos.HotelDto;
+using App.Core.ApplicationService.Dtos.Userto;
 using Hotel.Core.ApplicationService.Dtos.HotelDto;
 
 namespace App.Core.ApplicationService.ApplicationServices.Hotel
@@ -13,14 +14,19 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
 
         Task<string> Update(HotelUpdateInputDto updateDto);
 
-        Task<List<HotelGetOutPutDto>> GetAllHotels();
+        List<HotelGetOutPutDto> GetAllHotels();
+
+        List<HotelGetOutPutDto> GetTopHotelRate();
+
         Task<HotelGetOutPutDto> GetSingleHotel(int id);
 
         Task<string> DeleteHotels(int id);
 
         Task<List<HotelGetOutPutDto>> SixNewInsertHotel();
 
-      List<HotelGetOutPutDto> HotelCompare(HotelCompareInputDto input);
- 
+        Task<List<HotelGetOutPutDto>> HotelCompare(HotelCompareInputDto input);
+
+        Task<FaivoriteHotel> FavoriteUser(HotelGetOutPutDto getOutPutDto);
+
     }
 }

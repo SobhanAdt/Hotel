@@ -64,14 +64,14 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
 
             var userRate = userRateRepository.GetQuery().
                 Where(w => w.HotelId == w.Hotel.Id)
-                .GroupBy(x => x.HotelId).Select(x => new RateDTO()
+                .GroupBy(x => x.HotelId).Select(x => new HotelGetOutPutDto()
                 {
-                    HotelId = x.Key,
+                    Id = x.Key,
                     Rate = x.Average(x => x.RateNumber)
                 }).ToList();
 
 
-            var ListHotelId = userRate.Select(x => x.HotelId).ToList();
+            var ListHotelId = userRate.Select(x => x.Id).ToList();
 
             var ListHotel = lst.Select(x => new HotelGetOutPutDto()
             {
@@ -95,7 +95,7 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
 
                 if (ListHotelId.Contains(item.Id))
                 {
-                    item.Rate = userRate.Where(x => x.HotelId == item.Id).FirstOrDefault().Rate;
+                    item.Rate = userRate.Where(x => x.Id == item.Id).FirstOrDefault().Rate;
                 }
             }
 
@@ -112,7 +112,7 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
 
             var userRate = userRateRepository.GetQuery()
                 .Where(w => w.HotelId == id)
-                .GroupBy(x => x.HotelId).Select(x => new RateDTO()
+                .GroupBy(x => x.HotelId).Select(x => new HotelGetOutPutDto()
                 {
                     Rate = x.Average(x => x.RateNumber)
                 }).FirstOrDefault();
@@ -195,14 +195,14 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
 
             var userRate1 = userRateRepository.GetQuery()
                 .Where(w => w.HotelId == Hotel1.Id)
-                .GroupBy(x => x.HotelId).Select(x => new RateDTO()
+                .GroupBy(x => x.HotelId).Select(x => new HotelGetOutPutDto()
                 {
                     Rate = x.Average(x => x.RateNumber)
                 }).FirstOrDefault();
 
             var userRate2 = userRateRepository.GetQuery()
                 .Where(w => w.HotelId == Hotel2.Id)
-                .GroupBy(x => x.HotelId).Select(x => new RateDTO()
+                .GroupBy(x => x.HotelId).Select(x => new HotelGetOutPutDto()
                 {
                     Rate = x.Average(x => x.RateNumber)
                 }).FirstOrDefault();
@@ -243,9 +243,9 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
 
             var userRate = userRateRepository.GetQuery().
                 Where(w => w.HotelId == w.Hotel.Id)
-                .GroupBy(x => x.HotelId).Select(x => new RateDTO()
+                .GroupBy(x => x.HotelId).Select(x => new HotelGetOutPutDto()
                 {
-                    HotelId = x.Key,
+                    Id = x.Key,
                     Rate = x.Average(x => x.RateNumber)
                 }).OrderByDescending(o => o.Rate).ToList().Take(6);
 

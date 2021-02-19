@@ -250,7 +250,7 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
                 }).OrderByDescending(o => o.Rate).ToList().Take(6);
 
 
-            var ListHotelId = userRate.Select(x => x.HotelId).ToList();
+            var ListHotelId = userRate.Select(x => x.Id).ToList();
 
             var ListHotel = lst.Select(x => new HotelGetOutPutDto()
             {
@@ -274,7 +274,7 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
 
                 if (ListHotelId.Contains(item.Id))
                 {
-                    item.Rate = userRate.Where(x => x.HotelId == item.Id).FirstOrDefault().Rate;
+                    item.Rate = userRate.Where(x => x.Id == item.Id).FirstOrDefault().Rate;
                 }
             }
 

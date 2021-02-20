@@ -1,11 +1,81 @@
-﻿@page
-@model IndexModel
-@{
-    ViewData["Title"] = "خانه";
-}
+<!DOCTYPE html>
+<html lang="fa">
 
-@section SliderHome
-{
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>هتلیاب</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link href="Style1.css" rel="stylesheet">
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../bootstrap/bootstrap-rtl.css">
+    <script src="/bootstrap/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap-grid.css">
+
+
+</head>
+
+<body>
+
+<!-- Navigation -->
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-info fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">هتل یاب</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+                data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="Index1.html">خانه </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">خدمات</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">تماس با ما</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">درباره ما</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        فیلتر
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
+                        <a class="dropdown-item" href="#">بر اساس شهر</a>
+                        <a class="dropdown-item" href="#">بر اساس ستاره</a>
+
+                    </div>
+                </li>
+
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="جستجو" aria-label="Search">
+                    <button class="btn my-2 my-sm-0" type="submit">بگرد</button>
+                </form>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<header>
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -14,21 +84,21 @@
         </ol>
         <div class="carousel-inner" role="listbox">
             <!-- Slide One - Set the background image for this slide in the line below -->
-            <div class="carousel-item active" style="background-image: url(/Image/overview-photo_slider.jpg)">
+            <div class="carousel-item active" style="background-image: url(overview-photo_slider.jpg)">
                 <div class="carousel-caption d-none d-md-block">
                     <h3>اسلاید اول</h3>
                     <p>توضیحات اسلاید اول</p>
                 </div>
             </div>
             <!-- Slide Two - Set the background image for this slide in the line below -->
-            <div class="carousel-item" style="background-image: url(/Image/Slider2.jpg)">
+            <div class="carousel-item" style="background-image: url(Slider2.jpg)">
                 <div class="carousel-caption d-none d-md-block">
                     <h3>Second Slide</h3>
                     <p>This is a description for the second slide.</p>
                 </div>
             </div>
             <!-- Slide Three - Set the background image for this slide in the line below -->
-            <div class="carousel-item" style="background-image: url(/Image/Slider3.jpg)">
+            <div class="carousel-item" style="background-image: url(Slider3.jpg)">
                 <div class="carousel-caption d-none d-md-block">
                     <h3>Third Slide</h3>
                     <p>This is a description for the third slide.</p>
@@ -44,9 +114,9 @@
             <span class="sr-only">Next</span>
         </a>
     </div>
-}
+</header>
 
-
+<!-- Page Content -->
 <div class="container">
 
     <!-- Features Section -->
@@ -72,7 +142,7 @@
             </p>
         </div>
         <div class="col-lg-6">
-            <img class="img-fluid rounded" src="/Image/overview-photo.jpg" alt="">
+            <img class="img-fluid rounded" src="../overview-photo.jpg" alt="">
         </div>
     </div>
     <!-- /.row -->
@@ -83,16 +153,14 @@
     <div class="row">
         <div class="col-lg-4 col-sm-6 portfolio-item">
             <div class="card h-100">
-                <a href="#"><img class="card-img-top" src="/Image/overview-photo-image.jpg" alt=""></a>
+                <a href="#"><img class="card-img-top" src="overview-photo-image.jpg" alt=""></a>
                 <div class="card-body">
                     <h4 class="card-title">
                         <a href="#">Project One</a>
                     </h4>
-                    <p class="card-text">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam
                         aspernatur eum quasi sapiente nesciunt? Voluptatibus sit, repellat sequi itaque deserunt,
-                        dolores in, nesciunt, illum tempora ex quae? Nihil, dolorem!
-                    </p>
+                        dolores in, nesciunt, illum tempora ex quae? Nihil, dolorem!</p>
                 </div>
                 <div class="card-footer">
                     <a href="#" class="btn btn-outline-info">ادامه مطلب</a>
@@ -101,15 +169,13 @@
         </div>
         <div class="col-lg-4 col-sm-6 portfolio-item">
             <div class="card h-100">
-                <a href="#"><img class="card-img-top" src="/Image/overview-photo-image.jpg" alt=""></a>
+                <a href="#"><img class="card-img-top" src="overview-photo-image.jpg" alt=""></a>
                 <div class="card-body">
                     <h4 class="card-title">
                         <a href="#">Project Two</a>
                     </h4>
-                    <p class="card-text">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod
-                        odio, gravida pellentesque urna varius vitae.
-                    </p>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod
+                        odio, gravida pellentesque urna varius vitae.</p>
                 </div>
                 <div class="card-footer">
                     <a href="#" class="btn btn-outline-info">ادامه مطلب</a>
@@ -118,16 +184,14 @@
         </div>
         <div class="col-lg-4 col-sm-6 portfolio-item">
             <div class="card h-100">
-                <a href="#"><img class="card-img-top" src="/Image/overview-photo-image.jpg" alt=""></a>
+                <a href="#"><img class="card-img-top" src="overview-photo-image.jpg" alt=""></a>
                 <div class="card-body">
                     <h4 class="card-title">
                         <a href="#">Project Three</a>
                     </h4>
-                    <p class="card-text">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos quisquam, error
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos quisquam, error
                         quod sed cumque, odio distinctio velit nostrum temporibus necessitatibus et facere atque iure
-                        perspiciatis mollitia recusandae vero vel quam!
-                    </p>
+                        perspiciatis mollitia recusandae vero vel quam!</p>
                 </div>
                 <div class="card-footer">
                     <a href="#" class="btn btn-outline-info">ادامه مطلب</a>
@@ -136,15 +200,13 @@
         </div>
         <div class="col-lg-4 col-sm-6 portfolio-item">
             <div class="card h-100">
-                <a href="#"><img class="card-img-top" src="/Image/overview-photo-image.jpg" alt=""></a>
+                <a href="#"><img class="card-img-top" src="overview-photo-image.jpg" alt=""></a>
                 <div class="card-body">
                     <h4 class="card-title">
                         <a href="#">Project Four</a>
                     </h4>
-                    <p class="card-text">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod
-                        odio, gravida pellentesque urna varius vitae.
-                    </p>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod
+                        odio, gravida pellentesque urna varius vitae.</p>
                 </div>
                 <div class="card-footer">
                     <a href="#" class="btn btn-outline-info">ادامه مطلب</a>
@@ -153,15 +215,13 @@
         </div>
         <div class="col-lg-4 col-sm-6 portfolio-item">
             <div class="card h-100">
-                <a href="#"><img class="card-img-top" src="/Image/overview-photo-image.jpg" alt=""></a>
+                <a href="#"><img class="card-img-top" src="overview-photo-image.jpg" alt=""></a>
                 <div class="card-body">
                     <h4 class="card-title">
                         <a href="#">Project Five</a>
                     </h4>
-                    <p class="card-text">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod
-                        odio, gravida pellentesque urna varius vitae.
-                    </p>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod
+                        odio, gravida pellentesque urna varius vitae.</p>
                 </div>
                 <div class="card-footer">
                     <a href="#" class="btn btn-outline-info">ادامه مطلب</a>
@@ -170,16 +230,14 @@
         </div>
         <div class="col-lg-4 col-sm-6 portfolio-item">
             <div class="card h-100">
-                <a href="#"><img class="card-img-top" src="/Image/overview-photo-image.jpg" alt=""></a>
+                <a href="#"><img class="card-img-top" src="overview-photo-image.jpg" alt=""></a>
                 <div class="card-body">
                     <h4 class="card-title">
                         <a href="#">Project Six</a>
                     </h4>
-                    <p class="card-text">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque earum nostrum
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque earum nostrum
                         suscipit ducimus nihil provident, perferendis rem illo, voluptate atque, sit eius in voluptates,
-                        nemo repellat fugiat excepturi! Nemo, esse.
-                    </p>
+                        nemo repellat fugiat excepturi! Nemo, esse.</p>
                 </div>
                 <div class="card-footer">
                     <a href="#" class="btn btn-outline-info">ادامه مطلب</a>
@@ -188,21 +246,20 @@
         </div>
     </div>
     <!-- /.row -->
+
     <!-- Portfolio Section -->
     <h2 class="alert alert-info" style="text-align: center">جدیدترین هتل ها</h2>
     <div class="row">
         <div class="col-lg-3 col-sm-6 portfolio-item">
             <div class="card h-100">
-                <a href="#"><img class="card-img-top" src="/Image/overview-photo-image.jpg" alt=""></a>
+                <a href="#"><img class="card-img-top" src="overview-photo-image.jpg" alt=""></a>
                 <div class="card-body">
                     <h4 class="card-title">
                         <a href="#">Project One</a>
                     </h4>
-                    <p class="card-text">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam
                         aspernatur eum quasi sapiente nesciunt? Voluptatibus sit, repellat sequi itaque deserunt,
-                        dolores in, nesciunt, illum tempora ex quae? Nihil, dolorem!
-                    </p>
+                        dolores in, nesciunt, illum tempora ex quae? Nihil, dolorem!</p>
                 </div>
                 <div class="card-footer">
                     <a href="#" class="btn btn-outline-info">ادامه مطلب</a>
@@ -211,15 +268,13 @@
         </div>
         <div class="col-lg-3 col-sm-6 portfolio-item">
             <div class="card h-100">
-                <a href="#"><img class="card-img-top" src="/Image/overview-photo-image.jpg" alt=""></a>
+                <a href="#"><img class="card-img-top" src="overview-photo-image.jpg" alt=""></a>
                 <div class="card-body">
                     <h4 class="card-title">
                         <a href="#">Project Two</a>
                     </h4>
-                    <p class="card-text">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod
-                        odio, gravida pellentesque urna varius vitae.
-                    </p>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod
+                        odio, gravida pellentesque urna varius vitae.</p>
                 </div>
                 <div class="card-footer">
                     <a href="#" class="btn btn-outline-info">ادامه مطلب</a>
@@ -228,16 +283,14 @@
         </div>
         <div class="col-lg-3 col-sm-6 portfolio-item">
             <div class="card h-100">
-                <a href="#"><img class="card-img-top" src="/Image/overview-photo-image.jpg" alt=""></a>
+                <a href="#"><img class="card-img-top" src="overview-photo-image.jpg" alt=""></a>
                 <div class="card-body">
                     <h4 class="card-title">
                         <a href="#">Project Three</a>
                     </h4>
-                    <p class="card-text">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos quisquam, error
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos quisquam, error
                         quod sed cumque, odio distinctio velit nostrum temporibus necessitatibus et facere atque iure
-                        perspiciatis mollitia recusandae vero vel quam!
-                    </p>
+                        perspiciatis mollitia recusandae vero vel quam!</p>
                 </div>
                 <div class="card-footer">
                     <a href="#" class="btn btn-outline-info">ادامه مطلب</a>
@@ -246,15 +299,13 @@
         </div>
         <div class="col-lg-3 col-sm-6 portfolio-item">
             <div class="card h-100">
-                <a href="#"><img class="card-img-top" src="/Image/overview-photo-image.jpg" alt=""></a>
+                <a href="#"><img class="card-img-top" src="overview-photo-image.jpg" alt=""></a>
                 <div class="card-body">
                     <h4 class="card-title">
                         <a href="#">Project Four</a>
                     </h4>
-                    <p class="card-text">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod
-                        odio, gravida pellentesque urna varius vitae.
-                    </p>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod
+                        odio, gravida pellentesque urna varius vitae.</p>
                 </div>
                 <div class="card-footer">
                     <a href="#" class="btn btn-outline-info">ادامه مطلب</a>
@@ -276,14 +327,14 @@
                 </ol>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="/Image/overview-photo-image.jpg" class="d-block w-100" alt="...">
+                        <img src="overview-photo-image.jpg" class="d-block w-100" alt="...">
                         <div class="carousel-caption d-none d-md-block">
                             <h5>First slide label</h5>
                             <p>Some representative placeholder content for the first slide.</p>
                         </div>
                     </div>
                     <div class="carousel-item" style="border-radius: 10px">
-                        <img src="/Image/overview-photo-image.jpg" class="d-block w-100" alt="...">
+                        <img src="overview-photo-image.jpg" class="d-block w-100" alt="...">
                         <div class="carousel-caption d-none d-md-block">
                             <h5>Second slide label</h5>
                         </div>
@@ -310,14 +361,14 @@
                 </ol>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="/Image/overview-photo.jpg" class="d-block w-100" alt="...">
+                        <img src="../overview-photo.jpg" class="d-block w-100" alt="...">
                         <div class="carousel-caption d-none d-md-block">
                             <h5>First slide label</h5>
                             <p>Some representative placeholder content for the first slide.</p>
                         </div>
                     </div>
                     <div class="carousel-item" style="border-radius: 10px">
-                        <img src="Image/overview-photo.jpg" class="d-block w-100" alt="...">
+                        <img src="../overview-photo.jpg" class="d-block w-100" alt="...">
                         <div class="carousel-caption d-none d-md-block">
                             <h5>Second slide label</h5>
                         </div>
@@ -402,3 +453,61 @@
     </div>
 
 </div>
+<!-- /.container -->
+
+<!-- Footer -->
+<footer class="py-5" style="background-color: #7abaff">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md">
+                <h6 class="d-block mb-3 ">هتل یاب برای پیدا کردن هتل های برتر کشور برای شما عزیزان طراحی
+                    شده است</h6>
+            </div>
+            <div class="col-6 col-md">
+                <h5>خصوصیات</h5>
+                <ul class="list-unstyled text-black-50">
+                    <li><a class="text-dark" href="#">لینک</a></li>
+                    <li><a class="text-dark" href="#">لینک</a></li>
+                    <li><a class="text-dark" href="#">لینک</a></li>
+                    <li><a class="text-dark" href="#">لینک</a></li>
+                    <li><a class="text-dark" href="#">لینک</a></li>
+                    <li><a class="text-dark" href="#">لینک</a></li>
+                </ul>
+            </div>
+            <div class="col-6 col-md">
+                <h5>تماس</h5>
+                <ul class="list-unstyled text-small">
+                    <li><a class="text-dark" href="#">لینک</a></li>
+                    <li><a class="text-dark" href="#">لینک</a></li>
+                    <li><a class="text-dark" href="#">لینک</a></li>
+                    <li><a class="text-dark" href="#">لینک</a></li>
+                </ul>
+            </div>
+            <div class="col-6 col-md">
+                <h5>لورم</h5>
+                <ul class="list-unstyled text-small">
+                    <li><a class="text-dark" href="#">لینک</a></li>
+                    <li><a class="text-dark" href="#">لینک</a></li>
+                    <li><a class="text-dark" href="#">لینک</a></li>
+                    <li><a class="text-dark" href="#">لینک</a></li>
+                </ul>
+            </div>
+            <div class="col-6 col-md">
+                <h5>درباره ما</h5>
+                <ul class="list-unstyled text-small">
+                    <li><a class="text-dark" href="#">لینک</a></li>
+                    <li><a class="text-dark" href="#">لینک</a></li>
+                    <li><a class="text-dark" href="#">لینک</a></li>
+                    <li><a class="text-dark" href="#">لینک</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</footer>
+<!-- /.container -->
+
+
+</body>
+
+</html>

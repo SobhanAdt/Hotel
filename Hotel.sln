@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hotel.Core.Entities", "App.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hotel.Infrastucture.EF", "App.Infrastucture.EF\Hotel.Infrastucture.EF.csproj", "{4D66A19E-2BF1-4757-8193-A4463429FE54}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelWebApplication", "HotelWebApplication\HotelWebApplication.csproj", "{FE1D0DB1-2918-48E1-AEFF-3F1B8FF768DE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HotelWebApplication", "HotelWebApplication\HotelWebApplication.csproj", "{FE1D0DB1-2918-48E1-AEFF-3F1B8FF768DE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApiWeb", "ApiWeb", "{0ABF62F2-8FD9-45FC-B08C-9C5AD34C5DA1}"
 EndProject

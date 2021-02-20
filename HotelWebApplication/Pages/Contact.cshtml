@@ -1,0 +1,86 @@
+﻿@page
+@model HotelWebApplication.Pages.ContactModel
+@{
+    ViewData["Title"] = "تماس با ما";
+}
+
+<div class="container">
+
+    <!-- Page Heading/Breadcrumbs -->
+    <h1 class="mt-4 mb-3">
+        تماس با ما
+    </h1>
+
+    <ol class="breadcrumb alert alert-info">
+        <li class="breadcrumb-item">
+            <a href="/">خانه</a>
+        </li>
+        <li class="breadcrumb-item active">تماس با ما</li>
+    </ol>
+
+    <!-- Content Row -->
+    <div class="row">
+        <!-- Map Column -->
+        <div class="col-lg-8">
+            <h3>ارتباط مستقیم با مدیر سایت</h3>
+            <form name="sentMessage" id="contactForm" novalidate="">
+                <div class="control-group form-group">
+                    <div class="controls">
+                        <label>نام نام خانوادگی:</label>
+                        <input type="text" class="form-control" id="name" required="" data-validation-required-message="Please enter your name." style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABHklEQVQ4EaVTO26DQBD1ohQWaS2lg9JybZ+AK7hNwx2oIoVf4UPQ0Lj1FdKktevIpel8AKNUkDcWMxpgSaIEaTVv3sx7uztiTdu2s/98DywOw3Dued4Who/M2aIx5lZV1aEsy0+qiwHELyi+Ytl0PQ69SxAxkWIA4RMRTdNsKE59juMcuZd6xIAFeZ6fGCdJ8kY4y7KAuTRNGd7jyEBXsdOPE3a0QGPsniOnnYMO67LgSQN9T41F2QGrQRRFCwyzoIF2qyBuKKbcOgPXdVeY9rMWgNsjf9ccYesJhk3f5dYT1HX9gR0LLQR30TnjkUEcx2uIuS4RnI+aj6sJR0AM8AaumPaM/rRehyWhXqbFAA9kh3/8/NvHxAYGAsZ/il8IalkCLBfNVAAAAABJRU5ErkJggg==&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
+                        <p class="help-block"></p>
+                    </div>
+                </div>
+                <div class="control-group form-group">
+                    <div class="controls">
+                        <label>شماره تماس:</label>
+                        <input type="tel" class="form-control" id="phone" required="" data-validation-required-message="Please enter your phone number.">
+                        <div class="help-block"></div>
+                    </div>
+                </div>
+                <div class="control-group form-group">
+                    <div class="controls">
+                        <label>آدرس ایمیل:</label>
+                        <input type="email" class="form-control" id="email" required="" data-validation-required-message="Please enter your email address.">
+                        <div class="help-block"></div>
+                    </div>
+                </div>
+                <div class="control-group form-group">
+                    <div class="controls">
+                        <label>متن پیام:</label>
+                        <textarea rows="10" cols="100" class="form-control" id="message" required="" data-validation-required-message="Please enter your message" maxlength="999" style="resize:none"></textarea>
+                        <div class="help-block"></div>
+                    </div>
+                </div>
+                <div id="success"></div>
+                <!-- For success/fail messages -->
+                <button type="submit" class="btn btn-outline-info" id="sendMessageButton">ارسال</button>
+            </form>
+        </div>
+
+        <div class="col-lg-4">
+            <h3>اطلاعات تماس</h3>
+            <p>
+                آدرس:
+                <br>تهران گیشا
+                <br>
+            </p>
+            <p>
+                <abbr title="Phone">تلفن تماس</abbr>: 02100990099
+            </p>
+            <p>
+                <abbr title="Email">ایمیل</abbr>:
+                <a href="sbn.alidoost@gmail.com">
+                    sbn.alidoost@gmail.com
+                </a>
+            </p>
+            <p>
+                <abbr title="Hours">ساعات کاری</abbr>: شنبه تا چهار شنبه از ساعت 
+            </p>
+        </div>
+    </div>
+    <br />
+    <!-- /.row -->
+
+
+</div>

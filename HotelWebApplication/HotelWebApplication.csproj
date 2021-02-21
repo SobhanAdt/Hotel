@@ -5,12 +5,28 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Pages\HotelDetails.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\App.Core.ApplicationService\Hotel.Core.ApplicationService.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Pages\City\" />
     <Folder Include="Pages\Hotel\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Pages\HotelDetails.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Pages\HotelDetails.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Pages\HotelDetails.cshtml" />
   </ItemGroup>
 
 </Project>

@@ -143,9 +143,9 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
             return "Delete Anjam shod";
         }
 
-        public Task<List<HotelGetOutPutDto>> SixNewInsertHotel()
+        public Task<List<HotelGetOutPutDto>> fourNewInsertHotel()
         {
-            var SixNewHotel = repository.GetQuery().OrderByDescending(x => x.Id).Take(6);
+            var SixNewHotel = repository.GetQuery().OrderByDescending(x => x.Id).Take(4);
 
             return SixNewHotel.Select(x => new HotelGetOutPutDto()
             {

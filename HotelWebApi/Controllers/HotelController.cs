@@ -59,7 +59,7 @@ namespace HotelWebApi.Controllers
         {
             if (ModelState.IsValid)
             {
-                var SixNewHotel = await service.SixNewInsertHotel();
+                var SixNewHotel = await service.fourNewInsertHotel();
                 return Ok(SixNewHotel);
             }
 

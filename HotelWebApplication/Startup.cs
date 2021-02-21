@@ -54,6 +54,7 @@ namespace HotelWebApplication
             }
 
             app.UseHttpsRedirection();
+
             app.UseStaticFiles();
 
             app.UseRouting();

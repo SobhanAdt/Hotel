@@ -23,12 +23,12 @@
 
     <div class="row">
 
-        @for (int i = 0; i <@Model.ListCity.Result.Count ; i++)
+        @for (int i = 0; i <@Model.ListCity.Count ; i++)
         {
             <div class="col-md-3 col-sm-6 mb-4">
                 <div class="card">
                     <p class="card-footer" style="text-align: center">
-                        @Model.ListCity.Result[i].CityName
+                        @Model.ListCity[i].CityName
                     </p>
                     <div class="card-body">
                         <a href="#">
@@ -40,81 +40,6 @@
 
             </div>
         }
-
-        <div class="col-md-3 col-sm-6 mb-4">
-            <div class="card">
-                <p class="card-footer" style="text-align: center">
-                    نام شهر
-                </p>
-                <div class="card-body">
-                    <a href="#">
-                        <img class="img-fluid" src="http://placehold.it/500x300" alt="">
-                    </a>
-
-                </div>
-            </div>
-
-        </div>
-
-        <div class="col-md-3 col-sm-6 mb-4">
-            <div class="card">
-                <p class="card-footer" style="text-align: center">
-                    نام شهر
-                </p>
-                <div class="card-body">
-                    <a href="#">
-                        <img class="img-fluid" src="http://placehold.it/500x300" alt="">
-                    </a>
-
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-3 col-sm-6 mb-4">
-            <div class="card">
-                <p class="card-footer" style="text-align: center">
-                    نام شهر
-                </p>
-                <div class="card-body">
-                    <a href="#">
-                        <img class="img-fluid" src="http://placehold.it/500x300" alt="">
-                    </a>
-
-                </div>
-            </div>
-
-        </div>
-
-        <div class="col-md-3 col-sm-6 mb-4">
-            <div class="card">
-                <p class="card-footer" style="text-align: center">
-                    نام شهر
-                </p>
-                <div class="card-body">
-                    <a href="#">
-                        <img class="img-fluid" src="http://placehold.it/500x300" alt="">
-                    </a>
-
-                </div>
-            </div>
-
-        </div>
-
-        <div class="col-md-3 col-sm-6 mb-4">
-            <div class="card">
-                <p class="card-footer" style="text-align: center">
-                    نام شهر
-                </p>
-                <div class="card-body">
-                    <a href="#">
-                        <img class="img-fluid" src="http://placehold.it/500x300" alt="">
-                    </a>
-
-                </div>
-            </div>
-
-        </div>
-
 
     </div>
 </div>

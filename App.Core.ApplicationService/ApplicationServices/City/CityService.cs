@@ -23,7 +23,7 @@ namespace App.Core.ApplicationService.ApplicationServices.City
 
         public async Task<string> CreateCity(CityInsertInputDto inputDto)
         {
-            var cityValidate =await repository.GetQuery().
+            var cityValidate = await repository.GetQuery().
                 Where(w => w.CityName == inputDto.CityName).FirstOrDefaultAsync();
 
             if (cityValidate == null)
@@ -52,7 +52,7 @@ namespace App.Core.ApplicationService.ApplicationServices.City
             return $"Update Ba Mofaghiyat Anjam Shod";
         }
 
-        public Task<List<CityOutputDto>> GetAllCity()
+        public List<CityOutputDto> GetAllCity()
         {
             var lst = repository.GetQuery().Include(x => x.Hotels);
             return lst.Select(x => new CityOutputDto()
@@ -67,7 +67,7 @@ namespace App.Core.ApplicationService.ApplicationServices.City
                     Id = y.Id,
                     RoomCount = y.RoomCount
                 }).ToList()
-            }).ToListAsync();
+            }).ToList();
         }
 
         public async Task<CityOutputDto> GetSingelCity(int id)

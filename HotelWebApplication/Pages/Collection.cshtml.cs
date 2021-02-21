@@ -12,7 +12,7 @@ namespace HotelWebApplication.Pages
     public class CollectionModel : PageModel
     {
         private readonly IHotelService hotelService;
-            public CollectionModel(IHotelService hotelService)
+        public CollectionModel(IHotelService hotelService)
         {
             this.hotelService = hotelService;
         }

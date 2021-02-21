@@ -15,9 +15,6 @@ namespace HotelWebApplication.Mapping
             CreateMap<City, CityOutputDto>();
 
             CreateMap<CityInsertInputDto, City>();
-
-
-
         }
     }
 }

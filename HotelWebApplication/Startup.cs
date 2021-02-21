@@ -11,11 +11,11 @@ using System.Threading.Tasks;
 using App.Core.ApplicationService.ApplicationServices.City;
 using App.Core.ApplicationService.ApplicationServices.Hotel;
 using App.Infrastucture.EF.Database;
-using HotelWebApi.Extensions;
-using HotelWebApi.Middleware;
+using HotelWebApplication.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.JSInterop;
+using HotelWebApplication.Middleware;
 
 namespace HotelWebApplication
 {

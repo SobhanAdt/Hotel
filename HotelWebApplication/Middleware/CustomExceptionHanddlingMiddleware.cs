@@ -6,7 +6,7 @@ using App.Core.ApplicationService.IRepositories.Exceptions;
 using Microsoft.AspNetCore.Http;
 using System.Text.Json;
 
-namespace HotelWebApi.Middleware
+namespace HotelWebApplication.Middleware
 {
     public class CustomExceptionHanddlingMiddleware
     {

@@ -15,7 +15,7 @@ using App.Core.Entities;
 using App.Infrastucture.EF.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace HotelWebApi.Extensions
+namespace HotelWebApplication.Extensions
 {
     /// <summary>
     /// Dependency Injection Service And Repositories

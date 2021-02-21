@@ -27,7 +27,7 @@ namespace HotelWebApi.Controllers
         {
             if (ModelState.IsValid)
             {
-                var rateAll =  service.GetAllRate();
+                var rateAll =  service.GetAllStar();
                 return Ok(rateAll);
             }
 
@@ -39,7 +39,7 @@ namespace HotelWebApi.Controllers
         {
             if (ModelState.IsValid)
             {
-                var singelRate = await service.GetSingelRate(id);
+                var singelRate = await service.GetSingelStar(id);
                 return Ok(singelRate);
             }
 

@@ -22,7 +22,7 @@ namespace HotelWebApplication.Pages
         public List<StarOutputDto> ListStar { get; set; }
         public void OnGet()
         {
-            ListStar = service.GetAllRate();
+            ListStar = service.GetAllStar();
         }
     }
 }

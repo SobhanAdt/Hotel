@@ -18,28 +18,29 @@ namespace App.Core.ApplicationService.ApplicationServices.Rate
             this.repository = repository;
         }
 
-        public  List<StarOutputDto> GetAllRate()
+        public List<StarOutputDto> GetAllStar()
         {
-            var lstItem = repository.GetQuery()
-                .Include(x => x.Hotels).
-                Select(x => new StarOutputDto()
+            var lstItem = repository.GetQuery().Include(x=>x.Hotels);
+              
+
+            var ListStar = lstItem.Select(x => new StarOutputDto()
+            {
+                StarNumber = x.StarNumber,
+                Hotels = x.Hotels.Select(x => new HotelDTO()
                 {
-                    StarNumber = x.StarNumber,
-                    Hotels = x.Hotels.Select(x => new HotelDTO()
-                    {
-                        CityId = x.CityId,
-                        Description = x.Description,
-                        HotelCode = x.HotelCode,
-                        HotelName = x.HotelName,
-                        RoomCount = x.RoomCount,
-                        Id = x.Id,
-                        StarId = x.StarId
-                    }).ToList()
-                }).ToList();
-            return lstItem;
+                    CityId = x.CityId,
+                    Description = x.Description,
+                    HotelCode = x.HotelCode,
+                    HotelName = x.HotelName,
+                    RoomCount = x.RoomCount,
+                    Id = x.Id,
+                    StarId = x.StarId
+                }).ToList()
+            }).ToList();
+            return ListStar;
         }
 
-        public async Task<StarOutputDto> GetSingelRate(int id)
+        public async Task<StarOutputDto> GetSingelStar(int id)
         {
             var item = await repository.GetQuery().Include(x => x.Hotels).Where(x => x.Id == id).FirstOrDefaultAsync();
             return new StarOutputDto()

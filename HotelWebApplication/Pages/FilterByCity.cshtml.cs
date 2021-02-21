@@ -11,17 +11,18 @@ namespace HotelWebApplication.Pages
 {
     public class FilterByCityModel : PageModel
     {
-        //private readonly ICityService service;
+        private readonly ICityService service;
 
-        //public FilterByCityModel(ICityService service)
-        //{
-        //    this.service = service;
-        //}
+        public FilterByCityModel(ICityService service)
+        {
+            this.service = service;
+        }
 
-        
+        [BindProperty]
+        public Task<List<CityOutputDto>> ListCity { get; set; }
         public void OnGet()
         {
-
+            ListCity = service.GetAllCity();
         }
     }
 }

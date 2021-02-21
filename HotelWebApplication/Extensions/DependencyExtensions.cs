@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using App.Core.ApplicationService.ApplicationServices.City;
+using App.Core.ApplicationService.ApplicationServices.Hotel;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace HotelWebApplication.Extensions
@@ -17,6 +18,7 @@ namespace HotelWebApplication.Extensions
         public static void AddService(IServiceCollection service)
         {
             service.AddTransient<ICityService, CityService>();
+            service.AddTransient<IHotelService, HotelService>();
         }
     }
 }

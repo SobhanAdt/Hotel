@@ -1,5 +1,7 @@
 ﻿@page
 @model HotelWebApplication.Pages.FilterByCityModel
+
+
 @{
     ViewData["Title"] = "شهر های ";
 }
@@ -21,31 +23,98 @@
 
     <div class="row">
 
+        @for (int i = 0; i <@Model.ListCity.Result.Count ; i++)
+        {
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="card">
+                    <p class="card-footer" style="text-align: center">
+                        @Model.ListCity.Result[i].CityName
+                    </p>
+                    <div class="card-body">
+                        <a href="#">
+                            <img class="img-fluid" src="http://placehold.it/500x300" alt="">
+                        </a>
+
+                    </div>
+                </div>
+
+            </div>
+        }
 
         <div class="col-md-3 col-sm-6 mb-4">
-            <a href="#">
-                <p>نام هتل</p>
-                <img class="img-fluid" src="http://placehold.it/500x300" alt="">
-            </a>
+            <div class="card">
+                <p class="card-footer" style="text-align: center">
+                    نام شهر
+                </p>
+                <div class="card-body">
+                    <a href="#">
+                        <img class="img-fluid" src="http://placehold.it/500x300" alt="">
+                    </a>
+
+                </div>
+            </div>
+
         </div>
 
         <div class="col-md-3 col-sm-6 mb-4">
-            <a href="#">
-                <img class="img-fluid" src="http://placehold.it/500x300" alt="">
-            </a>
+            <div class="card">
+                <p class="card-footer" style="text-align: center">
+                    نام شهر
+                </p>
+                <div class="card-body">
+                    <a href="#">
+                        <img class="img-fluid" src="http://placehold.it/500x300" alt="">
+                    </a>
+
+                </div>
+            </div>
         </div>
 
         <div class="col-md-3 col-sm-6 mb-4">
-            <a href="#">
-                <img class="img-fluid" src="http://placehold.it/500x300" alt="">
-            </a>
+            <div class="card">
+                <p class="card-footer" style="text-align: center">
+                    نام شهر
+                </p>
+                <div class="card-body">
+                    <a href="#">
+                        <img class="img-fluid" src="http://placehold.it/500x300" alt="">
+                    </a>
+
+                </div>
+            </div>
+
         </div>
 
         <div class="col-md-3 col-sm-6 mb-4">
-            <a href="#">
-                <img class="img-fluid" src="http://placehold.it/500x300" alt="">
-            </a>
+            <div class="card">
+                <p class="card-footer" style="text-align: center">
+                    نام شهر
+                </p>
+                <div class="card-body">
+                    <a href="#">
+                        <img class="img-fluid" src="http://placehold.it/500x300" alt="">
+                    </a>
+
+                </div>
+            </div>
+
         </div>
+
+        <div class="col-md-3 col-sm-6 mb-4">
+            <div class="card">
+                <p class="card-footer" style="text-align: center">
+                    نام شهر
+                </p>
+                <div class="card-body">
+                    <a href="#">
+                        <img class="img-fluid" src="http://placehold.it/500x300" alt="">
+                    </a>
+
+                </div>
+            </div>
+
+        </div>
+
 
     </div>
 </div>

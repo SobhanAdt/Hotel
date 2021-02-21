@@ -8,7 +8,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using App.Core.ApplicationService.ApplicationServices.City;
+using App.Core.ApplicationService.ApplicationServices.Hotel;
 using HotelWebApplication.Extensions;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.JSInterop;
 
 namespace HotelWebApplication
 {
@@ -24,9 +28,11 @@ namespace HotelWebApplication
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            
+
             services.AddRazorPages();
 
-           // services.AddDependency();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

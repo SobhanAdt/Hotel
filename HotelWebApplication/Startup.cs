@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using HotelWebApplication.Extensions;
 
 namespace HotelWebApplication
 {
@@ -24,6 +25,8 @@ namespace HotelWebApplication
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
+
+           // services.AddDependency();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

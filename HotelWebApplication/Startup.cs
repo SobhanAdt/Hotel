@@ -10,7 +10,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using App.Core.ApplicationService.ApplicationServices.City;
 using App.Core.ApplicationService.ApplicationServices.Hotel;
-using HotelWebApplication.Extensions;
+using App.Infrastucture.EF.Database;
+using HotelWebApi.Extensions;
+using HotelWebApi.Middleware;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.JSInterop;
 
@@ -28,11 +31,12 @@ namespace HotelWebApplication
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            
+            services.AddDbContext<HotelDbContext>(o =>
+                o.UseSqlServer(Configuration.GetConnectionString("HotelConnectionStrings")));
+
+            services.AddDependency();
 
             services.AddRazorPages();
-
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -55,6 +59,8 @@ namespace HotelWebApplication
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseMiddleware<CustomExceptionHanddlingMiddleware>();
 
             app.UseEndpoints(endpoints =>
             {

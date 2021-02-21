@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace HotelWebApplication.Pages
 {
-    public class HotelDetailsModel : PageModel
+    public class HotelDetailModel : PageModel
     {
         public void OnGet()
         {

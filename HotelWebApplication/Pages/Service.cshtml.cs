@@ -11,16 +11,10 @@ namespace HotelWebApplication.Pages
 {
     public class ServiceModel : PageModel
     {
-        private readonly IHotelService hotelService;
-        public ServiceModel(IHotelService hotelService )
-        {
-            this.hotelService = hotelService;
-        }
-        [BindProperty]
-        public List<HotelGetOutPutDto> Hotels { get; set; }
+      
         public void OnGet()
         {
-            Hotels = hotelService.GetAllHotels();
+         
         }
     }
 }

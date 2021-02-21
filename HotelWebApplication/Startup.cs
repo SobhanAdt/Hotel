@@ -16,6 +16,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.JSInterop;
 using HotelWebApplication.Middleware;
+using System.Reflection;
+using AutoMapper;
 
 namespace HotelWebApplication
 {
@@ -35,7 +37,7 @@ namespace HotelWebApplication
                 o.UseSqlServer(Configuration.GetConnectionString("HotelConnectionStrings")));
 
             services.AddDependency();
-
+            services.AddAutoMapper(Assembly.GetAssembly(typeof(MapperConfiguration)));
             services.AddRazorPages();
         }
 

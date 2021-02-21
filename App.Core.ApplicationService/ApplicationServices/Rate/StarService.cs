@@ -18,7 +18,7 @@ namespace App.Core.ApplicationService.ApplicationServices.Rate
             this.repository = repository;
         }
 
-        public  Task<List<StarOutputDto>> GetAllRate()
+        public  List<StarOutputDto> GetAllRate()
         {
             var lstItem = repository.GetQuery()
                 .Include(x => x.Hotels).
@@ -35,7 +35,7 @@ namespace App.Core.ApplicationService.ApplicationServices.Rate
                         Id = x.Id,
                         StarId = x.StarId
                     }).ToList()
-                }).ToListAsync();
+                }).ToList();
             return lstItem;
         }
 

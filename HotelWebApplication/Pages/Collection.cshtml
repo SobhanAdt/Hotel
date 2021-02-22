@@ -25,7 +25,9 @@
             </div>
             <div class="col-md-4">
                 <select class=" form-control" id="country" required="">
-                    <option value="">صعوی</option>
+                    <option value="">
+                        صعوی
+                    </option>
                     <option>نزولی</option>
                 </select>
             </div>
@@ -51,10 +53,21 @@
                         <h4 class="card-title">
                             <a href="/HotelDetail">@Model.Hotels[i].HotelName</a>
                         </h4>
-                        <p class="card-text">@Model.Hotels[i].HotelName</p>
+                        <p class="card-text">
+                            کد هتل :
+                            @Model.Hotels[i].HotelCode
+                        </p>
+                        <p class="card-text">
+                            امتیاز هتل :
+                            @Model.Hotels[i].Rate
+                        </p>
+                        <p class="card-text">
+                            تعداد اتاق :
+                            @Model.Hotels[i].RoomCount
+                        </p>
                     </div>
                     <div class=" card-footer">
-                        <button class="btn btn-sm btn-outline-info">ادامه مطلب</button>
+                        <a href="/HotelDetail/@Model.Hotels[i].Id"> <button class="btn btn-sm btn-outline-info">ادامه مطلب</button></a>
                         <button class="btn btn-sm btn-outline-danger">مقایسه</button>
                     </div>
                 </div>
@@ -62,6 +75,8 @@
         }
 
     </div>
+
+
     <!-- Pagination -->
     <ul class="pagination justify-content-center">
         <li class="page-item">

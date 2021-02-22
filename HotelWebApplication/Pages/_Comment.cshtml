@@ -1,4 +1,5 @@
-﻿
+﻿@model HotelDetailModel
+
 <div class="card my-4">
     <h5 class="card-header alert alert-info">نوشتن نظر:</h5>
     <div class="card-body">
@@ -23,12 +24,13 @@
         </div>
 
     </div>
+@for (int i = 0; i <@Model.hotel.Result.Reviews.Count; i++)
+{
     <div class="media mb-4">
         <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
         <div class="media-body">
-            <h5 class="mt-0">ایمیل کاربر</h5>
-            لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است
-
+            <h5 class="mt-0">@Model.hotel.Result.Reviews.Select(s=>s.UserId)</h5>
+            @Model.hotel.Result.Reviews.Select(s=>s.Comment)
             &nbsp;&nbsp;
             <button type="submit" class="btn btn-outline-info btn-sm" style="text-align: left">پاسخ</button>
             <div class="media mt-4">
@@ -51,4 +53,5 @@
 
         </div>
     </div>
+}
 </div>

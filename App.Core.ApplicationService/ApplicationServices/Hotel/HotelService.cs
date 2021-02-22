@@ -117,7 +117,7 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
                     Rate = x.Average(x => x.RateNumber)
                 }).FirstOrDefault();
 
-            return new HotelGetOutPutDto()
+            var ss= new HotelGetOutPutDto()
             {
                 Id = item.Id,
                 HotelName = item.HotelName,
@@ -134,6 +134,8 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
                     Comment = x.Comment
                 }).ToList()
             };
+
+            return ss;
         }
 
         public async Task<string> DeleteHotels(int id)

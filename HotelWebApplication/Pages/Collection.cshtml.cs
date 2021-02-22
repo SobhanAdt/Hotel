@@ -16,6 +16,7 @@ namespace HotelWebApplication.Pages
         {
             this.hotelService = hotelService;
         }
+
         [BindProperty]
         public List<HotelGetOutPutDto> Hotels { get; set; }
         public void OnGet()

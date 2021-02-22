@@ -6,8 +6,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using App.Core.ApplicationService.ApplicationServices.City;
 using App.Core.ApplicationService.ApplicationServices.Hotel;
 using App.Core.ApplicationService.ApplicationServices.Rate;
+using App.Core.ApplicationService.Dtos.CityDto;
 using App.Core.ApplicationService.Dtos.HotelDto;
 using App.Core.ApplicationService.Dtos.StarDto;
 
@@ -18,13 +20,16 @@ namespace HotelWebApplication.Pages
         private readonly ILogger<IndexModel> _logger;
         private readonly IHotelService hotelService;
         private readonly IStarService starService;
+        private readonly ICityService cityService;
 
 
-        public IndexModel(ILogger<IndexModel> logger, IHotelService hotelService, IStarService starService)
+        public IndexModel(ILogger<IndexModel> logger, IHotelService hotelService
+            , IStarService starService, ICityService cityService)
         {
             _logger = logger;
             this.hotelService = hotelService;
             this.starService = starService;
+            this.cityService = cityService;
         }
 
         [BindProperty]
@@ -36,13 +41,18 @@ namespace HotelWebApplication.Pages
         [BindProperty] 
         public List<StarOutputDto> ListStar { get; set; }
 
+        [BindProperty]
+        public List<CityOutputDto> ListCity { get; set; }
+
         public void OnGet()
         {
             ListTopHotel = hotelService.GetTopHotelRate();
 
             ListNewHotel = hotelService.fourNewInsertHotel();
 
-            
+            ListStar = starService.GetAllStar();
+
+            ListCity = cityService.GetAllCity();
         }
     }
 }

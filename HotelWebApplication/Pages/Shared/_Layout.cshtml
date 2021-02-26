@@ -21,6 +21,7 @@
     <link href="css/Style1.css" rel="stylesheet">
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/bootstrap-rtl.css">
+
     <script src="js/bootstrap.js"></script>
     <link rel="stylesheet" href="css/bootstrap-grid.css">
 
@@ -28,19 +29,25 @@
 </head>
 <body>
 
-    <!-- Navigation -->
-   <partial name="_MainMenu"/>
-
     <header>
+        <!-- Navigation -->
+        <partial name="_MainMenu" />
         @RenderSection("SliderHome", required: false)
+
     </header>
 
     <!-- Page Content -->
-    @RenderBody()
+    <main>
+        <div class="container">
+            @RenderBody()
+        </div>
+    </main>
+
     <!-- /.container -->
     <!-- Footer -->
-    <partial name="_Footer" />
-
+    <footer class="py-5 bg-info">
+        <partial name="_Footer" />
+    </footer>
     <!-- /.container -->
 
     @RenderSection("Scripts", required: false)

@@ -52,10 +52,10 @@ namespace App.Core.ApplicationService.ApplicationServices.City
             return $"Update Ba Mofaghiyat Anjam Shod";
         }
 
-        public List<CityOutputDto> GetAllCity()
+        public async Task<List<CityOutputDto>> GetAllCity()
         {
             var lst = repository.GetQuery().Include(x => x.Hotels);
-            return lst.Select(x => new CityOutputDto()
+            return await lst.Select(x => new CityOutputDto()
             {
                 CityName = x.CityName,
                 Id = x.Id,
@@ -67,7 +67,7 @@ namespace App.Core.ApplicationService.ApplicationServices.City
                     Id = y.Id,
                     RoomCount = y.RoomCount
                 }).ToList()
-            }).ToList();
+            }).ToListAsync();
         }
 
         public async Task<CityOutputDto> GetSingelCity(int id)

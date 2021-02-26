@@ -19,7 +19,7 @@ namespace HotelWebApplication.Pages
         }
 
         [BindProperty]
-        public List<CityOutputDto> ListCity { get; set; }
+        public Task<List<CityOutputDto>> ListCity { get; set; }
         public void OnGet()
         {
             ListCity = service.GetAllCity();

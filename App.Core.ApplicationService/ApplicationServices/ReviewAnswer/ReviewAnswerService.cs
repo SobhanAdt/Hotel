@@ -38,7 +38,7 @@ namespace App.Core.ApplicationService.ApplicationServices.ReviewAnswer
 
         public async Task<List<ReviewAnswerGetOutPutDto>> GetAllReviews()
         {
-            var lst = repository.GetQuery().ToList();
+            var lst = await repository.GetQuery().ToListAsync();
             return lst.Select(x => new ReviewAnswerGetOutPutDto()
             {
                 CommentAnswer = x.CommentAnswer,
@@ -50,7 +50,7 @@ namespace App.Core.ApplicationService.ApplicationServices.ReviewAnswer
 
         public async Task<ReviewAnswerGetOutPutDto> GetSingleReview(int id)
         {
-            var item = repository.GetSingel(id);
+            var item = await repository.GetQuery().Where(w => w.Id == id).FirstOrDefaultAsync();
 
             return new ReviewAnswerGetOutPutDto()
             {

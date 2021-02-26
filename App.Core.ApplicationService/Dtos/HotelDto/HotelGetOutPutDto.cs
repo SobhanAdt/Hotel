@@ -15,7 +15,7 @@ namespace App.Core.ApplicationService.Dtos.HotelDto
         public int CityId { get; set; }
         public int StarId { get; set; }
 
-        public float Rate { get; set; }
+        public float? Rate { get; set; }
         public string Description { get; set; }
 
         public List<ReviewDTO> Reviews { get; set; }

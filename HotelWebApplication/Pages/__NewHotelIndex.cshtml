@@ -1,26 +1,26 @@
 ﻿@model IndexModel
 
 <div class="row">
-    @for (int i = 0; i < @Model.ListNewHotel.Result.Count; i++)
+    @for (int i = 0; i < @Model.ListNewHotel.Count; i++)
     {
         <div class="col-lg-3 col-sm-6 portfolio-item">
             <div class="card h-100">
                 <a href="#"><img class="card-img-top" src="/Image/overview-photo-image.jpg" alt=""></a>
                 <div class="card-body">
                     <h4 class="card-title">
-                        <a href="#">@Model.ListNewHotel.Result[i].HotelName</a>
+                        <a href="#">@Model.ListNewHotel[i].HotelName</a>
                     </h4>
                     <p class="card-text">
                         کد هتل :
-                        @Model.ListNewHotel.Result[i].HotelCode
+                        @Model.ListNewHotel[i].HotelCode
                     </p>
                     <p class="card-text">
                         امتیاز هتل :
-                        @Model.ListNewHotel.Result[i].Rate
+                        @Model.ListNewHotel[i].Rate
                     </p>
                     <p class="card-text">
                         تعداد اتاق :
-                        @Model.ListNewHotel.Result[i].RoomCount
+                        @Model.ListNewHotel[i].RoomCount
                     </p>
                 </div>
                 <div class="card-footer">

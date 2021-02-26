@@ -1,0 +1,45 @@
+﻿@page
+@model HotelWebApplication.Pages.RegisterUserModel
+@{
+    ViewData["Title"] = "ثبت نام";
+}
+<div class="container">
+
+    <!-- Page Heading/Breadcrumbs -->
+    <h1 class="mt-4 mb-3">
+        تماس با ما
+    </h1>
+
+    <ol class="breadcrumb alert alert-info">
+        <li class="breadcrumb-item">
+            <a href="/">خانه</a>
+        </li>
+        <li class="breadcrumb-item active">ثبت نام</li>
+    </ol>
+
+    <div class="row">
+        <div class="col-md-8">
+            <form method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" asp-for="InsertInputDto.FullName" placeholder="نام و نام خانوادگی" aria-label="ایمیل" aria-describedby="basic-addon2">
+                    <span class="input-group-text" id="basic-addon2" asp-validation-for="InsertInputDto.FullName"></span>
+                </div>
+
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" asp-for="InsertInputDto.Email" placeholder="ایمیل" aria-label="ایمیل" aria-describedby="basic-addon2">
+                        <span class="input-group-text" id="basic-addon2" asp-validation-for="InsertInputDto.Email"></span>
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <input type="password" class="form-control" asp-for="InsertInputDto.Password" placeholder="رمز عبور" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                        <span class="input-group-text" id="basic-addon2" asp-validation-for="InsertInputDto.Password"></span>
+                    </div>
+                    <input type="submit" class="btn btn-outline-success btn-block" value="ارسال" />
+             
+            </form>
+        </div>
+    </div>
+</div>
+

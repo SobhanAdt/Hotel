@@ -19,7 +19,7 @@ namespace HotelWebApplication.Pages
         }
 
         [BindProperty]
-        public List<StarOutputDto> ListStar { get; set; }
+        public Task<List<StarOutputDto>> ListStar { get; set; }
         public void OnGet()
         {
             ListStar = service.GetAllStar();

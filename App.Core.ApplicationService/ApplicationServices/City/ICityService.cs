@@ -10,7 +10,7 @@ namespace App.Core.ApplicationService.ApplicationServices.City
 
         Task<string> UpdateCity(CityUpdateDto updateDto);
 
-        List<CityOutputDto> GetAllCity();
+        Task<List<CityOutputDto>> GetAllCity();
 
         Task<CityOutputDto> GetSingelCity(int id);
 

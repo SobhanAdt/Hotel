@@ -57,7 +57,7 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
         }
 
 
-        public List<HotelGetOutPutDto> GetAllHotels()
+        public async Task<List<HotelGetOutPutDto>> GetAllHotels()
         {
             var lst = repository.GetQuery()
                 .Include(x => x.Rooms);
@@ -73,7 +73,7 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
 
             var ListHotelId = userRate.Select(x => x.Id).ToList();
 
-            var ListHotel = lst.Select(x => new HotelGetOutPutDto()
+            var ListHotel = await lst.Select(x => new HotelGetOutPutDto()
             {
                 HotelName = x.HotelName,
                 Id = x.Id,
@@ -88,7 +88,7 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
                     Id = y.Id,
                     Comment = y.Comment
                 }).ToList()
-            }).ToList();
+            }).ToListAsync();
 
             foreach (var item in ListHotel)
             {
@@ -106,36 +106,47 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
 
         public async Task<HotelGetOutPutDto> GetSingleHotel(int id)
         {
-            var item = await repository.GetQuery()
-                .Include(x => x.Rooms).Where(x => x.Id == id)
-                .Include(x => x.Reviews).Where(x => x.Id == id).FirstOrDefaultAsync();
-
-            var userRate = userRateRepository.GetQuery()
-                .Where(w => w.HotelId == id)
-                .GroupBy(x => x.HotelId).Select(x => new HotelGetOutPutDto()
-                {
-                    Rate = x.Average(x => x.RateNumber)
-                }).FirstOrDefault();
-
-            var ss= new HotelGetOutPutDto()
+            try
             {
-                Id = item.Id,
-                HotelName = item.HotelName,
-                HotelCode = item.HotelCode,
-                RoomCount = item.RoomCount,
-                CityId = item.CityId,
-                StarId = item.StarId,
-                Description = item.Description,
-                Rate = userRate.Rate,
-                Reviews = item.Reviews.Select(x => new ReviewDTO()
-                {
-                    UserId = x.UserId,
-                    Id = x.Id,
-                    Comment = x.Comment
-                }).ToList()
-            };
+                var item = await repository.GetQuery()
+                    .Include(x => x.Reviews).Where(x => x.Id == id).FirstOrDefaultAsync();
 
-            return ss;
+                var userRate = userRateRepository.GetQuery()
+                    .Where(w => w.HotelId == id)
+                    .GroupBy(x => x.HotelId).Select(x => new HotelGetOutPutDto()
+                    {
+                        Id = x.Key,
+                        Rate = x.Average(x => x.RateNumber)
+                    }).FirstOrDefault();
+
+                var ss = new HotelGetOutPutDto()
+                {
+                    Id = item.Id,
+                    HotelName = item.HotelName,
+                    HotelCode = item.HotelCode,
+                    RoomCount = item.RoomCount,
+                    CityId = item.CityId,
+                    StarId = item.StarId,
+                    Description = item.Description,
+                    Rate = (userRate == null? 0 : userRate.Rate) ,
+                    Reviews = item.Reviews.Select(x => new ReviewDTO()
+                    {
+                        UserId = x.UserId,
+                        Id = x.Id,
+                        Comment = x.Comment
+                    }).ToList()
+                };
+
+                return ss;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+
+
+     
         }
 
         public async Task<string> DeleteHotels(int id)
@@ -145,26 +156,30 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
             return "Delete Anjam shod";
         }
 
-        public Task<List<HotelGetOutPutDto>> fourNewInsertHotel()
+        public async Task<List<HotelGetOutPutDto>> fourNewInsertHotel()
         {
-            var SixNewHotel = repository.GetQuery().OrderByDescending(x => x.Id).Take(4);
+         
+                var FourNewHotel = repository.GetQuery().Include(i => i.Reviews)
+                    .OrderByDescending(x => x.Id).Take(4);
 
-            return SixNewHotel.Select(x => new HotelGetOutPutDto()
-            {
-                HotelName = x.HotelName,
-                Id = x.Id,
-                HotelCode = x.HotelCode,
-                RoomCount = x.RoomCount,
-                Description = x.Description,
-                StarId = x.StarId,
-                CityId = x.CityId,
-                Reviews = x.Reviews.Select(x => new ReviewDTO()
+
+                return await FourNewHotel.Select(x => new HotelGetOutPutDto()
                 {
-                    UserId = x.UserId,
+                    HotelName = x.HotelName,
                     Id = x.Id,
-                    Comment = x.Comment
-                }).ToList()
-            }).ToListAsync();
+                    HotelCode = x.HotelCode,
+                    RoomCount = x.RoomCount,
+                    Description = x.Description,
+                    StarId = x.StarId,
+                    CityId = x.CityId,
+                    Reviews = x.Reviews.Select(x => new ReviewDTO()
+                    {
+                        UserId = x.UserId,
+                        Id = x.Id,
+                        Comment = x.Comment
+                    }).ToList()
+                }).ToListAsync();
+
         }
 
         public async Task<string> Update(HotelUpdateInputDto updateDto)
@@ -191,23 +206,23 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
                 return null;
             }
 
-            var Hotel1 = repository.GetQuery().FirstOrDefault(x => x.HotelName == input.Hotels[0]);
+            var Hotel1 = await repository.GetQuery().FirstOrDefaultAsync(x => x.HotelName == input.Hotels[0]);
 
-            var Hotel2 = repository.GetQuery().FirstOrDefault(x => x.HotelName == input.Hotels[1]);
+            var Hotel2 = await repository.GetQuery().FirstOrDefaultAsync(x => x.HotelName == input.Hotels[1]);
 
-            var userRate1 = userRateRepository.GetQuery()
+            var userRate1 = await userRateRepository.GetQuery()
                 .Where(w => w.HotelId == Hotel1.Id)
                 .GroupBy(x => x.HotelId).Select(x => new HotelGetOutPutDto()
                 {
                     Rate = x.Average(x => x.RateNumber)
-                }).FirstOrDefault();
+                }).FirstOrDefaultAsync();
 
-            var userRate2 = userRateRepository.GetQuery()
+            var userRate2 = await userRateRepository.GetQuery()
                 .Where(w => w.HotelId == Hotel2.Id)
                 .GroupBy(x => x.HotelId).Select(x => new HotelGetOutPutDto()
                 {
                     Rate = x.Average(x => x.RateNumber)
-                }).FirstOrDefault();
+                }).FirstOrDefaultAsync();
 
             var Hotel11 = new HotelGetOutPutDto()
             {
@@ -218,7 +233,7 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
                 RoomCount = Hotel1.RoomCount,
                 StarId = Hotel1.StarId,
                 Id = Hotel1.Id,
-                Rate = userRate1.Rate   
+                Rate = userRate1.Rate
             };
             var Hotel22 = new HotelGetOutPutDto()
             {
@@ -238,7 +253,7 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
 
         }
 
-        public List<HotelGetOutPutDto> GetTopHotelRate()
+        public async Task<List<HotelGetOutPutDto>> GetTopHotelRate()
         {
             var lst = repository.GetQuery()
                 .Include(x => x.Rooms);
@@ -254,7 +269,7 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
 
             var ListHotelId = userRate.Select(x => x.Id).ToList();
 
-            var ListHotel = lst.Select(x => new HotelGetOutPutDto()
+            var ListHotel = await lst.Select(x => new HotelGetOutPutDto()
             {
                 HotelName = x.HotelName,
                 Id = x.Id,
@@ -269,7 +284,7 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
                     Id = y.Id,
                     Comment = y.Comment
                 }).ToList()
-            }).ToList();
+            }).ToListAsync();
 
             foreach (var item in ListHotel)
             {

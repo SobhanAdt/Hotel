@@ -1,33 +1,36 @@
 ﻿@model IndexModel
 <div class="row">
-
-    @for (int i = 0; i <@Model.ListTopHotel.Count; i++)
+    @if (@Model.ListTopHotel != null)
     {
-        <div class="col-lg-4 col-sm-6 portfolio-item">
-            <div class="card h-100">
-                <a href="#"><img class="card-img-top" src="/Image/overview-photo-image.jpg" alt=""></a>
-                <div class="card-body">
-                    <h4 class="card-title">
-                        <a href="#">@Model.ListTopHotel[i].HotelName</a>
-                    </h4>
-                    <p class="card-text">
-                        کد هتل :
-                        @Model.ListTopHotel[i].HotelCode
-                    </p>
-                    <p class="card-text">
-                        امتیاز هتل :
-                        @Model.ListTopHotel[i].Rate
-                    </p>
-                    <p class="card-text">
-                        تعداد اتاق :
-                        @Model.ListTopHotel[i].RoomCount
-                    </p>
-                </div>
-                <div class="card-footer">
-                    <a href="" class="btn btn-outline-info">ادامه مطلب</a>
+        @for (int i = 0; i <@Model.ListTopHotel.Count; i++)
+        {
+            <div class="col-lg-4 col-sm-6 portfolio-item">
+                <div class="card h-100">
+                    <a href="#"><img class="card-img-top" src="/Image/overview-photo-image.jpg" alt=""></a>
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <a href="#">@Model.ListTopHotel[i].HotelName</a>
+                        </h4>
+                        <p class="card-text">
+                            کد هتل :
+                            @Model.ListTopHotel[i].HotelCode
+                        </p>
+                        <p class="card-text">
+                            امتیاز هتل :
+                            @Model.ListTopHotel[i].Rate
+                        </p>
+                        <p class="card-text">
+                            تعداد اتاق :
+                            @Model.ListTopHotel[i].RoomCount
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="" class="btn btn-outline-info">ادامه مطلب</a>
+                    </div>
                 </div>
             </div>
-        </div>
+        }
     }
+ 
 
 </div>

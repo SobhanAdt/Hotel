@@ -13,6 +13,7 @@ namespace App.Core.ApplicationService.ApplicationServices.ReviewAnswer
         Task<string> Update(ReviewAnswerUpdateInputDto updateDto);
 
         Task<List<ReviewAnswerGetOutPutDto>> GetAllReviews();
+
         Task<ReviewAnswerGetOutPutDto> GetSingleReview(int id);
 
         Task<string> DeleteReview(int id);

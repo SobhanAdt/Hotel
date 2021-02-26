@@ -35,10 +35,10 @@ namespace App.Core.ApplicationService.ApplicationServices.Review
             return "Delete Anjam shod";
         }
 
-        public Task<List<ReviewGetOutPutDto>> GetAllReviews()
+        public async Task<List<ReviewGetOutPutDto>> GetAllReviews()
         {
             var lst = repository.GetQuery().Include(x => x.ReviewAnswers);
-            return lst.Select(x => new ReviewGetOutPutDto()
+            return await lst.Select(x => new ReviewGetOutPutDto()
             {
                 Comment = x.Comment,
                 HotelId = x.HotelId,

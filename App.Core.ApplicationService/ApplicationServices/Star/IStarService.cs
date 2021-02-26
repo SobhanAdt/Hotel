@@ -6,7 +6,7 @@ namespace App.Core.ApplicationService.ApplicationServices.Rate
 {
     public interface IStarService
     {
-        List<StarOutputDto> GetAllStar();
+        Task<List<StarOutputDto>> GetAllStar();
 
         Task<StarOutputDto> GetSingelStar(int id);
     }

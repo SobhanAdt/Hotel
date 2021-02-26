@@ -39,10 +39,10 @@ namespace App.Core.ApplicationService.ApplicationServices.Room
             return "Delete Anjam shod";
         }
 
-        public  Task<List<RoomGetOutPutDto>> GetAllRooms()
+        public async Task<List<RoomGetOutPutDto>> GetAllRooms()
         {
             var lst = repository.GetQuery();
-            return lst.Select(x => new RoomGetOutPutDto()
+            return await lst.Select(x => new RoomGetOutPutDto()
             {
                 Id = x.Id,
                 RoomCode = x.RoomCode,
@@ -56,7 +56,7 @@ namespace App.Core.ApplicationService.ApplicationServices.Room
 
         public async Task<RoomGetOutPutDto> GetSingleRooms(int id)
         {
-            var item = repository.GetSingel(id);
+            var item =await repository.GetQuery().Where(w => w.Id == id).FirstOrDefaultAsync();
             if (item == null)
             {
                 return null;

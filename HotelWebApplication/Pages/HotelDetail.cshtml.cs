@@ -20,10 +20,10 @@ namespace HotelWebApplication.Pages
         }
 
         [BindProperty]
-        public Task<HotelGetOutPutDto> hotel { get; set; }
-        public void OnGet()
+        public HotelGetOutPutDto hotel { get; set; }
+        public async Task OnGetAsync(int id)
         {
-            hotel = _hotelService.GetSingleHotel(hotel.Id);
+            hotel =await _hotelService.GetSingleHotel(id);
         }
     }
 }

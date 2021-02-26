@@ -14,9 +14,9 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
 
         Task<string> Update(HotelUpdateInputDto updateDto);
 
-        List<HotelGetOutPutDto> GetAllHotels();
+        Task<List<HotelGetOutPutDto>> GetAllHotels();
 
-        List<HotelGetOutPutDto> GetTopHotelRate();
+        Task<List<HotelGetOutPutDto>> GetTopHotelRate();
 
         Task<HotelGetOutPutDto> GetSingleHotel(int id);
 

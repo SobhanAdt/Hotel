@@ -33,14 +33,14 @@ namespace App.Core.ApplicationService.ApplicationServices.User
             return "Delete Anjam Shod";
         }
 
-        public Task<List<UserOutputDto>> GetAllUser()
+        public async Task<List<UserOutputDto>> GetAllUser()
         {
-            var lst = repository.GetQuery().
+            var lst =repository.GetQuery().
                 Include(x => x.Reviews)
                 .Include(x => x.ReviewAnswers)
                 .Include(x => x.UserLogins);
 
-            return lst.Select(x => new UserOutputDto()
+            return await lst.Select(x => new UserOutputDto()
             {
                 Email = x.Email,
                 FullName = x.FullName,

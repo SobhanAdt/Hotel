@@ -30,28 +30,28 @@ namespace HotelWebApplication.Extensions
 
         public static void AddService(IServiceCollection service)
         {
-            service.AddTransient<ICityService, CityService>();
-            service.AddTransient<IHotelService, HotelService>();
-            service.AddTransient<IRoomService, RoomService>();
-            service.AddTransient<IStarService, StarService>();
-            service.AddTransient<IUserService, UserService>();
-            service.AddTransient<IReviewService, ReviewService>();
-            service.AddTransient<IReviewAnswerService, ReviewAnswerService>();
-            service.AddTransient<IUserLoginService, UserLoginService>();
+            service.AddScoped<ICityService, CityService>();
+            service.AddScoped<IHotelService, HotelService>();
+            service.AddScoped<IRoomService, RoomService>();
+            service.AddScoped<IStarService, StarService>();
+            service.AddScoped<IUserService, UserService>();
+            service.AddScoped<IReviewService, ReviewService>();
+            service.AddScoped<IReviewAnswerService, ReviewAnswerService>();
+            service.AddScoped<IUserLoginService, UserLoginService>();
 
         }
 
         public static void AddRepositories(IServiceCollection service)
         {
-            service.AddTransient<IRepository<City>, EfRepository<City>>();
-            service.AddTransient<IRepository<App.Core.Entities.Hotel>, EfRepository<App.Core.Entities.Hotel>>();
-            service.AddTransient<IRepository<Star>, EfRepository<Star>>();
-            service.AddTransient<IRepository<Review>, EfRepository<Review>>();
-            service.AddTransient<IRepository<ReviewAnswer>, EfRepository<ReviewAnswer>>();
-            service.AddTransient<IRepository<Room>, EfRepository<Room>>();
-            service.AddTransient<IRepository<User>, EfRepository<User>>();
-            service.AddTransient<IRepository<UserLogin>, EfRepository<UserLogin>>();
-            service.AddTransient<IRepository<UserRate>, EfRepository<UserRate>>();
+            service.AddScoped<IRepository<City>, EfRepository<City>>();
+            service.AddScoped<IRepository<App.Core.Entities.Hotel>, EfRepository<App.Core.Entities.Hotel>>();
+            service.AddScoped<IRepository<Star>, EfRepository<Star>>();
+            service.AddScoped<IRepository<Review>, EfRepository<Review>>();
+            service.AddScoped<IRepository<ReviewAnswer>, EfRepository<ReviewAnswer>>();
+            service.AddScoped<IRepository<Room>, EfRepository<Room>>();
+            service.AddScoped<IRepository<User>, EfRepository<User>>();
+            service.AddScoped<IRepository<UserLogin>, EfRepository<UserLogin>>();
+            service.AddScoped<IRepository<UserRate>, EfRepository<UserRate>>();
         }
     }
 }

@@ -36,23 +36,23 @@ namespace HotelWebApplication.Pages
         public List<HotelGetOutPutDto> ListTopHotel { get; set; }
 
         [BindProperty]
-        public Task<List<HotelGetOutPutDto>> ListNewHotel { get; set; }
+        public List<HotelGetOutPutDto> ListNewHotel { get; set; }
 
-        [BindProperty] 
+        [BindProperty]
         public List<StarOutputDto> ListStar { get; set; }
 
         [BindProperty]
         public List<CityOutputDto> ListCity { get; set; }
 
-        public void OnGet()
+        public async Task OnGet()
         {
-            ListTopHotel = hotelService.GetTopHotelRate();
+            ListTopHotel = await hotelService.GetTopHotelRate();
 
-            ListNewHotel = hotelService.fourNewInsertHotel();
+            ListNewHotel = await hotelService.fourNewInsertHotel();
 
-            ListStar = starService.GetAllStar();
+            ListStar = await starService.GetAllStar();
 
-            ListCity = cityService.GetAllCity();
+            ListCity = await cityService.GetAllCity();
         }
     }
 }

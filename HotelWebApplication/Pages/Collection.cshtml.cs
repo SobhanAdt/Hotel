@@ -19,7 +19,7 @@ namespace HotelWebApplication.Pages
 
         [BindProperty]
         public List<HotelGetOutPutDto> Hotels { get; set; }
-        public async void OnGet()
+        public async Task OnGetAsync()
         {
             Hotels =await hotelService.GetAllHotels();
         }

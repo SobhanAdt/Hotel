@@ -19,10 +19,10 @@ namespace HotelWebApplication.Pages
         }
 
         [BindProperty]
-        public Task<List<CityOutputDto>> ListCity { get; set; }
-        public void OnGet()
+        public List<CityOutputDto> ListCity { get; set; }
+        public async Task OnGetAsync()
         {
-            ListCity = service.GetAllCity();
+            ListCity =await service.GetAllCity();
         }
     }
 }

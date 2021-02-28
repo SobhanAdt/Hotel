@@ -39,7 +39,7 @@ namespace App.Core.ApplicationService.ApplicationServices.UserLogin
                 
             }
 
-           throw new Exception ( "Your Email Or Password Is wrong!");
+            return "Error!";
         }
 
         public async Task<int> ValidateUser(string Token)

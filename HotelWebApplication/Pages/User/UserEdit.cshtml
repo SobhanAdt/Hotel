@@ -1,0 +1,71 @@
+﻿@page
+@model HotelWebApplication.Pages.User.UserEditModel
+}
+@{ ViewData["Title"] = "ویرایش اطلاعات کاربر";
+}
+<div class="container">
+
+    <!-- Page Heading/Breadcrumbs -->
+    <h1 class="mt-4 mb-3" style="margin-top: 60px">
+        ویرایش اطلاعات کاربر
+    </h1>
+
+    <ol class="breadcrumb alert alert-info">
+        <li class="breadcrumb-item">
+            <a href="/">خانه</a>
+        </li>
+        <li class="breadcrumb-item active">ویرایش اطلاعات کاربر</li>
+    </ol>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">ویرایش اطلاعات کاربر</div>
+                <div class="card-body">
+                    <form method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                        <label asp-for="update.Id">شناسه کاربر</label>
+                        <div class="input-group mb-3">
+
+                            <input type="password" class="form-control" asp-for="update.Id" placeholder="شناسه کاربر" aria-label="شناسه کاربر" aria-describedby="basic-addon2">
+                            <span class="input-group-text" id="basic-addon2" asp-validation-for="update.Password"></span>
+                        </div>
+
+                        <label asp-for="update.FullName">نام و نام خانوادگی</label>
+                        <div class="input-group mb-3">
+
+                            <input type="text" class="form-control" asp-for="update.FullName" placeholder="نام و نام خانوادگی" aria-label="نام و نام خانوادگی" aria-describedby="basic-addon2">
+                            <span class="input-group-text" id="basic-addon2" asp-validation-for="update.FullName"></span>
+                        </div>
+
+                        <label asp-for="update.Email">ایمیل</label>
+                        <div class="input-group mb-3">
+
+                            <input type="text" class="form-control" asp-for="update.Email" placeholder="ایمیل" aria-label="ایمیل" aria-describedby="basic-addon2">
+                            <span class="input-group-text" id="basic-addon2" asp-validation-for="update.Email"></span>
+                        </div>
+
+                        <label asp-for="update.Password">رمز عبور</label>
+                        <div class="input-group mb-3">
+
+                            <input type="password" class="form-control" asp-for="update.Password" placeholder="رمز عبور" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                            <span class="input-group-text" id="basic-addon2" asp-validation-for="update.Password"></span>
+                        </div>
+
+                        <div class="card-footer">
+                            <input type="submit" class="btn btn-outline-success btn-block" value="ویرایش" />
+                        </div>
+
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

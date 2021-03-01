@@ -1,0 +1,43 @@
+﻿@page
+@model HotelWebApplication.Pages.User.UserInfoDetailsModel
+@{ ViewData["Title"] = "جزيیات اطلاعات کاربر";
+}
+<br />
+<br />
+<br />
+<br />
+
+<div class="container">
+
+    <!-- Page Heading/Breadcrumbs -->
+    <h1 class="mt-4 mb-3">
+        جزيیات اطلاعات کاربر
+    </h1>
+
+    <ol class="breadcrumb alert alert-info">
+        <li class="breadcrumb-item">
+            <a href="/">خانه</a>
+        </li>
+        <li class="breadcrumb-item active"> جزيیات اطلاعات کاربر</li>
+    </ol>
+
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <!------ Include the above in your HEAD tag ---------->
+
+    <br><br>
+    <div class="container-fluid well span6">
+        <div class="row-fluid">
+            <div class="span2">
+                <img src="https://lh3.googleusercontent.com/proxy/ed9NU6SUAKiKSumcMBACrZSkUaVs9wV5RCs0ngAQNf4siQuhiqLAodYmppfuX9W37mj4_rMEGnByYWtlMqvxK2_FCunpvDwntsi6elX_ZdNMKfPcTGpWI3xQ7hlu" class="img-circle">
+            </div>
+
+            <div class="span8">
+                <h3>@Model.user.FullName</h3>
+                <h6>@Model.user.Email</h6>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -24,7 +24,7 @@ namespace HotelWebApplication.Pages.User
             {
                 return Page();
             }
-            var user = await userLoginService.LoginUser(login.Email,login.Password);
+            var user = await userLoginService.LoginUser(login);
             if (user != null)
             {
                 await userLoginService.Login(login);

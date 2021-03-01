@@ -7,7 +7,7 @@ namespace App.Core.ApplicationService.ApplicationServices.UserLogin
     {
         Task<string> Login(LoginDto login);
 
-        Task<Entities.User> LoginUser(string email, string pass);
+        Task<Entities.User> LoginUser(LoginDto login);
 
         Task<int> ValidateUser(string Token);
     }

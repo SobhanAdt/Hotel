@@ -27,7 +27,7 @@ namespace HotelWebApplication.Pages.User
             var user = await userLoginService.LoginUser(login);
             if (user != null)
             {
-                await userLoginService.Login(login);
+                await userLoginService.CreateToken(login);
                 return RedirectToPage("/Index");
             }
             ModelState.AddModelError("Email", "کاربری با این مشخصات یافت نشد");

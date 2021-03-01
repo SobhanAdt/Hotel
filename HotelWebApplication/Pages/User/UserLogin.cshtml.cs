@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -24,8 +24,14 @@ namespace HotelWebApplication.Pages.User
             {
                 return Page();
             }
-              await userLoginService.Login(login);               
-                return RedirectToPage("/Index");          
+            var user = await userLoginService.LoginUser(login.Email,login.Password);
+            if (user != null)
+            {
+                await userLoginService.Login(login);
+                return RedirectToPage("/Index");
+            }
+            ModelState.AddModelError("Email", "کاربری با این مشخصات یافت نشد");
+            return Page();
         }
     }
 }

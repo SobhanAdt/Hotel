@@ -34,12 +34,18 @@ namespace App.Core.ApplicationService.ApplicationServices.UserLogin
                     Token = token,
                     ExpDate = DateTime.Now.AddHours(24)
                 });
-               await userloginRepository.Save();
+                await userloginRepository.Save();
                 return token;
-                
+
             }
 
             return "Error!";
+        }
+
+        public async Task<Entities.User> LoginUser(string email, string pass)
+        {
+            return await userRepository.GetQuery().
+                SingleOrDefaultAsync(u => u.Email == email && u.Password == pass);
         }
 
         public async Task<int> ValidateUser(string Token)

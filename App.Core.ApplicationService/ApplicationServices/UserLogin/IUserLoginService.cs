@@ -5,7 +5,9 @@ namespace App.Core.ApplicationService.ApplicationServices.UserLogin
 {
     public interface IUserLoginService
     {
-        Task<string> Login(LoginDto login);
+        Task<string> CreateToken(LoginDto login);
+
+        Task<Entities.User> LoginUser(LoginDto login);
 
         Task<int> ValidateUser(string Token);
     }

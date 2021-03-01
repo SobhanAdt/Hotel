@@ -71,7 +71,7 @@ namespace HotelWebApi.Controllers
         {
             if (ModelState.IsValid)
             {
-                var loginUser = await userLoginService.Login(login);
+                var loginUser = await userLoginService.CreateToken(login);
                 return Ok(loginUser);
             }
 

@@ -20,10 +20,9 @@ namespace App.Core.ApplicationService.ApplicationServices.UserLogin
         }
 
 
-        public async Task<string> Login(LoginDto login)
+        public async Task<string> CreateToken(LoginDto login)
         {
-            var UserLogin = await userRepository.GetQuery().
-                Where(x => x.Email == login.Email && x.Password == login.Password).FirstOrDefaultAsync();
+            var UserLogin = LoginUser(login);
 
             if (UserLogin != null)
             {
@@ -34,12 +33,18 @@ namespace App.Core.ApplicationService.ApplicationServices.UserLogin
                     Token = token,
                     ExpDate = DateTime.Now.AddHours(24)
                 });
-               await userloginRepository.Save();
+                await userloginRepository.Save();
                 return token;
-                
+
             }
 
             return "Error!";
+        }
+
+        public async Task<Entities.User> LoginUser(LoginDto login)
+        {
+            return await userRepository.GetQuery().
+                SingleOrDefaultAsync(u => u.Email == login.Email && u.Password ==login.Password);
         }
 
         public async Task<int> ValidateUser(string Token)

@@ -1,0 +1,88 @@
+﻿@page
+@model HotelWebApplication.Pages.Hotel.HotelEditModel
+@{ ViewData["Title"] = "ویرایش اطلاعات کاربر";
+}
+
+<div class="container">
+
+    <!-- Page Heading/Breadcrumbs -->
+    <h1 class="mt-4 mb-3" style="margin-top: 60px">
+        ویرایش اطلاعات هتل
+    </h1>
+
+    <ol class="breadcrumb alert alert-info">
+        <li class="breadcrumb-item">
+            <a href="/">خانه</a>
+        </li>
+        <li class="breadcrumb-item active">ویرایش اطلاعات هتل</li>
+    </ol>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">ویرایش اطلاعات هتل</div>
+                <div class="card-body">
+                    <form method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                        <label asp-for="update.Id">شناسه هتل</label>
+                        <div class="input-group mb-3">
+
+                            <input type="number" class="form-control" asp-for="update.Id" placeholder="شناسه هتل" aria-label="شناسه هتل" aria-describedby="basic-addon2">
+                            <span class="input-group-text" id="basic-addon2" asp-validation-for="update.Id"></span>
+                        </div>
+
+                        <label asp-for="update.HotelName">نام هتل</label>
+                        <div class="input-group mb-3">
+
+                            <input type="text" class="form-control" asp-for="update.HotelName" placeholder="نام هتل" aria-label="نام هتل" aria-describedby="basic-addon2">
+                            <span class="input-group-text" id="basic-addon2" asp-validation-for="update.HotelName"></span>
+                        </div>
+
+                        <label asp-for="update.HotelCode">کد هتل</label>
+                        <div class="input-group mb-3">
+
+                            <input type="number" class="form-control" asp-for="update.HotelCode" placeholder="کد هتل" aria-label="کد هتل" aria-describedby="basic-addon2">
+                            <span class="input-group-text" id="basic-addon2" asp-validation-for="update.HotelCode"></span>
+                        </div>
+
+                        <label asp-for="update.RoomCount">تعداد اتاق</label>
+                        <div class="input-group mb-3">
+
+                            <input type="number" class="form-control" asp-for="update.RoomCount" placeholder="تعداد اتاق" aria-label="تعداد اتاق" aria-describedby="basic-addon2">
+                            <span class="input-group-text" id="basic-addon2" asp-validation-for="update.RoomCount"></span>
+                        </div>
+
+                        <label asp-for="update.Description">توضیحات</label>
+                        <div class="input-group mb-3">
+
+                            <input type="text" class="form-control" asp-for="update.Description" placeholder="توضیحات" aria-label="توضیحات" aria-describedby="basic-addon2">
+                            <span class="input-group-text" id="basic-addon2" asp-validation-for="update.Description"></span>
+                        </div>
+
+                        <label asp-for="update.CityId">شناسه شهر</label>
+                        <div class="input-group mb-3">
+
+                            <input type="number" class="form-control" asp-for="update.CityId" placeholder="شناسه شهر" aria-label="شناسه شهر" aria-describedby="basic-addon2">
+                            <span class="input-group-text" id="basic-addon2" asp-validation-for="update.CityId"></span>
+                        </div>
+
+                        <label asp-for="update.StarId">ستاره هتل</label>
+                        <div class="input-group mb-3">
+
+                            <input type="number" class="form-control" asp-for="update.StarId" placeholder="ستاره هتل" aria-label="ستاره هتل" aria-describedby="basic-addon2">
+                            <span class="input-group-text" id="basic-addon2" asp-validation-for="update.StarId"></span>
+                        </div>
+
+                        <div class="card-footer">
+                            <input type="submit" class="btn btn-outline-success btn-block" value="ویرایش" />
+                        </div>
+
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br />

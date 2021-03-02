@@ -1,0 +1,49 @@
+﻿@page
+@model HotelWebApplication.Pages.Star.ListStarModel
+@{
+    ViewData["Title"] = "لیست ستاره ها";
+}
+
+<div class="container">
+
+    <!-- Page Heading/Breadcrumbs -->
+    <h1 class="mt-4 mb-3">
+        لیست ستاره ها
+    </h1>
+
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="/">خانه</a>
+        </li>
+        <li class="breadcrumb-item active">لیست ستاره ها</li>
+    </ol>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">تعداد ستاره</th>
+                <th scope="col">تعداد هتل</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < @Model.StarList.Count; i++)
+            {
+            <tr>
+                <th scope="row">@i</th>
+                <td>@Model.StarList[i].StarNumber ستاره</td>
+                <td>@Model.StarList[i].Hotels.Count</td>
+                <td>
+                    <a asp-page="/Star/DetalisStar" asp-route-id="@Model.StarList[i].Id">
+                        <button class="btn btn-sm btn-outline-info">نمایش</button>
+                    </a>
+                    <a asp-page="/Star/EditStar" asp-route-id="@Model.StarList[i].Id">
+                        <button class="btn btn-sm btn-outline-warning">ویرایش</button>
+                    </a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>

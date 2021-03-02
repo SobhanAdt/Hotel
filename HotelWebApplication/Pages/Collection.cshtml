@@ -67,7 +67,9 @@
                         </p>
                     </div>
                     <div class=" card-footer">
-                        <a asp-page="/HotelDetail" asp-route-id="@Model.Hotels[i].Id"> <button class="btn btn-sm btn-outline-info">ادامه مطلب</button></a>
+                        <a asp-page="Hotel/HotelDetail" asp-route-id="@Model.Hotels[i].Id">
+                             <button class="btn btn-sm btn-outline-info">ادامه مطلب</button>
+                        </a>
                         <button class="btn btn-sm btn-outline-danger">مقایسه</button>
                     </div>
                 </div>

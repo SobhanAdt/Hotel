@@ -24,10 +24,10 @@ namespace HotelWebApplication.Pages.User
             {
                 return Page();
             }
-            var user = await userLoginService.LoginUser(login);
+
+            var user = await userLoginService.CreateToken(login);
             if (user != null)
             {
-                await userLoginService.CreateToken(login);
                 return RedirectToPage("/Index");
             }
             ModelState.AddModelError("Email", "کاربری با این مشخصات یافت نشد");

@@ -31,7 +31,7 @@ namespace HotelWebApplication.Pages
             }
 
             await userService.InsertUser(InsertInputDto);
-            return RedirectToPage("./index");
+            return RedirectToPage("/User/UserLogin");
         }
     }
 }

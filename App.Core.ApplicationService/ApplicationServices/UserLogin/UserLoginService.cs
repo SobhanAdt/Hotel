@@ -22,7 +22,9 @@ namespace App.Core.ApplicationService.ApplicationServices.UserLogin
 
         public async Task<string> CreateToken(LoginDto login)
         {
-            var UserLogin = LoginUser(login);
+            var UserLogin =userRepository.GetQuery()
+                .SingleOrDefault(s => s.Email == login.Email && s.Password == login.Password);
+
 
             if (UserLogin != null)
             {
@@ -38,14 +40,16 @@ namespace App.Core.ApplicationService.ApplicationServices.UserLogin
 
             }
 
-            return "Error!";
+            return null;
         }
 
-        public async Task<Entities.User> LoginUser(LoginDto login)
-        {
-            return await userRepository.GetQuery().
-                SingleOrDefaultAsync(u => u.Email == login.Email && u.Password ==login.Password);
-        }
+        //public async Task<Entities.User> LoginUser(LoginDto login)
+        //{
+        //    var user = await userRepository.GetQuery().
+        //         SingleOrDefaultAsync(u => u.Email == login.Email && u.Password == login.Password);
+
+        //    return user;
+        //}
 
         public async Task<int> ValidateUser(string Token)
         {

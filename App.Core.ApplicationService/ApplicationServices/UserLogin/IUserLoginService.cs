@@ -7,7 +7,6 @@ namespace App.Core.ApplicationService.ApplicationServices.UserLogin
     {
         Task<string> CreateToken(LoginDto login);
 
-        Task<Entities.User> LoginUser(LoginDto login);
 
         Task<int> ValidateUser(string Token);
     }

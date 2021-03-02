@@ -215,6 +215,8 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
             item.CityId = updateDto.CityId;
             item.StarId = updateDto.StarId;
             item.RoomCount = updateDto.RoomCount;
+            item.Description = updateDto.Description;
+            item.HotelCode = updateDto.HotelCode;
             await repository.Save();
             return $"Updating {updateDto.HotelName} has Successfuled";
         }

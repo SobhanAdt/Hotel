@@ -1,13 +1,14 @@
 ﻿@page
-@model HotelWebApplication.Pages.Star.DetalisStarModel
+@model HotelWebApplication.Pages.City.ListHotelCityModel
 @{
-    ViewData["Title"] = @Model.star.StarNumber;
+    ViewData["Title"] = @Model.CityHotel.CityName;
 }
+
 
 <div class="container">
 
     <h1 class="mt-4 mb-3">
-        لیست ستاره ها
+        @Model.CityHotel.CityName
     </h1>
 
     <ol class="breadcrumb">
@@ -15,15 +16,18 @@
             <a href="/">خانه</a>
         </li>
         <li class="breadcrumb-item">
-            <a href="/Star/ListStar">لیست ستاره ها</a>
+            <a href="/City/FilterByCity">فیلتر شهر ها</a>
         </li>
-        <li class="breadcrumb-item active">@Model.star.StarNumber ستاره</li>
+        <li class="breadcrumb-item active">@Model.CityHotel.CityName</li>
     </ol>
 
-    <h2>لیست هتل ها</h2>
+    <h2> لیست هتل های @Model.CityHotel.CityName</h2>
 
     <div class="row">
-        @foreach (var item in @Model.star.Hotels.Where(w => w.StarId == @Model.star.Id))
+        @{
+            var modelItem = Model.CityHotel.Hotels;
+        }
+        @foreach (var item in modelItem)
         {
             <div class="col-lg-2 col-sm-4 mb-4">
                 <img class="img-fluid" src="http://placehold.it/500x300" alt="">

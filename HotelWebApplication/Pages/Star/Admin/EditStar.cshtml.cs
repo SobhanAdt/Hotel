@@ -31,7 +31,7 @@ namespace HotelWebApplication.Pages.Star
             
             StarUpdateDto.Id = id;
             await starService.UpdateStar(StarUpdateDto);
-            return Redirect("/Star/ListStar");
+            return Redirect("/Star/Admin/ListStar");
         }
     }
 }

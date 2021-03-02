@@ -35,10 +35,10 @@
                 <td>@Model.StarList[i].StarNumber ستاره</td>
                 <td>@Model.StarList[i].Hotels.Count</td>
                 <td>
-                    <a asp-page="/Star/DetalisStar" asp-route-id="@Model.StarList[i].Id">
+                    <a asp-page="/Star/Admin/DetalisStar" asp-route-id="@Model.StarList[i].Id">
                         <button class="btn btn-sm btn-outline-info">نمایش</button>
                     </a>
-                    <a asp-page="/Star/EditStar" asp-route-id="@Model.StarList[i].Id">
+                    <a asp-page="/Star/Admin/EditStar" asp-route-id="@Model.StarList[i].Id">
                         <button class="btn btn-sm btn-outline-warning">ویرایش</button>
                     </a>
                 </td>

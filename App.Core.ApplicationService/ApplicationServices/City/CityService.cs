@@ -73,7 +73,8 @@ namespace App.Core.ApplicationService.ApplicationServices.City
         public async Task<CityOutputDto> GetSingelCity(int id)
         {
             var item = await repository.GetQuery().
-                Include(x => x.Hotels).FirstOrDefaultAsync(x => x.Id == id);
+                Include(x => x.Hotels)
+                .Where(w=>w.Id==id).FirstOrDefaultAsync();
 
             return new CityOutputDto()
             {

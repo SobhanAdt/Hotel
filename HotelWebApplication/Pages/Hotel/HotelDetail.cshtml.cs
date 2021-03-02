@@ -21,9 +21,13 @@ namespace HotelWebApplication.Pages
 
         [BindProperty]
         public HotelGetOutPutDto hotel { get; set; }
+
+        public List<HotelGetOutPutDto> TopHotel { get; set; }
         public async Task OnGetAsync(int id)
         {
             hotel =await _hotelService.GetSingleHotel(id);
+
+            TopHotel =await _hotelService.GetTopHotelRate();
         }
     }
 }

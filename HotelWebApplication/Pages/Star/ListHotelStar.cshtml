@@ -1,0 +1,44 @@
+﻿@page
+@model HotelWebApplication.Pages.Star.ListHotelStarModel
+@{
+    ViewData["Title"] = @Model.Star.StarNumber;
+}
+
+<div class="container">
+
+    <h1 class="mt-4 mb-3">
+        لیست ستاره ها
+    </h1>
+
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="/">خانه</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a href="/Star/FilterByStar">لیست ستاره ها</a>
+        </li>
+        <li class="breadcrumb-item active">@Model.Star.StarNumber ستاره</li>
+    </ol>
+
+    <h2>لیست هتل ها</h2>
+
+    <div class="row">
+        
+        @{
+            var ModelItem = Model.Star.Hotels;
+        }
+
+        @foreach (var item in  ModelItem)
+        {
+            <div class="col-lg-2 col-sm-4 mb-4">
+                <img class="img-fluid" src="http://placehold.it/500x300" alt="">
+                <a asp-page="/Hotel/HotelDetail" asp-route-id="@item.Id">
+                    <p>@item.HotelName</p>
+                </a>
+
+            </div>
+        }
+    </div>
+
+
+</div>

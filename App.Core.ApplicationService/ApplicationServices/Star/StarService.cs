@@ -5,6 +5,7 @@ using App.Core.ApplicationService.Dtos.CityDto;
 using App.Core.ApplicationService.Dtos.StarDto;
 using App.Core.ApplicationService.IRepositories;
 using AutoMapper;
+using Hotel.Core.ApplicationService.Dtos.StarDto;
 using Microsoft.EntityFrameworkCore;
 
 namespace App.Core.ApplicationService.ApplicationServices.Rate
@@ -20,11 +21,12 @@ namespace App.Core.ApplicationService.ApplicationServices.Rate
 
         public async Task<List<StarOutputDto>> GetAllStar()
         {
-            var lstItem = repository.GetQuery().Include(x=>x.Hotels);
-              
+            var lstItem = repository.GetQuery().Include(x => x.Hotels);
 
-            var ListStar =await lstItem.Select(x => new StarOutputDto()
+
+            var ListStar = await lstItem.Select(x => new StarOutputDto()
             {
+                Id = x.Id,
                 StarNumber = x.StarNumber,
                 Hotels = x.Hotels.Select(x => new HotelDTO()
                 {
@@ -47,6 +49,7 @@ namespace App.Core.ApplicationService.ApplicationServices.Rate
                 Where(x => x.Id == id).FirstOrDefaultAsync();
             return new StarOutputDto()
             {
+                Id = item.Id,
                 StarNumber = item.StarNumber,
                 Hotels = item.Hotels.Select(x => new HotelDTO()
                 {
@@ -59,6 +62,19 @@ namespace App.Core.ApplicationService.ApplicationServices.Rate
                     Id = x.Id
                 }).ToList()
             };
+        }
+
+        public async Task<string> UpdateStar(StarUpdateDto updateDto)
+        {
+            var item = GetSingelStar(updateDto.Id);
+            if (item ==null)
+            {
+                return "null";
+            }
+
+            item.Result.StarNumber = updateDto.StarNumber;
+            await repository.Save();
+            return "Done Update";
         }
     }
 }

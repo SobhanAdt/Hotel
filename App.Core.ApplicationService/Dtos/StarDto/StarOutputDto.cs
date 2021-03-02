@@ -7,7 +7,7 @@ namespace App.Core.ApplicationService.Dtos.StarDto
 {
     public class StarOutputDto
     {
-
+        public int Id { get; set; }
         public int StarNumber { get; set; }
 
 

@@ -45,8 +45,6 @@ namespace HotelWebApplication.Pages
         [BindProperty]
         public List<CityOutputDto> ListCity { get; set; }
 
-        [BindProperty]
-        public UserOutputDto User { get; set; }
 
         public async Task OnGet()
         {

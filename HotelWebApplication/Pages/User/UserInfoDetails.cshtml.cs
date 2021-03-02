@@ -18,10 +18,11 @@ namespace HotelWebApplication.Pages.User
         }
         [BindProperty]
         public UserOutputDto user { get; set; }
-        public async Task OnGet(int Id)
+
+        public async Task OnGet(int id)
         {
 
-            user = await userService.GetSingelUser(Id);
+            user = await userService.GetSingelUser(id);
         }
     }
 }

@@ -1,0 +1,64 @@
+﻿@page
+@model HotelWebApplication.Pages.User.UserDeleteModel
+
+@{ ViewData["Title"] = "حذف کاربر";
+}
+<div class="container">
+    <br />
+    <br />
+    <br />
+    <br />
+    <!-- Page Heading/Breadcrumbs -->
+    <h1 class="mt-4 mb-3" style="margin-top: 60px">
+        حذف هتل
+    </h1>
+
+    <ol class="breadcrumb alert alert-info">
+        <li class="breadcrumb-item">
+            <a href="/">خانه</a>
+        </li>
+        <li class="breadcrumb-item active">حذف کاربر</li>
+    </ol>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">حذف کاربر</div>
+                <div class="card-body">
+                    <form method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                        <label asp-for="user.FullName">نام و نام خانوادگی</label>
+                        <div class="input-group mb-3">
+
+                            <input type="text" class="form-control" asp-for="user.FullName" placeholder="نام و نام خانوادگی" aria-label="نام و نام خانوادگی" aria-describedby="basic-addon2">
+                            <span class="input-group-text" id="basic-addon2" asp-validation-for="user.FullName"></span>
+                        </div>
+
+                        <label asp-for="user.Email">ایمیل</label>
+                        <div class="input-group mb-3">
+
+                            <input type="text" class="form-control" asp-for="user.Email" placeholder="ایمیل" aria-label="ایمیل" aria-describedby="basic-addon2">
+                            <span class="input-group-text" id="basic-addon2" asp-validation-for="user.Email"></span>
+                        </div>
+
+                        <label asp-for="user.Password">رمز عبور</label>
+                        <div class="input-group mb-3">
+
+                            <input type="password" class="form-control" asp-for="user.Password" placeholder="رمز عبور" aria-label="رمز عبور" aria-describedby="basic-addon2">
+                            <span class="input-group-text" id="basic-addon2" asp-validation-for="user.Password"></span>
+                        </div>
+
+                        <div class="card-footer">
+                            <input type="submit" class="btn btn-outline-success btn-block" value="حذف" />
+                        </div>
+
+
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br />

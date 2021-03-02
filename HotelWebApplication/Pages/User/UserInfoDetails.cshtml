@@ -27,17 +27,23 @@
     <!------ Include the above in your HEAD tag ---------->
 
     <br><br>
-    <div class="container-fluid well span6">
-        <div class="row-fluid">
-            <div class="span2">
-                <img src="https://lh3.googleusercontent.com/proxy/ed9NU6SUAKiKSumcMBACrZSkUaVs9wV5RCs0ngAQNf4siQuhiqLAodYmppfuX9W37mj4_rMEGnByYWtlMqvxK2_FCunpvDwntsi6elX_ZdNMKfPcTGpWI3xQ7hlu" class="img-circle">
-            </div>
+        <div class="container-fluid well span6">
+            <div class="row-fluid">
+                <div class="span2">
+                    <img src="https://lh3.googleusercontent.com/proxy/ed9NU6SUAKiKSumcMBACrZSkUaVs9wV5RCs0ngAQNf4siQuhiqLAodYmppfuX9W37mj4_rMEGnByYWtlMqvxK2_FCunpvDwntsi6elX_ZdNMKfPcTGpWI3xQ7hlu" class="img-circle">
+                </div>
 
-            <div class="span8">
-                <h3>@Model.user.FullName</h3>
-                <h6>@Model.user.Email</h6>
-            </div>
+                <div class="span8">
+                    <h3>@Model.user.FullName</h3>
+                    <h6>@Model.user.Email</h6>
+                </div>
 
+            </div>
+            <div class=" card-footer">
+                <a asp-page="/User/UserEdit" asp-route-id="@Model.user.Email"> <button class="btn btn-sm bg-warning btn-outline-info">ویرایش</button></a>
+                <a asp-page="/User/UserDelete" asp-route-id="@Model.user.Email"><button class="btn btn-sm bg-danger btn-outline-danger">حذف</button></a>
+</div>
         </div>
-    </div>
+
+
 </div>

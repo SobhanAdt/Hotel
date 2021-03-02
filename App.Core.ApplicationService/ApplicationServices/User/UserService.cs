@@ -42,6 +42,7 @@ namespace App.Core.ApplicationService.ApplicationServices.User
 
             return await lst.Select(x => new UserOutputDto()
             {
+                Id =x.Id,
                 Email = x.Email,
                 FullName = x.FullName,
                 Password = x.Password,
@@ -66,6 +67,7 @@ namespace App.Core.ApplicationService.ApplicationServices.User
 
             return new UserOutputDto()
             {
+                Id = singleUser.Id,
                 FullName = singleUser.FullName,
                 Email = singleUser.Email,
                 Password = singleUser.Password,

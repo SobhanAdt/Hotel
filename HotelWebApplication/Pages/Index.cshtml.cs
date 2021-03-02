@@ -12,6 +12,7 @@ using App.Core.ApplicationService.ApplicationServices.Rate;
 using App.Core.ApplicationService.Dtos.CityDto;
 using App.Core.ApplicationService.Dtos.HotelDto;
 using App.Core.ApplicationService.Dtos.StarDto;
+using App.Core.ApplicationService.Dtos.Userto;
 
 namespace HotelWebApplication.Pages
 {
@@ -43,6 +44,9 @@ namespace HotelWebApplication.Pages
 
         [BindProperty]
         public List<CityOutputDto> ListCity { get; set; }
+
+        [BindProperty]
+        public UserOutputDto User { get; set; }
 
         public async Task OnGet()
         {

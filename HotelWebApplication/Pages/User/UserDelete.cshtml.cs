@@ -17,16 +17,15 @@ namespace HotelWebApplication.Pages.User
             this.userService = userService;
         }
         [BindProperty]
-        public UserInsertInputDto user { get; set; }
+        public UserOutputDto user { get; set; }
 
-        [BindProperty]
-        public int id { get; set; }
-        public async Task<IActionResult> OnPost()
+        public async Task<IActionResult> OnPost(int id)
         {
             if (!ModelState.IsValid)
             {
                 return Page();
             }
+            user = await userService.GetSingelUser(id);
             await userService.DeleteUser(id);
             return RedirectToPage("/Index");
         }

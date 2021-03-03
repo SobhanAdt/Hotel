@@ -37,13 +37,16 @@ namespace App.Core.ApplicationService.ApplicationServices.Review
 
         public async Task<List<ReviewGetOutPutDto>> GetAllReviews()
         {
-            var lst = repository.GetQuery().Include(x => x.ReviewAnswers);
+            var lst = repository.GetQuery()
+                .Include(i=>i.User)
+                .Include(x => x.ReviewAnswers);
             return await lst.Select(x => new ReviewGetOutPutDto()
             {
                 Comment = x.Comment,
                 HotelId = x.HotelId,
                 UserId = x.UserId,
                 Id = x.Id,
+                UserName = x.User.FullName,
                 ReviewAnswers = x.ReviewAnswers.Select(x => new ReviewAnswerDTO()
                 {
                     CommentAnswer = x.CommentAnswer,

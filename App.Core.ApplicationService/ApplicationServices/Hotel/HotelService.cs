@@ -35,7 +35,8 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
         public async Task<string> Create(HotelInsertInputDto inputDto)
         {
             var hotelValidation = await repository.GetQuery().
-                Where(x => x.HotelName == inputDto.HotelName && x.CityId == inputDto.CityId)
+                Include(i=>i.City)
+                .Where(x => x.HotelName == inputDto.HotelName && x.CityId == inputDto.CityId)
                 .FirstOrDefaultAsync();
             if (hotelValidation==null)
             {
@@ -81,6 +82,7 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
                 Description = x.Description,
                 StarId = x.StarId,
                 CityId = x.CityId,
+                CityName = x.City.CityName,
                 Reviews = x.Reviews.Select(y => new ReviewDTO()
                 {
                     UserId = y.UserId,
@@ -108,7 +110,9 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
             try
             {
                 var item = await repository.GetQuery()
-                    .Include(x => x.Reviews).Where(x => x.Id == id).FirstOrDefaultAsync();
+                    .Include(x => x.Reviews)
+                    .Include(i=>i.City)
+                    .Where(x => x.Id == id).FirstOrDefaultAsync();
 
                 var userRate = userRateRepository.GetQuery()
                     .Where(w => w.HotelId == id)
@@ -125,6 +129,7 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
                     HotelCode = item.HotelCode,
                     RoomCount = item.RoomCount,
                     CityId = item.CityId,
+                    CityName = item.City.CityName,
                     StarId = item.StarId,
                     Description = item.Description,
                     Rate = (userRate == null ? 0 : userRate.Rate),

@@ -11,6 +11,8 @@ namespace App.Core.ApplicationService.Dtos.ReviewDto
         public int UserId { get; set; }
         public int HotelId { get; set; }
 
+        public string UserName { get; set; }
+
         public List<ReviewAnswerDTO> ReviewAnswers { get; set; }
     }
 }

@@ -1,0 +1,56 @@
+﻿@page
+@model HotelWebApplication.Pages.City.Admin.CityEditModel
+@{
+    ViewData["Title"] = "ویرایش شهر";
+}
+
+
+<div class="container">
+
+    <!-- Page Heading/Breadcrumbs -->
+    <h1 class="mt-4 mb-3" style="margin-top: 60px">
+        ویرایش اطلاعات شهر
+    </h1>
+
+    <ol class="breadcrumb alert alert-info">
+        <li class="breadcrumb-item">
+            <a href="/">خانه</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a href="/City/Admin/ListCity">لیست شهر ها</a>
+        </li>
+        <li class="breadcrumb-item active">ویرایش</li>
+    </ol>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">ویرایش  شهر</div>
+                <div class="card-body">
+                    <form method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                        <label asp-for="CityUpdate.Id">شناسه شهر</label>
+                        <div class="input-group mb-3">
+
+                            <input type="number" class="form-control" asp-for="CityUpdate.Id" placeholder="شناسه شهر" aria-label="شناسه شهر" aria-describedby="basic-addon2">
+                            <span class="input-group-text" id="basic-addon2" asp-validation-for="CityUpdate.Id"></span>
+                        </div>
+
+                        <label asp-for="CityUpdate.CityName">نام شهر</label>
+                        <div class="input-group mb-3">
+
+                            <input type="text" class="form-control" asp-for="CityUpdate.CityName" placeholder="نام شهر" aria-label="نام شهر" aria-describedby="basic-addon2">
+                            <span class="input-group-text" id="basic-addon2" asp-validation-for="CityUpdate.CityName"></span>
+                        </div>
+
+                        <div class="card-footer">
+                            <input type="submit" class="btn btn-outline-warning btn-block" value=" ویرایش" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br />

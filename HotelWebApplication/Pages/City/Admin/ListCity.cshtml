@@ -1,0 +1,59 @@
+﻿@page
+@model HotelWebApplication.Pages.City.Admin.ListCityModel
+@{
+    ViewData["Title"] = "لیست شهر خا";
+}
+
+<div class="container">
+
+    <!-- Page Heading/Breadcrumbs -->
+    <h1 class="mt-4 mb-3">
+        لیست هتل ها
+    </h1>
+
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="/">خانه</a>
+        </li>
+        <li class="breadcrumb-item active">لیست شهر ها</li>
+    </ol>
+    <a asp-page="/City/Admin/CityCreate">
+        <button class="btn btn-group-lg btn-outline-success"> افزودن شهر جدید</button>
+    </a>
+    <br/>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">نام شهر</th>
+            <th scope="col">تعداد هتل ها</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        @{
+            var ModelItem = Model.Cites;
+        }
+        @foreach (var item in ModelItem)
+        {
+            <tr>
+                <th scope="row">@item.Id</th>
+                <td>@item.CityName</td>
+                <td>@item.Hotels.Count</td>
+                <td>
+                    <a asp-page="/City/Admin/CityDetail" asp-route-id="@item.Id">
+                        <button class="btn btn-sm btn-outline-info">نمایش</button>
+                    </a>
+                    <a asp-page="/City/Admin/CityEdit" asp-route-id="@item.Id">
+                        <button class="btn btn-sm btn-outline-warning">ویرایش</button>
+                    </a>
+                    <a asp-page="/City/Admin/CityDelete" asp-route-id="@item.Id">
+                        <button class="btn btn-sm btn-outline-danger">حذف</button>
+                    </a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+

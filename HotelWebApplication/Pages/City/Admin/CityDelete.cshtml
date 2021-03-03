@@ -1,0 +1,54 @@
+﻿@page
+@model HotelWebApplication.Pages.City.Admin.CityDeleteModel
+@{
+    ViewData["Title"] = "ایجاد شهر";
+}
+
+
+<div class="container">
+
+    <!-- Page Heading/Breadcrumbs -->
+    <h1 class="mt-4 mb-3" style="margin-top: 60px">
+        حذف شهر 
+    </h1>
+
+    <ol class="breadcrumb alert alert-info">
+        <li class="breadcrumb-item">
+            <a href="/">خانه</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a href="/City/Admin/ListCity">لیست شهر ها</a>
+        </li>
+        <li class="breadcrumb-item active">حذف</li>
+    </ol>
+
+    <div class="row justify-content-center">
+        <div class="alert alert-danger">
+            توجه
+            <br/>
+            بعد از زدن دکمه حذف فایل قابل بازگشت نیست
+        </div>
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">حذف شهر</div>
+                <div class="card-body">
+                    <form method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                        <label asp-for="id">شناسه شهر</label>
+                        <div class="input-group mb-3">
+
+                            <input type="number" class="form-control" asp-for="id" placeholder="شناسه شهر" aria-label="شناسه شهر" aria-describedby="basic-addon2">
+                            <span class="input-group-text" id="basic-addon2" asp-validation-for="id"></span>
+                        </div>
+
+                        <div class="card-footer">
+                            <input type="submit" class="btn btn-outline-danger btn-block" value=" حذف"/>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br />

@@ -22,14 +22,13 @@ namespace HotelWebApplication.Pages.Star
         [BindProperty]
         public StarUpdateDto StarUpdateDto { get; set; }
 
-        public async Task<IActionResult> OnPostAsync(int id)
+        public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
             {
                 return Page();
             }
             
-            StarUpdateDto.Id = id;
             await starService.UpdateStar(StarUpdateDto);
             return Redirect("/Star/Admin/ListStar");
         }

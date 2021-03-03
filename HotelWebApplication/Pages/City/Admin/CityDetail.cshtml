@@ -1,0 +1,47 @@
+﻿@page
+@model HotelWebApplication.Pages.City.Admin.CityDetailModel
+@{
+    ViewData["Title"] = @Model.City.CityName;
+}
+
+
+<div class="container">
+
+    <h1 class="mt-4 mb-3">
+        @Model.City.CityName
+    </h1>
+
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="/">خانه</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a href="/City/Admin/ListCity">لیست شهر ها</a>
+        </li>
+        <li class="breadcrumb-item active">@Model.City.CityName</li>
+    </ol>
+
+    <h2> لیست هتل های @Model.City.CityName</h2>
+
+    <div class="row">
+        @{
+            var modelItem = Model.City.Hotels;
+        }
+        @foreach (var item in modelItem)
+        {
+            <div class="col-lg-3 col-sm-4 mb-4">
+                <div class="card">
+                    <p class="card-header" style="text-align: center">
+                        @item.HotelName
+                    </p>
+
+                    <div class="card-body">
+                        <img class="img-fluid" src="http://placehold.it/500x300" alt="">
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+
+</div>

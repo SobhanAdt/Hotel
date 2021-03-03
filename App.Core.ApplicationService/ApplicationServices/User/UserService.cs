@@ -114,8 +114,6 @@ namespace App.Core.ApplicationService.ApplicationServices.User
                 return null;
             }
 
-            item.Email = updateDto.Email;
-            item.FullName = updateDto.FullName;
             item.Password = updateDto.Password;
             await repository.Save();
             return $"Update Ba Mofaghiyat Anjam Shod";

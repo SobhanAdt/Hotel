@@ -20,13 +20,19 @@ namespace HotelWebApplication.Pages.User
 
         [BindProperty]
         public UserUpdateDto update { get; set; }
-        public async Task<IActionResult> OnPost()
+
+        [BindProperty]
+        public UserOutputDto user { get; set; }
+        public async Task<IActionResult> OnPost(int id)
         {
             if (!ModelState.IsValid)
             {
                 return Page();
             }
+           user = await userService.GetSingelUser(id);
+            update.Id = user.Id;
             await userService.UpdateUser(update);
+
             return RedirectToPage("/Index");
         }
     }

@@ -18,7 +18,6 @@ namespace HotelWebApplication.Pages.City.Admin
             CityService = cityService;
         }
 
-
         [BindProperty]
         public CityUpdateDto CityUpdate { get; set; }
         public async Task<IActionResult> OnPostAsync()

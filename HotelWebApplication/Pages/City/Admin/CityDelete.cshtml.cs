@@ -19,7 +19,7 @@ namespace HotelWebApplication.Pages.City.Admin
 
         [BindProperty]
         public int id  { get; set; }
-        public async Task<IActionResult> OnGPostAsync()
+        public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
             {

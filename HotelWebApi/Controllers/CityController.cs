@@ -60,7 +60,7 @@ namespace HotelWebApi.Controllers
 
             if (ModelState.IsValid)
             {
-                var lstCity =  service.GetAllCity();
+                var lstCity =await  service.GetAllCity();
                 return Ok(lstCity);
             }
 

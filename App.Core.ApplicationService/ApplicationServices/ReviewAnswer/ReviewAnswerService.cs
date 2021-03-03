@@ -38,25 +38,30 @@ namespace App.Core.ApplicationService.ApplicationServices.ReviewAnswer
 
         public async Task<List<ReviewAnswerGetOutPutDto>> GetAllReviews()
         {
-            var lst = await repository.GetQuery().ToListAsync();
+            var lst = await repository.GetQuery()
+                .Include(i=>i.User).ToListAsync();
             return lst.Select(x => new ReviewAnswerGetOutPutDto()
             {
                 CommentAnswer = x.CommentAnswer,
                 ReviewId = x.ReviewId,
                 UserId = x.UserId,
+                UserName = x.User.FullName,
                 Id = x.Id
             }).ToList();
         }
 
         public async Task<ReviewAnswerGetOutPutDto> GetSingleReview(int id)
         {
-            var item = await repository.GetQuery().Where(w => w.Id == id).FirstOrDefaultAsync();
+            var item = await repository.GetQuery()
+                .Include(i=>i.User)
+                .Where(w => w.Id == id).FirstOrDefaultAsync();
 
             return new ReviewAnswerGetOutPutDto()
             {
                 CommentAnswer = item.CommentAnswer,
                 ReviewId = item.ReviewId,
-                UserId = item.UserId
+                UserId = item.UserId,
+                UserName = item.User.FullName
             };
         }
 

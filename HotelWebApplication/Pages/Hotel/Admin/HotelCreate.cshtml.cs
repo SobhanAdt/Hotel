@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using App.Core.ApplicationService.ApplicationServices.City;
 using App.Core.ApplicationService.ApplicationServices.Hotel;
+using App.Core.ApplicationService.Dtos.CityDto;
 using App.Core.ApplicationService.Dtos.HotelDto;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -17,6 +19,7 @@ namespace HotelWebApplication.Pages.Hotel.Admin
         {
             this.hotelService = hotelService;
         }
+
 
         [BindProperty]
         public HotelInsertInputDto InputDto { get; set; }

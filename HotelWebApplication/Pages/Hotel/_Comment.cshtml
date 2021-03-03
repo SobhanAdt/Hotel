@@ -13,45 +13,32 @@
 </div>
 <div class="card">
     <h5 class="card-header alert alert-info">نظرات کاربران</h5>
-    <div class="media mb-4 card-body">
-        <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-        <div class="media-body">
-            <h5 class="mt-0">ایمیل کاربر</h5>
-            لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است
 
-            &nbsp;&nbsp;
-            <button type="submit" class="btn btn-outline-info btn-sm" style="text-align: left">پاسخ</button>
-        </div>
+    @{
+        var CommnetItem = Model.Reiviews.Where(w=>w.HotelId==Model.hotel.Id);
+        var CommnetAsnwer = Model.ReiviewAnswers.Where(w=>w.ReviewId==Model.Reiviews.Select(s=>s.Id).FirstOrDefault());
+    }
+    @foreach (var item in CommnetItem)
+    {
+        <div class="media mb-4 card-body">
+            <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+            <div class="media-body">
+                <h5 class="mt-0">@item.UserName</h5>
+                @item.Comment
+                &nbsp;&nbsp;
+                <button type="submit" class="btn btn-outline-info btn-sm" style="text-align: left">پاسخ</button>
+                @foreach (var item2 in CommnetAsnwer)
+                {
+                    <div class="media mt-4">
+                        <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+                        <div class="media-body">
+                            <h5 class="mt-0">@item2.UserName</h5>
+                            @item2.CommentAnswer
+                        </div>
+                    </div>
+                }
 
-    </div>
-@for (int i = 0; i <@Model.hotel.Reviews.Count; i++)
-{
-    <div class="media mb-4">
-        <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-        <div class="media-body">
-            <h5 class="mt-0">@Model.hotel.Reviews.Select(s=>s.UserId)</h5>
-            @Model.hotel.Reviews.Select(s=>s.Comment)
-            &nbsp;&nbsp;
-            <button type="submit" class="btn btn-outline-info btn-sm" style="text-align: left">پاسخ</button>
-            <div class="media mt-4">
-                <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-                <div class="media-body">
-                    <h5 class="mt-0">ایمیل کاربر</h5>
-                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است
-
-                </div>
             </div>
-
-            <div class="media mt-4">
-                <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-                <div class="media-body">
-                    <h5 class="mt-0">ایمیل کاربر</h5>
-                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است
-
-                </div>
-            </div>
-
         </div>
-    </div>
-}
+    }
 </div>

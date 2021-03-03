@@ -30,12 +30,18 @@
 
         @foreach (var item in  ModelItem)
         {
-            <div class="col-lg-2 col-sm-4 mb-4">
-                <img class="img-fluid" src="http://placehold.it/500x300" alt="">
-                <a asp-page="/Hotel/HotelDetail" asp-route-id="@item.Id">
-                    <p>@item.HotelName</p>
-                </a>
+            <div class="col-lg-3 col-sm-4 mb-4">
+                <div class="card">
+                    <p class="card-header" style="text-align: center">
+                        @item.HotelName
+                    </p>
 
+                    <div class="card-body">
+                        <a asp-page="/Hotel/HotelDetail" asp-route-id="@item.Id">
+                            <img class="img-fluid" src="http://placehold.it/500x300" alt="">
+                        </a>
+                    </div>
+                </div>
             </div>
         }
     </div>

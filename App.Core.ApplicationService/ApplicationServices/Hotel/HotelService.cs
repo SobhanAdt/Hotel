@@ -37,23 +37,22 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
             var hotelValidation = await repository.GetQuery().
                 Where(x => x.HotelName == inputDto.HotelName && x.CityId == inputDto.CityId)
                 .FirstOrDefaultAsync();
-
-            if (inputDto.HotelCode == hotelValidation.HotelCode)
+            if (hotelValidation==null)
             {
-                return null;
+                repository.Insert(new Entities.Hotel()
+                {
+                    HotelName = inputDto.HotelName,
+                    HotelCode = inputDto.HotelCode,
+                    CityId = inputDto.CityId,
+                    RoomCount = inputDto.RoomCount,
+                    StarId = inputDto.StarId,
+                    Description = inputDto.Description
+                });
+                await repository.Save();
+                return $" {inputDto.HotelName} Created in DataBase";
             }
 
-            repository.Insert(new Entities.Hotel()
-            {
-                HotelName = inputDto.HotelName,
-                HotelCode = inputDto.HotelCode,
-                CityId = inputDto.CityId,
-                RoomCount = inputDto.RoomCount,
-                StarId = inputDto.StarId,
-                Description = inputDto.Description
-            });
-            await repository.Save();
-            return $" {inputDto.HotelName} Created in DataBase";
+            return "Hmachin Hoteli Vojod dard";
         }
 
 

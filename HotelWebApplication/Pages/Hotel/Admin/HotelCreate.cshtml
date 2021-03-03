@@ -1,0 +1,85 @@
+﻿@page
+@model HotelWebApplication.Pages.Hotel.Admin.HotelCreateModel
+@{ ViewData["Title"] = "افزودن هتل جدید";
+}
+
+<div class="container">
+
+    <!-- Page Heading/Breadcrumbs -->
+    <h1 class="mt-4 mb-3" style="margin-top: 60px">
+        افزودن  هتل
+    </h1>
+
+    <ol class="breadcrumb alert alert-info">
+        <li class="breadcrumb-item">
+            <a href="/">خانه</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a href="/Hotel/Admin/ListHotel">لیست هتل ها</a>
+        </li>
+        <li class="breadcrumb-item active">افزودن هتل</li>
+    </ol>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">ویرایش اطلاعات هتل</div>
+                <div class="card-body">
+                    <form method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                        <label asp-for="InputDto.HotelName">نام هتل</label>
+                        <div class="input-group mb-3">
+
+                            <input type="text" class="form-control" asp-for="InputDto.HotelName" placeholder="نام هتل" aria-label="نام هتل" aria-describedby="basic-addon2">
+                            <span class="input-group-text" id="basic-addon2" asp-validation-for="InputDto.HotelName"></span>
+                        </div>
+
+                        <label asp-for="InputDto.HotelCode">کد هتل</label>
+                        <div class="input-group mb-3">
+
+                            <input type="number" class="form-control" asp-for="InputDto.HotelCode" placeholder="کد هتل" aria-label="کد هتل" aria-describedby="basic-addon2">
+                            <span class="input-group-text" id="basic-addon2" asp-validation-for="InputDto.HotelCode"></span>
+                        </div>
+
+                        <label asp-for="InputDto.RoomCount">تعداد اتاق</label>
+                        <div class="input-group mb-3">
+
+                            <input type="number" class="form-control" asp-for="InputDto.RoomCount" placeholder="تعداد اتاق" aria-label="تعداد اتاق" aria-describedby="basic-addon2">
+                            <span class="input-group-text" id="basic-addon2" asp-validation-for="InputDto.RoomCount"></span>
+                        </div>
+
+                        <label asp-for="InputDto.Description">توضیحات</label>
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text"></span>
+                            <textarea asp-for="InputDto.Description" class="form-control" aria-label=""></textarea>
+                        </div>
+
+                        <label asp-for="InputDto.CityId">شناسه شهر</label>
+                        <div class="input-group mb-3">
+
+                            <input type="number" class="form-control" asp-for="InputDto.CityId" placeholder="شناسه شهر" aria-label="شناسه شهر" aria-describedby="basic-addon2">
+                            <span class="input-group-text" id="basic-addon2" asp-validation-for="InputDto.CityId"></span>
+                        </div>
+
+                        <label asp-for="InputDto.StarId">ستاره هتل</label>
+                        <div class="input-group mb-3">
+
+                            <input type="number" class="form-control" asp-for="InputDto.StarId" placeholder="ستاره هتل" aria-label="ستاره هتل" aria-describedby="basic-addon2">
+                            <span class="input-group-text" id="basic-addon2" asp-validation-for="InputDto.StarId"></span>
+                        </div>
+
+                        <div class="card-footer">
+                            <input type="submit" class="btn btn-outline-success btn-block" value="ثبت" />
+                        </div>
+
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+

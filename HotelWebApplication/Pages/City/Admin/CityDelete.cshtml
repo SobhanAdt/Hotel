@@ -35,16 +35,17 @@
                     <form method="post">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-                        <label asp-for="id">شناسه شهر</label>
+                        <label asp-for="CitySingel.Id">شناسه شهر</label>
                         <div class="input-group mb-3">
 
-                            <input type="number" class="form-control" asp-for="id" placeholder="شناسه شهر" aria-label="شناسه شهر" aria-describedby="basic-addon2">
-                            <span class="input-group-text" id="basic-addon2" asp-validation-for="id"></span>
+                            <input type="number" class="form-control disabled" asp-for="CitySingel.Id" placeholder="شناسه شهر" aria-label="شناسه شهر" aria-describedby="basic-addon2">
+                            <span class="input-group-text" id="basic-addon2" asp-validation-for="CitySingel.Id"></span>
                         </div>
 
                         <div class="card-footer">
                             <input type="submit" class="btn btn-outline-danger btn-block" value=" حذف"/>
                         </div>
+
                     </form>
                 </div>
             </div>

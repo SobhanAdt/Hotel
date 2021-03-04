@@ -25,6 +25,13 @@
                     <form method="post">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
+                        <label asp-for="update.FullName">نام و نام خانوادگی</label>
+                        <div class="input-group mb-3">
+
+                            <input type="password" class="form-control" asp-for="update.FullName" placeholder="نام و نام خانوادگی" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                            <span class="input-group-text" id="basic-addon2" asp-validation-for="update.FullName"></span>
+                        </div>
+
                         <label asp-for="update.Password">رمز عبور</label>
                         <div class="input-group mb-3">
 

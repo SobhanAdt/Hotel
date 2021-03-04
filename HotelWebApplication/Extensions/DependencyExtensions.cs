@@ -13,6 +13,7 @@ using App.Core.ApplicationService.ApplicationServices.UserLogin;
 using App.Core.ApplicationService.IRepositories;
 using App.Core.Entities;
 using App.Infrastucture.EF.Repositories;
+using Hotel.Core.ApplicationService.ApplicationServices.Hotel;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace HotelWebApplication.Extensions
@@ -38,7 +39,7 @@ namespace HotelWebApplication.Extensions
             service.AddScoped<IReviewService, ReviewService>();
             service.AddScoped<IReviewAnswerService, ReviewAnswerService>();
             service.AddScoped<IUserLoginService, UserLoginService>();
-
+            service.AddTransient<IHotelSearchService, HotelSearchService>();
         }
 
         public static void AddRepositories(IServiceCollection service)

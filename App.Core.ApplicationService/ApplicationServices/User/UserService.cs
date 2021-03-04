@@ -115,6 +115,7 @@ namespace App.Core.ApplicationService.ApplicationServices.User
             }
 
             item.Password = updateDto.Password;
+            item.FullName = updateDto.FullName;
             await repository.Save();
             return $"Update Ba Mofaghiyat Anjam Shod";
 

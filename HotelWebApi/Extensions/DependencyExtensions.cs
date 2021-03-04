@@ -13,6 +13,7 @@ using App.Core.ApplicationService.ApplicationServices.UserLogin;
 using App.Core.ApplicationService.IRepositories;
 using App.Core.Entities;
 using App.Infrastucture.EF.Repositories;
+using Hotel.Core.ApplicationService.ApplicationServices.Hotel;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace HotelWebApi.Extensions
@@ -38,6 +39,7 @@ namespace HotelWebApi.Extensions
             service.AddTransient<IReviewService, ReviewService>();
             service.AddTransient<IReviewAnswerService, ReviewAnswerService>();
             service.AddTransient<IUserLoginService, UserLoginService>();
+            service.AddTransient<IHotelSearchService, HotelSearchService>();
 
         }
 
@@ -52,6 +54,7 @@ namespace HotelWebApi.Extensions
             service.AddTransient<IRepository<User>, EfRepository<User>>();
             service.AddTransient<IRepository<UserLogin>, EfRepository<UserLogin>>();
             service.AddTransient<IRepository<UserRate>, EfRepository<UserRate>>();
+          
         }
     }
 }

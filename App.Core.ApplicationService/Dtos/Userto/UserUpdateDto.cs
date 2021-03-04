@@ -6,6 +6,10 @@ namespace App.Core.ApplicationService.Dtos.Userto
     {
         public int Id { get; set; }
 
+        [Display(Name = "نام و نام خانوادگی")]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
+        public string FullName { get; set; }
+
         [Display(Name = "رمز عبور")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         public string Password { get; set; }

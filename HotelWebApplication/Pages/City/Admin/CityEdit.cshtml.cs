@@ -30,5 +30,12 @@ namespace HotelWebApplication.Pages.City.Admin
             await CityService.UpdateCity(CityUpdate);
             return Redirect("/City/Admin/ListCity");
         }
+
+        [BindProperty]
+        public CityOutputDto CitySingel { get; set; }
+        public async Task OnGet(int id)
+        {
+            CitySingel =await CityService.GetSingelCity(id);
+        }
     }
 }

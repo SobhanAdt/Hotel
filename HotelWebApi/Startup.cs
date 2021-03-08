@@ -46,6 +46,17 @@ namespace HotelWebApi
             services.AddDependency();
 
             services.AddControllers();
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(builder =>
+                {
+                    builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader();
+
+                });
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -55,7 +66,7 @@ namespace HotelWebApi
             {
                 app.UseDeveloperExceptionPage();
             }
-            
+
             app.UseSwagger();
 
             app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/Hotel/swagger.json", "Hotel"));
@@ -64,7 +75,10 @@ namespace HotelWebApi
 
             app.UseRouting();
 
+            app.UseCors();
+
             app.UseAuthorization();
+
 
             app.UseMiddleware<CustomExceptionHanddlingMiddleware>();
 

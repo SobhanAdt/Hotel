@@ -28,7 +28,7 @@
                     <button class="btn btn-sm btn-outline-info" id="s">جستجو</button>
                 </div>
                 <div class="col-md-4">
-                    <select class=" form-control" id="country" required="">
+                    <select class=" form-control" id="country" @*required=""*@>
                         <option value="">
                             انتخاب شهر
                         </option>
@@ -36,7 +36,7 @@
                     </select>
                 </div>
                 <div class="col-md-4">
-                    <select class=" form-control" id="country" required="">
+                    <select class=" form-control" id="country" @*required=""*@>
                         <option value="">پنج ستاره</option>
                         <option>چهار ستاره</option>
                         <option>سه ستاره</option>
@@ -119,8 +119,7 @@
         $(function () {
 
             $("#s").click(function () {
-                var input = $("textInputSearch").val();
-                $.get("/HotelSearch?name=" + input, function (data, status) {
+                $.get("https://localhost:44380/HotelSearch?name=" + $("textInputSearch").val(), function (data, status) {
                     document.getElementById("grid").innerHTML = data;
                 });
             });

@@ -19,33 +19,33 @@
     </ol>
 
     <div class="container">
-        <div class="row alert alert-light border">
-            <div class="col-md-3">
-                <input type="text" id="textInputSearch"  class="form-control" placeholder="فیلتر براساس نام هتل" style="" />
-            </div>
-            <div id="xs"></div>
-            <div class="col-md-1">
+        <form>
+            <div class="row alert alert-light border">
+                <div class="col-md-3">
+                    <input type="text" name="filterName" id="textInputSearch" class="form-control" placeholder="فیلتر براساس نام هتل" style="" />
+                </div>
+                <div class="col-md-1">
                     <button class="btn btn-sm btn-outline-info" id="s">جستجو</button>
+                </div>
+                <div class="col-md-4">
+                    <select class=" form-control" id="country" required="">
+                        <option value="">
+                            انتخاب شهر
+                        </option>
+                        <option>نزولی</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <select class=" form-control" id="country" required="">
+                        <option value="">پنج ستاره</option>
+                        <option>چهار ستاره</option>
+                        <option>سه ستاره</option>
+                        <option>دو ستاره</option>
+                        <option>یک ستاره</option>
+                    </select>
+                </div>
             </div>
-            
-            <div class="col-md-4">
-                <select class=" form-control"  id="country" required="">
-                    <option value="">
-                        انتخاب شهر
-                    </option>
-                    <option>نزولی</option>
-                </select>
-            </div>
-            <div class="col-md-4">
-                <select class=" form-control" id="country" required="">
-                    <option value="">پنج ستاره</option>
-                    <option>چهار ستاره</option>
-                    <option>سه ستاره</option>
-                    <option>دو ستاره</option>
-                    <option>یک ستاره</option>
-                </select>
-            </div>
-        </div>
+        </form>
     </div>
 
     <div class="row">
@@ -112,20 +112,20 @@
 
 </div>
 
-@section scripts{ 
+@section scripts{
 
     <script type="text/javascript">
 
-    $(function () {
+        $(function () {
 
-        $("#s").click(function () {
-            var input = $("textInputSearch").val();
-            $.get("/HotelSearch?name=" + input, function (data, status) {
-                document.getElementById("grid").innerHTML = data;
+            $("#s").click(function () {
+                var input = $("textInputSearch").val();
+                $.get("/HotelSearch?name=" + input, function (data, status) {
+                    document.getElementById("grid").innerHTML = data;
+                });
             });
-        });
 
-    });
+        });
 
 
     </script>

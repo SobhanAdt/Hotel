@@ -38,16 +38,11 @@ namespace HotelWebApplication.Pages
 
         [BindProperty]
         public List<HotelGetOutPutDto> Hotels { get; set; }
-        [BindProperty]
-        public List<HotelGetOutPutDto> HotelSearchs { get; set; }
-        public async Task OnGetAsync()
+        public async Task OnGetAsync(string filterName="")
         {
-            Hotels = await hotelService.GetAllHotels();
+            Hotels = await hotelService.GetAllHotels(filterName);
             var cityList = await cityService.GetAllCity();
-            ViewData["CityList"] =
-                new SelectList(cityList, nameof(CityOutputDto.Id), nameof(CityOutputDto.CityName));
 
-            //HotelSearchs = await hotelSearchservice.SearchByHotelName(name);
         }
 
 

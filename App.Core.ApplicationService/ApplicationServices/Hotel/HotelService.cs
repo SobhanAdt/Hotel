@@ -14,6 +14,7 @@ using App.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 using Hotel.Core.ApplicationService.Dtos.HotelDto;
 using AutoMapper;
+using Hotel.Core.ApplicationService.Dtos;
 
 namespace App.Core.ApplicationService.ApplicationServices.Hotel
 {
@@ -35,10 +36,10 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
         public async Task<string> Create(HotelInsertInputDto inputDto)
         {
             var hotelValidation = await repository.GetQuery().
-                Include(i=>i.City)
+                Include(i => i.City)
                 .Where(x => x.HotelName == inputDto.HotelName && x.CityId == inputDto.CityId)
                 .FirstOrDefaultAsync();
-            if (hotelValidation==null)
+            if (hotelValidation == null)
             {
                 repository.Insert(new Entities.Hotel()
                 {
@@ -57,7 +58,7 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
         }
 
 
-        public async Task<List<HotelGetOutPutDto>> GetAllHotels()
+        public async Task<List<HotelGetOutPutDto>> GetAllHotels(string filterName = "")
         {
             var lst = repository.GetQuery()
                 .Include(x => x.Reviews);
@@ -100,6 +101,13 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
                 }
             }
 
+            if (!string.IsNullOrEmpty(filterName))
+            {
+                ListHotel = ListHotel.Where(w => w.HotelName.Contains(filterName)).ToList();
+            }
+
+          
+
 
             return ListHotel;
 
@@ -111,7 +119,7 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
             {
                 var item = await repository.GetQuery()
                     .Include(x => x.Reviews)
-                    .Include(i=>i.City)
+                    .Include(i => i.City)
                     .Where(x => x.Id == id).FirstOrDefaultAsync();
 
                 var userRate = userRateRepository.GetQuery()

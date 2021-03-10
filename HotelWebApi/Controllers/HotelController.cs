@@ -8,6 +8,7 @@ using App.Core.ApplicationService.ApplicationServices.UserLogin;
 using App.Core.ApplicationService.Dtos.HotelDto;
 using App.Core.ApplicationService.IRepositories;
 using App.Core.Entities;
+using Hotel.Core.ApplicationService.ApplicationServices.Hotel;
 using Hotel.Core.ApplicationService.Dtos.HotelDto;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -23,10 +24,12 @@ namespace HotelWebApi.Controllers
     public class HotelController : ControllerBase
     {
         private IHotelService service;
-
-        public HotelController(IHotelService service)
+        private IHotelSearchService searchService;
+        public HotelController(IHotelService service,
+            IHotelSearchService searchService)
         {
             this.service = service;
+            this.searchService = searchService;
         }
 
         [HttpGet]
@@ -120,6 +123,17 @@ namespace HotelWebApi.Controllers
             {
                 var top = service.GetTopHotelRate();
                 return Ok(top);
+            }
+
+            return BadRequest();
+        }
+        [HttpGet]
+        public async Task<IActionResult> HotelSearch([FromQuery]string name)
+        {
+            if (ModelState.IsValid)
+            {
+                var search = await searchService.SearchByHotelName(name);
+                return Ok(search);
             }
 
             return BadRequest();

@@ -21,11 +21,13 @@
     <div class="container">
         <div class="row alert alert-light border">
             <div class="col-md-3">
-                <input type="text"  class="form-control" placeholder="فیلتر براساس نام هتل" style="" />
+                <input type="text" id="textInputSearch"  class="form-control" placeholder="فیلتر براساس نام هتل" style="" />
             </div>
+            <div id="xs"></div>
             <div class="col-md-1">
-                <button class="btn btn-sm btn-outline-info" onchange="Serach()">جستجو</button>
+                    <button class="btn btn-sm btn-outline-info" id="s">جستجو</button>
             </div>
+            
             <div class="col-md-4">
                 <select class=" form-control"  id="country" required="">
                     <option value="">
@@ -112,12 +114,21 @@
 
 @section scripts{ 
 
-<script type="text/javascript">
-    function Serach() {
-        
-    }
+    <script type="text/javascript">
 
-</script>
+    $(function () {
+
+        $("#s").click(function () {
+            var input = $("textInputSearch").val();
+            $.get("/HotelSearch?name=" + input, function (data, status) {
+                document.getElementById("grid").innerHTML = data;
+            });
+        });
+
+    });
+
+
+    </script>
 
 }
 

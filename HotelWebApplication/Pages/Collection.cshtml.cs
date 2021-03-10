@@ -8,6 +8,7 @@ using App.Core.ApplicationService.ApplicationServices.Rate;
 using App.Core.ApplicationService.Dtos.CityDto;
 using App.Core.ApplicationService.Dtos.HotelDto;
 using App.Core.ApplicationService.Dtos.StarDto;
+using Hotel.Core.ApplicationService.ApplicationServices.Hotel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -19,29 +20,36 @@ namespace HotelWebApplication.Pages
         private readonly IHotelService hotelService;
         private readonly ICityService cityService;
         private readonly IStarService starService;
+        private readonly IHotelSearchService hotelSearchservice;
 
         public CollectionModel(IHotelService hotelService,
             ICityService cityService,
-            IStarService starService)
+            IStarService starService,
+            IHotelSearchService hotelSearchservice
+            )
         {
             this.hotelService = hotelService;
             this.cityService = cityService;
             this.starService = starService;
+            this.hotelSearchservice = hotelSearchservice;
         }
+        [BindProperty]
+        public string name { get; set; }
 
         [BindProperty]
         public List<HotelGetOutPutDto> Hotels { get; set; }
-
-       
-
+        [BindProperty]
+        public List<HotelGetOutPutDto> HotelSearchs { get; set; }
         public async Task OnGetAsync()
         {
-            Hotels =await hotelService.GetAllHotels();
-            var cityList =await cityService.GetAllCity();
-            ViewData["CityList"] = 
+            Hotels = await hotelService.GetAllHotels();
+            var cityList = await cityService.GetAllCity();
+            ViewData["CityList"] =
                 new SelectList(cityList, nameof(CityOutputDto.Id), nameof(CityOutputDto.CityName));
+
+            //HotelSearchs = await hotelSearchservice.SearchByHotelName(name);
         }
 
-        
+
     }
 }

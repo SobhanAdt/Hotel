@@ -24,7 +24,7 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
 
         Task<List<HotelGetOutPutDto>> fourNewInsertHotel();
 
-        Task<List<HotelGetOutPutDto>> HotelCompare(HotelCompareInputDto input);
+        List<HotelGetOutPutDto> HotelCompare(HotelCompareInputDto input);
 
         Task<FaivoriteHotel> FavoriteUser(HotelGetOutPutDto getOutPutDto);
 

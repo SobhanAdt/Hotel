@@ -35,8 +35,7 @@ namespace HotelWebApplication.Pages
         }
         [BindProperty]
         public string name { get; set; }
-        [BindProperty]
-        public List<SelectListItem> StarOption { get; set; }
+     
 
         [BindProperty]
         public List<HotelGetOutPutDto> Hotels { get; set; }
@@ -46,11 +45,10 @@ namespace HotelWebApplication.Pages
            // var cityList = await cityService.GetAllCity();
             var stars = await starService.GetAllStar();
 
-            StarOption = stars.Select(x => new SelectListItem()
-            {
-                Text = "” «—Â" + x.StarNumber.ToString(),
-                Value = x.Id.ToString()
-            }).ToList();
+            var selectList = new SelectList(stars, nameof(StarOutputDto.Id), nameof(StarOutputDto.StarNumberDisplay));
+
+            ViewData["StartNumbersList"] = selectList;
+
         }
 
 

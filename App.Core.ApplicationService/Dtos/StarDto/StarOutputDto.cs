@@ -12,5 +12,11 @@ namespace App.Core.ApplicationService.Dtos.StarDto
 
 
         public List<HotelDTO> Hotels { get; set; }
+        public string StarNumberDisplay { 
+            get
+            {
+                return "ستاره" + StarNumber.ToString();
+            } 
+        }
     }
 }

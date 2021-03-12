@@ -36,16 +36,8 @@
                     </select>
                 </div>
                 <div class="col-md-4">
-                    <select name="stars" asp-items="Model.StarOption"></select>
+                    <select name="stars" asp-items="ViewBag.StartNumbersList"></select>
 
-                    <!--<select class=" form-control" id="country"--> @*required=""*@
-                    <!-->
-        <option >پنج ستاره</option>
-        <option >چهار ستاره</option>
-        <option>سه ستاره</option>
-        <option>دو ستاره</option>
-        <option>یک ستاره</option>
-    </select>-->
                 </div>
             </div>
         </form>
@@ -125,7 +117,7 @@
         $(function(){
 
             $("#s").click(function(){
-                $.get("https://localhost:44380/hotel/HotelSearch?name=" + $("textInputSearch").val(), function (data, status) {
+                $.get("https://localhost:44380/hotel/HotelSearch?name=" + $("#textInputSearch").val(), function (data, status) {
                     console.log(data);
                     document.getElementById("grid").innerHTML = data;
                 });

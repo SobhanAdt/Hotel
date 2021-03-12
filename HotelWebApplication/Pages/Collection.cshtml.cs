@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -48,7 +48,7 @@ namespace HotelWebApplication.Pages
 
             StarOption = stars.Select(x => new SelectListItem()
             {
-                Text = "ÓÊÇÑå" + x.StarNumber.ToString(),
+                Text = "Ø³ØªØ§Ø±Ù‡" + x.StarNumber.ToString(),
                 Value = x.Id.ToString()
             }).ToList();
         }

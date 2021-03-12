@@ -35,14 +35,22 @@ namespace HotelWebApplication.Pages
         }
         [BindProperty]
         public string name { get; set; }
+        [BindProperty]
+        public List<SelectListItem> StarOption { get; set; }
 
         [BindProperty]
         public List<HotelGetOutPutDto> Hotels { get; set; }
         public async Task OnGetAsync(string filterName="")
         {
             Hotels = await hotelService.GetAllHotels(filterName);
-            var cityList = await cityService.GetAllCity();
+           // var cityList = await cityService.GetAllCity();
+            var stars = await starService.GetAllStar();
 
+            StarOption = stars.Select(x => new SelectListItem()
+            {
+                Text = "” «—Â" + x.StarNumber.ToString(),
+                Value = x.Id.ToString()
+            }).ToList();
         }
 
 

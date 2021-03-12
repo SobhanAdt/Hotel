@@ -36,19 +36,22 @@
                     </select>
                 </div>
                 <div class="col-md-4">
-                    <select class=" form-control" id="country" @*required=""*@>
-                        <option value="">پنج ستاره</option>
-                        <option>چهار ستاره</option>
-                        <option>سه ستاره</option>
-                        <option>دو ستاره</option>
-                        <option>یک ستاره</option>
-                    </select>
+                    <select name="stars" asp-items="Model.StarOption"></select>
+
+                    <!--<select class=" form-control" id="country"--> @*required=""*@
+                    <!-->
+        <option >پنج ستاره</option>
+        <option >چهار ستاره</option>
+        <option>سه ستاره</option>
+        <option>دو ستاره</option>
+        <option>یک ستاره</option>
+    </select>-->
                 </div>
             </div>
         </form>
     </div>
 
-    <div class="row">
+    <div id="grid" class="row">
         @for (int i = 0; i < Model.Hotels.Count; i++)
         {
             <div class="col-lg-4 col-sm-6 portfolio-item">
@@ -75,7 +78,10 @@
                         <a asp-page="Hotel/HotelDetail" asp-route-id="@Model.Hotels[i].Id">
                             <button class="btn btn-sm btn-outline-info">ادامه مطلب</button>
                         </a>
-                        <button class="btn btn-sm btn-outline-danger">مقایسه</button>
+                        <a asp-page="Hotel/HotelsCompare" asp-route-id="@Model.Hotels[i].Id" >
+                            <button class="btn btn-sm btn-outline-danger">مقایسه</button>
+                        </a>
+                       
                     </div>
                 </div>
             </div>
@@ -114,16 +120,18 @@
 
 @section scripts{
 
-    <script type="text/javascript">
+    <script>
 
-        $(function () {
+        $(function(){
 
-            $("#s").click(function () {
-                $.get("https://localhost:44380/HotelSearch?name=" + $("textInputSearch").val(), function (data, status) {
+            $("#s").click(function(){
+                $.get("https://localhost:44380/hotel/HotelSearch?name=" + $("textInputSearch").val(), function (data, status) {
+                    console.log(data);
                     document.getElementById("grid").innerHTML = data;
                 });
             });
 
+     
         });
 
 

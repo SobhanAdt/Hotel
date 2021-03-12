@@ -19,12 +19,12 @@ namespace App.Core.ApplicationService.ApplicationServices.Rate
             this.repository = repository;
         }
 
-        public async Task<List<StarOutputDto>> GetAllStar()
+        public  Task<List<StarOutputDto>> GetAllStar()
         {
             var lstItem = repository.GetQuery().Include(x => x.Hotels);
 
 
-            var ListStar = await lstItem.Select(x => new StarOutputDto()
+            var ListStar =  lstItem.Select(x => new StarOutputDto()
             {
                 Id = x.Id,
                 StarNumber = x.StarNumber,

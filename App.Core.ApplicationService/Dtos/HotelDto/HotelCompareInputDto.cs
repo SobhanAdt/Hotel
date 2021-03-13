@@ -6,6 +6,6 @@ namespace Hotel.Core.ApplicationService.Dtos.HotelDto
 {
    public class HotelCompareInputDto
     {
-        public List<string> Hotels { get; set; }
+        public List<int> Hotels { get; set; }
     }
 }

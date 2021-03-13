@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using App.Core.ApplicationService.ApplicationServices.Hotel;
+using App.Core.ApplicationService.Dtos.HotelDto;
 using Hotel.Core.ApplicationService.Dtos.HotelDto;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -20,10 +21,10 @@ namespace HotelWebApplication.Pages.Hotel
         }
 
         [BindProperty]
-        public HotelCompareInputDto Compare { get; set; }
-        public  void OnGet()
+        public List<HotelGetOutPutDto> Compare { get; set; }
+        public  void OnGet(HotelCompareInputDto input)
         {
-            Compare = _hotelService.HotelCompare();
+            Compare = _hotelService.HotelCompare(input);
         }
     }
 }

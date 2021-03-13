@@ -23,8 +23,13 @@
                         @Model.ListNewHotel[i].RoomCount
                     </p>
                 </div>
-                <div class="card-footer">
-                    <a asp-page="/Hotel/HotelDetail" asp-route-id="@Model.ListNewHotel[i].Id" class="btn btn-outline-info">ادامه مطلب</a>
+                <div class=" card-footer">
+                    <a asp-page="Hotel/HotelDetail" asp-route-id="@Model.ListNewHotel[i].Id">
+                        <button class="btn btn-sm btn-outline-info">ادامه مطلب</button>
+                    </a>
+                    <a asp-page="Hotel/Compare" asp-route-id="@Model.ListNewHotel[i].Id" >
+                        <button class="btn btn-sm btn-outline-danger">مقایسه</button>
+                    </a>
                 </div>
             </div>
         </div>

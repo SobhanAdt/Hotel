@@ -21,42 +21,28 @@
 
     <!-- Content Row -->
     <div class="row">
-        <div class="col-lg-6 mb-6">
-            <div class="card card-outline-primary h-100">
-                <h3 class="card-header bg-secondary">نام هتل</h3>
-                <div class="card-body">
-                    <div class="display-4">
-                        <a href="/HotelDetail"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+        @foreach (var item in Model.Compare)
+        {
+            <div class="col-lg-4 mb-4">
+                <div class="card card-outline-primary h-100">
+                    <h3 class="card-header bg-secondary">@item.HotelName</h3>
+                    <div class="card-body">
+                        <div class="display-4">
+                            <a href="/HotelDetail"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+                        </div>
                     </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">@item.CityName</li>
+                        <li class="list-group-item">@item.Rate</li>
+                        <li class="list-group-item">@item.RoomCount</li>
+                        <li class="list-group-item">@item.Description</li>
+                        <li class="list-group-item card-footer">
+                            <a asp-page="HotelDetail" class="btn btn-primary">ادامه مطلب!</a>
+                        </li>
+                    </ul>
                 </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Cras justo odio</li>
-                    <li class="list-group-item">Dapibus ac facilisis in</li>
-                    <li class="list-group-item">Vestibulum at eros</li>
-                    <li class="list-group-item card-footer">
-                        <a href="#" class="btn btn-primary">ادامه مطلب!</a>
-                    </li>
-                </ul>
             </div>
-        </div>
-        <div class="col-lg-6 mb-6">
-            <div class="card card-outline-primary h-100">
-                <h3 class="card-header bg-secondary">نام هتل</h3>
-                <div class="card-body">
-                    <div class="display-4">
-                        <a href="/HotelDetail"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-                    </div>
-                </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Cras justo odio</li>
-                    <li class="list-group-item">Dapibus ac facilisis in</li>
-                    <li class="list-group-item">Vestibulum at eros</li>
-                    <li class="list-group-item card-footer">
-                        <a href="#" class="btn btn-primary">ادامه مطلب!</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+        }
 
     </div>
     <!-- /.row -->

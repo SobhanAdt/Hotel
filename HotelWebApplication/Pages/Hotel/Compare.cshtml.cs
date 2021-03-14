@@ -22,11 +22,11 @@ namespace HotelWebApplication.Pages.Hotel
 
         [BindProperty]
         public List<HotelGetOutPutDto> Compare { get; set; }
-        public  void OnGet(int id)
+        public async Task OnGetAsync(int id)
         {
-            var test = new HotelCompareInputDto();
-            test.Hotels.Add(id);
-            Compare = _hotelService.HotelCompare(test);
+            var input =new HotelCompareInputDto();
+            input.Hotels.Add(id);
+            Compare = _hotelService.HotelCompare(input);
         }
     }
 }

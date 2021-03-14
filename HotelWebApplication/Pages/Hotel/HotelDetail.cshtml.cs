@@ -50,5 +50,19 @@ namespace HotelWebApplication.Pages
 
             ReiviewAnswers = await reviewAnswer.GetAllReviews();
         }
+
+
+        public ReviewInsertInputDto InsertReview { get; set; }
+        public async Task<IActionResult> OnPostAsync()
+        {
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+
+            await reviewService.Create(InsertReview, 1);
+
+            return Redirect("/Hotel/HotelDetail" + InsertReview.HotelId);
+        }
     }
 }

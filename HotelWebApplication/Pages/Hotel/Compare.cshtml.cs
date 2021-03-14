@@ -25,6 +25,7 @@ namespace HotelWebApplication.Pages.Hotel
         public async Task OnGetAsync(int id)
         {
             var input =new HotelCompareInputDto();
+            input.Hotels=new List<int>();
             input.Hotels.Add(id);
             Compare = _hotelService.HotelCompare(input);
         }

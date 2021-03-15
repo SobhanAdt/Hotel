@@ -37,7 +37,7 @@
                         <li class="list-group-item">@item.RoomCount</li>
                         <li class="list-group-item">@item.Description</li>
                         <li class="list-group-item card-footer">
-                            <a asp-page="HotelDetail" class="btn btn-primary">ادامه مطلب!</a>
+                            <a asp-page="HotelDetail" asp-route-id="@item.Id" class="btn btn-primary">ادامه مطلب!</a>
                         </li>
                     </ul>
                 </div>

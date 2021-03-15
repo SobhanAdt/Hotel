@@ -236,9 +236,9 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
         public List<HotelGetOutPutDto> HotelCompare(HotelCompareInputDto input)
         {
             var HotelCompare = new List<HotelGetOutPutDto>();
-            for (int i = 0; i <= input.Hotels.Count; i++)
+            for (int i = 0; i < input.Hotels.Count; i++)
             {
-                if (i<=3)
+                if (i<3)
                 {
                     var Hotel = repository.GetQuery().Where(x => x.Id == input.Hotels[i]).FirstOrDefault();
 

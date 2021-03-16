@@ -51,15 +51,6 @@ namespace HotelWebApplication.Pages
 
         }
 
-        public async Task<IActionResult> OnPostAsync()
-        {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
-
-            return RedirectToPage();
-        } 
 
     }
 }

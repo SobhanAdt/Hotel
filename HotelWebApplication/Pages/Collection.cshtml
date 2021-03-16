@@ -27,6 +27,7 @@
                 <div class="col-md-1">
                     <button class="btn btn-sm btn-outline-info" id="s">جستجو</button>
                 </div>
+
                 <div class="col-md-4">
                     <select class=" form-control" id="country" @*required=""*@>
                         <option value="">
@@ -70,9 +71,9 @@
                         <a asp-page="Hotel/HotelDetail" asp-route-id="@Model.Hotels[i].Id">
                             <button class="btn btn-sm btn-outline-info">ادامه مطلب</button>
                         </a>
-                        <a asp-page="Hotel/Compare" asp-route-id="@Model.Hotels[i].Id" >
+                        <a asp-page="Hotel/Compare" asp-route-id="@Model.Hotels[i].Id">
                             <div class="form-check form-switch">
-                                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                                <input class="form-check-input" type="checkbox" name="SelectCompare" id="flexSwitchCheckDefault">
                                 <label class="form-check-label text-danger" for="flexSwitchCheckDefault">مقایسه</label>
                             </div>
                         </a>
@@ -81,9 +82,15 @@
             </div>
         }
 
+
     </div>
 
-
+    <div class="col-md-12">
+        <div class="">
+            <button class="btn btn-block btn-outline-danger" id="s">لیست مقایسه</button>
+        </div>
+    </div>
+    <br />
     <!-- Pagination -->
     <ul class="pagination justify-content-center">
         <li class="page-item">
@@ -116,16 +123,16 @@
 
     <script>
 
-        $(function(){
+        $(function () {
 
-            $("#s").click(function(){
+            $("#s").click(function () {
                 $.get("https://localhost:44380/hotel/HotelSearch?name=" + $("#textInputSearch").val(), function (data, status) {
                     console.log(data);
                     document.getElementById("grid").innerHTML = data;
                 });
             });
 
-     
+
         });
 
 

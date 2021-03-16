@@ -71,7 +71,10 @@
                             <button class="btn btn-sm btn-outline-info">ادامه مطلب</button>
                         </a>
                         <a asp-page="Hotel/Compare" asp-route-id="@Model.Hotels[i].Id" >
-                            <button class="btn btn-sm btn-outline-danger">مقایسه</button>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                                <label class="form-check-label text-danger" for="flexSwitchCheckDefault">مقایسه</label>
+                            </div>
                         </a>
                     </div>
                 </div>

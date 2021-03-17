@@ -33,9 +33,7 @@ namespace HotelWebApplication.Pages
             this.starService = starService;
             this.hotelSearchservice = hotelSearchservice;
         }
-        [BindProperty]
-        public string name { get; set; }
-     
+
 
         [BindProperty]
         public List<HotelGetOutPutDto> Hotels { get; set; }

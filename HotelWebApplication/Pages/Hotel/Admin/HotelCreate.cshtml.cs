@@ -19,7 +19,7 @@ namespace HotelWebApplication.Pages.Hotel.Admin
         {
             this.hotelService = hotelService;
         }
-
+        //
 
         [BindProperty]
         public HotelInsertInputDto InputDto { get; set; }

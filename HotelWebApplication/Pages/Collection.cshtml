@@ -71,12 +71,59 @@
                         <a asp-page="Hotel/HotelDetail" asp-route-id="@Model.Hotels[i].Id">
                             <button class="btn btn-sm btn-outline-info">ادامه مطلب</button>
                         </a>
-                        <a asp-page="Hotel/Compare" asp-route-id="@Model.Hotels[i].Id">
-                            <div class="form-check form-switch">
-                                <input class="form-check-input" type="checkbox" name="SelectCompare" id="flexSwitchCheckDefault">
-                                <label class="form-check-label text-danger" for="flexSwitchCheckDefault">مقایسه</label>
+
+                        <div class="container">
+                            <button class="btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#myModal">مقایسه</button>
+                            <div class="modal fade" id="myModal" role="dialog">
+
+                                <div class="modal-dialog">
+
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row justify-content-center">
+                                                <div class="col-md-8">
+                                                    <div class="card">
+                                                        <div class="card-header">مقایسه هتل ها</div>
+                                                        <div class="card-body">
+                                                            <form action="/Hotel/Compare" target="_blank">
+                                                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                                                                <label for="name1">نام هتل شماره1 </label>
+                                                                <div class="input-group mb-3">
+
+                                                                    <input type="text" class="form-control fixed-value" id="name1" name="name1" placeholder="@Model.Hotels[i].HotelName " aria-label="Recipient's username" aria-describedby="basic-addon2" value="@Model.Hotels[i].HotelName" readonly>
+                                                                </div>
+
+                                                                <label for="name2">نام هتل شماره 2</label>
+                                                                <div class="input-group mb-3">
+
+                                                                    <input type="text" class="form-control fixed-value" id="name2" name="name2" placeholder="نام هتل شماره 2" aria-label="Recipient's username" aria-describedby="basic-addon2" value="">
+
+                                                                </div>
+
+                                                                <div class="card-footer">
+                                                                    <input type="submit" value="مقایسه">
+                                                                </div>
+
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+
+                                </div>
+
                             </div>
-                        </a>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -85,11 +132,6 @@
 
     </div>
 
-    <div class="col-md-12">
-        <div class="">
-            <button class="btn btn-block btn-outline-danger" id="s">لیست مقایسه</button>
-        </div>
-    </div>
     <br />
     <!-- Pagination -->
     <ul class="pagination justify-content-center">
@@ -119,7 +161,7 @@
 
 </div>
 
-@section scripts{
+@*@section scripts{
 
     <script>
 
@@ -137,6 +179,7 @@
 
 
     </script>
-
-}
+}*@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 

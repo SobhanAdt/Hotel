@@ -240,7 +240,7 @@ namespace App.Core.ApplicationService.ApplicationServices.Hotel
             {
                 if (i<3)
                 {
-                    var Hotel = repository.GetQuery().Where(x => x.Id == input.Hotels[i]).FirstOrDefault();
+                    var Hotel = repository.GetQuery().Where(x => x.HotelName == input.Hotels[i]).FirstOrDefault();
 
                     var userRate = userRateRepository.GetQuery()
                         .Where(w => w.HotelId == Hotel.Id)

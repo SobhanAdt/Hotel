@@ -25,7 +25,7 @@
     <div class="row">
 
         <div class="col-md-8">
-            <img class="img-fluid" src="http://placehold.it/750x500" alt="">
+            <img class="img-fluid" src="/Image/overview-photo-image.jpg" alt="">
             <partial name="_Comment" />
         </div>
 
@@ -66,7 +66,7 @@
         @foreach (var item in @Model.TopHotel)
         {<div class="col-md-2 col-sm-6 mb-4">
                 <a href="#">
-                    <img class="img-fluid" src="http://placehold.it/500x300" alt="">
+                    <img class="img-fluid" src="/Image/overview-photo-image.jpg" alt="">
                     <a asp-page="/Hotel/HotelDetail" asp-route-id="@item.Id">
                         <p>@item.HotelName</p>
                     </a>

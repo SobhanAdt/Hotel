@@ -9,6 +9,8 @@ namespace App.Core.Entities
 
         public string FullName { get; set; }
 
+        public string UserName { get; set; }
+
         public string Email { get; set; }
 
         public string Password { get; set; }
@@ -16,13 +18,13 @@ namespace App.Core.Entities
 
         #region  Relation
 
-        public List<UserLogin> UserLogins { get; set; }
+        public virtual List<UserLogin> UserLogins { get; set; }
 
-        public List<Review> Reviews { get; set; }
+        public virtual List<Review> Reviews { get; set; }
 
-        public List<ReviewAnswer> ReviewAnswers { get; set; }
+        public virtual List<ReviewAnswer> ReviewAnswers { get; set; }
 
-        public List<UserRate> UserRates { get; set; }
+        public virtual List<UserRate> UserRates { get; set; }
 
         #endregion
     }

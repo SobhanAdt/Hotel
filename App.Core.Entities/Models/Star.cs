@@ -11,7 +11,7 @@ namespace App.Core.Entities
 
         #region MyRegion
 
-        public List<Hotel> Hotels { get; set; }
+        public virtual List<Hotel> Hotels { get; set; }
 
 
         #endregion

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using App.Core.ApplicationService.IRepositories;
 
 namespace App.Core.Entities
@@ -22,15 +23,17 @@ namespace App.Core.Entities
 
         #region Navigation
 
-        public City City { get; set; }
+        [ForeignKey("CityId")]
+        public virtual City City { get; set; }
 
-        public Star Star { get; set; }
+        [ForeignKey("StarId")]
+        public virtual Star Star { get; set; }
 
-        public List<Review> Reviews { get; set; }
+        public virtual List<Review> Reviews { get; set; }
 
-        public List<Room> Rooms { get; set; }
+        public virtual List<Room> Rooms { get; set; }
 
-        public List<UserRate> UserRates { get; set; }
+        public virtual List<UserRate> UserRates { get; set; }
 
         #endregion
     }

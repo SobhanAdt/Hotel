@@ -1,4 +1,5 @@
 ﻿@page
+@using System.Security.Principal
 @model HotelWebApplication.Pages.User.UserLoginModel
 @{ ViewData["Title"] = "ورود";
 }
@@ -24,22 +25,26 @@
                     <form method="post">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-                        <label asp-for="login.Email">ایمیل</label>
+                        <label asp-for="Input.Email">ایمیل</label>
                         <div class="input-group mb-3">
 
-                            <input type="text" class="form-control" asp-for="login.Email" placeholder="ایمیل" aria-label="ایمیل" aria-describedby="basic-addon2">
-                            <span class="input-group-text" id="basic-addon2" asp-validation-for="login.Email"></span>
+                            <input type="text" class="form-control" asp-for="Input.Email" placeholder="ایمیل" aria-label="ایمیل" aria-describedby="basic-addon2">
+                            <span class="input-group-text" id="basic-addon2" asp-validation-for="Input.Email"></span>
                         </div>
 
-                        <label asp-for="login.Password">رمز عبور</label>
+                        <label asp-for="Input.Password">رمز عبور</label>
                         <div class="input-group mb-3">
 
-                            <input type="password" class="form-control" asp-for="login.Password" placeholder="رمز عبور" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                            <span class="input-group-text" id="basic-addon2" asp-validation-for="login.Password"></span>
+                            <input type="password" class="form-control" asp-for="Input.Password" placeholder="رمز عبور" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                            <span class="input-group-text" id="basic-addon2" asp-validation-for="Input.Password"></span>
                         </div>
+                        <label asp-for="Input.RememberMe">مرا بخاطر بسپار</label>
+                        <div class="input-group mb-3">
 
+                            <input type="checkbox" class="form-control" asp-for="Input.RememberMe" placeholder="مرا بخاطر بسپار" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                        </div>
                         <div class="card-footer">
-                            <input type="submit" class="btn btn-outline-success btn-block" value="ورود" />
+                            <input type="submit" class="btn btn-outline-success btn-block" value="ورود"/>
                         </div>
 
 

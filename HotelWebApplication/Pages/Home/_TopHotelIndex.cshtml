@@ -28,56 +28,55 @@
                         <a asp-page="Hotel/HotelDetail" asp-route-id="@Model.ListTopHotel[i].Id">
                             <button class="btn btn-sm btn-outline-info">ادامه مطلب</button>
                         </a>
-                        <div class="container">
-                            <button class="btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#myModal">مقایسه</button>
-                            <div class="modal fade" id="myModal" role="dialog">
 
-                                <div class="modal-dialog">
+                        <button class="btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#myModal">مقایسه</button>
+                        <div class="modal fade" id="myModal" role="dialog">
 
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="row justify-content-center">
-                                                <div class="col-md-8">
-                                                    <div class="card">
-                                                        <div class="card-header">مقایسه هتل ها</div>
-                                                        <div class="card-body">
-                                                            <form action="/Hotel/Compare" target="_blank">
-                                                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="modal-dialog">
 
-                                                                <label for="name1">نام هتل شماره1 </label>
-                                                                <div class="input-group mb-3">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="row justify-content-center">
+                                            <div class="col-md-8">
+                                                <div class="card">
+                                                    <div class="card-header">مقایسه هتل ها</div>
+                                                    <div class="card-body">
+                                                        <form action="/Hotel/Compare" target="_blank">
+                                                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-                                                                    <input type="text" class="form-control fixed-value" id="name1" name="name1" placeholder="نام هتل شماره 1 " aria-label="Recipient's username" aria-describedby="basic-addon2" value="" >
-                                                                </div>
+                                                            <label for="name1">نام هتل شماره1 </label>
+                                                            <div class="input-group mb-3">
 
-                                                                <label for="name2">نام هتل شماره 2</label>
-                                                                <div class="input-group mb-3">
+                                                                <input type="text" class="form-control fixed-value" id="name1" name="name1" placeholder="نام هتل شماره 1 " aria-label="Recipient's username" aria-describedby="basic-addon2" value="">
+                                                            </div>
 
-                                                                    <input type="text" class="form-control fixed-value" id="name2" name="name2" placeholder="نام هتل شماره 2" aria-label="Recipient's username" aria-describedby="basic-addon2" value="">
+                                                            <label for="name2">نام هتل شماره 2</label>
+                                                            <div class="input-group mb-3">
 
-                                                                </div>
+                                                                <input type="text" class="form-control fixed-value" id="name2" name="name2" placeholder="نام هتل شماره 2" aria-label="Recipient's username" aria-describedby="basic-addon2" value="">
 
-                                                                <div class="card-footer">
-                                                                    <input type="submit" value="مقایسه">
-                                                                </div>
+                                                            </div>
 
-                                                            </form>
-                                                        </div>
+                                                            <div class="card-footer">
+                                                                <input type="submit" value="مقایسه">
+                                                            </div>
+
+                                                        </form>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                        </div>
                                     </div>
-
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    </div>
                                 </div>
 
                             </div>
+
                         </div>
                     </div>
                 </div>

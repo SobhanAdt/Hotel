@@ -1,4 +1,5 @@
-﻿using App.Core.ApplicationService.IRepositories;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using App.Core.ApplicationService.IRepositories;
 
 namespace App.Core.Entities
 {
@@ -19,7 +20,8 @@ namespace App.Core.Entities
 
         #region Relation
 
-        public Hotel Hotel { get; set; }
+        [ForeignKey("HotelId")]
+        public virtual Hotel Hotel { get; set; }
 
         #endregion
     }

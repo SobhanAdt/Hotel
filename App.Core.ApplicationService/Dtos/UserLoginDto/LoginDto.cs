@@ -14,6 +14,10 @@ namespace App.Core.ApplicationService.Dtos.UserLoginDto
 
         [Display(Name = "رمز عبور")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
+
+        [Display(Name = "مرا بخاطر بسیپار")]
+        public bool RememberMe { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Reflection.Metadata;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Reflection.Metadata;
 using App.Core.ApplicationService.IRepositories;
 
 namespace App.Core.Entities
@@ -15,10 +16,11 @@ namespace App.Core.Entities
 
         #region Relation
 
-        public User User { get; set; }
+        [ForeignKey("UserId")]
+        public virtual User User { get; set; }
 
-
-        public Review Review { get; set; }
+        [ForeignKey("ReviewId")]
+        public virtual Review Review { get; set; }
 
         #endregion
     }

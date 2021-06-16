@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using App.Core.ApplicationService.IRepositories;
 
 namespace App.Core.Entities
@@ -15,9 +16,11 @@ namespace App.Core.Entities
 
         #region Navigation
 
-        public User User { get; set; }
+        [ForeignKey("UserId")]
+        public virtual User User { get; set; }
 
-        public Hotel Hotel { get; set; }
+        [ForeignKey("HotelId")]
+        public virtual Hotel Hotel { get; set; }
 
         #endregion
     }

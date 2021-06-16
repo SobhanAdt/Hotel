@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using App.Core.ApplicationService.IRepositories;
 
 namespace App.Core.Entities
@@ -16,11 +17,13 @@ namespace App.Core.Entities
 
         #region Relation
 
-        public User User { get; set; }
+        [ForeignKey("UserId")]
+        public virtual User User { get; set; }
 
-        public Hotel Hotel { get; set; }
+        [ForeignKey("HotelId")]
+        public virtual Hotel Hotel { get; set; }
 
-        public List<ReviewAnswer> ReviewAnswers { get; set; }
+        public virtual List<ReviewAnswer> ReviewAnswers { get; set; }
 
         #endregion
     }

@@ -17,7 +17,10 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.JSInterop;
 using HotelWebApplication.Middleware;
 using System.Reflection;
+using App.Core.Entities;
 using AutoMapper;
+using Hotel.Core.Entities.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace HotelWebApplication
 {
@@ -38,6 +41,11 @@ namespace HotelWebApplication
 
             services.AddDependency();
             services.AddAutoMapper(Assembly.GetAssembly(typeof(MapperConfiguration)));
+
+            services.AddAspNetIdentity();
+
+            services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<HotelDbContext>();
+
             services.AddRazorPages();
         }
 

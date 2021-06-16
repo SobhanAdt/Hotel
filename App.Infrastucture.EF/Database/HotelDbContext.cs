@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using App.Core.Entities;
+using Hotel.Core.Entities.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace App.Infrastucture.EF.Database
 {
-    public class HotelDbContext : DbContext
+    public class HotelDbContext : IdentityDbContext<AppUser>
     {
         public HotelDbContext()
         {
@@ -39,6 +42,14 @@ namespace App.Infrastucture.EF.Database
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            var cascadeFKs = builder.Model.GetEntityTypes()
+                .SelectMany(t => t.GetForeignKeys())
+                .Where(fk => !fk.IsOwnership && fk.DeleteBehavior == DeleteBehavior.Cascade);
+
+            foreach (var fk in cascadeFKs)
+                fk.DeleteBehavior = DeleteBehavior.Restrict;
+
+            base.OnModelCreating(builder);
             builder.Entity<City>(x => x.ToTable("City"));
             builder.Entity<User>(x => x.ToTable("User"));
             builder.Entity<UserLogin>(x => x.ToTable("UserLogin"));

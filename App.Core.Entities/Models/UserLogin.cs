@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Reflection.Metadata;
 using App.Core.ApplicationService.IRepositories;
 
@@ -17,7 +18,8 @@ namespace App.Core.Entities
 
         #region Relation
 
-        public  User User { get; set; }
+        [ForeignKey("UserId")]
+        public virtual  User User { get; set; }
 
         #endregion
     }
